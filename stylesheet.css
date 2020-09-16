@@ -60,7 +60,8 @@
   }
   
   p {
-      font-family: Poppins-Regular;
+      /* font-family: Poppins-Regular; */
+      font-family: 'Trebuchet MS';
       font-size: 14px;
       line-height: 1.7;
       color: #666666;
@@ -76,7 +77,8 @@
   [ Utility ]*/
   
   .txt1 {
-    font-family: Poppins-Regular;
+    /* font-family: Poppins-Regular; */
+    font-family: 'Trebuchet MS';
     font-size: 13px;
     line-height: 1.5;
     color: #999999;
@@ -130,6 +132,7 @@
   }
   
   .login100-form-title {
+    /* font-family: Poppins-Bold; */
     font-family: 'Trebuchet MS';
     font-size: 27px;
     color: #333333;
@@ -151,12 +154,13 @@
   }
   
   .input100 {
-    font-family: Poppins-Medium;
+    /* font-family: Poppins-Medium; */
+    font-family: 'Trebuchet MS';
     font-size: 15px;
     line-height: 1.5;
     color: #666666;
     outline: none;
-      border: none;
+    border: none;
   
     display: block;
     width: 100%;
@@ -176,7 +180,8 @@
   }
   
   .login100-form-btn {
-    font-family: Montserrat-Bold;
+    /* font-family: Montserrat-Bold; */
+    font-family: 'Trebuchet MS';
     font-size: 15px;
     line-height: 1.5;
     color: #fff;
