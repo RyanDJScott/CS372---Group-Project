@@ -3,22 +3,22 @@
 
 @font-face {
     font-family: Poppins-Regular;
-    src: url('/fonts/poppins/Poppins-Regular.ttf'); 
+    src: url('fonts/poppins/Poppins-Regular.ttf'); 
   }
   
   @font-face {
     font-family: Poppins-Bold;
-    src: url('/fonts/poppins/Poppins-Bold.ttf'); 
+    src: url('fonts/poppins/Poppins-Bold.ttf'); 
   }
   
   @font-face {
     font-family: Poppins-Medium;
-    src: url('/fonts/poppins/Poppins-Medium.ttf'); 
+    src: url('fonts/poppins/Poppins-Medium.ttf'); 
   }
   
   @font-face {
     font-family: Montserrat-Bold;
-    src: url('/fonts/montserrat/Montserrat-Bold.ttf'); 
+    src: url('fonts/montserrat/Montserrat-Bold.ttf'); 
   }
   
   /*//////////////////////////////////////////////////////////////////
@@ -60,8 +60,7 @@
   }
   
   p {
-      /* font-family: Poppins-Regular; */
-      font-family: 'Trebuchet MS';
+      font-family: Poppins-Regular;
       font-size: 14px;
       line-height: 1.7;
       color: #666666;
@@ -77,8 +76,7 @@
   [ Utility ]*/
   
   .txt1 {
-    /* font-family: Poppins-Regular; */
-    font-family: 'Trebuchet MS';
+    font-family: Poppins-Regular;
     font-size: 13px;
     line-height: 1.5;
     color: #999999;
@@ -132,8 +130,7 @@
   }
   
   .login100-form-title {
-    /* font-family: Poppins-Bold; */
-    font-family: 'Trebuchet MS';
+    font-family: Poppins-Bold;
     font-size: 27px;
     color: #333333;
     line-height: 1.2;
@@ -154,9 +151,8 @@
   }
   
   .input100 {
-    /* font-family: Poppins-Medium; */
-    font-family: 'Trebuchet MS';
-    font-size: 15px;
+    font-family: Poppins-Medium;
+    font-size: 14px;
     line-height: 1.5;
     color: #666666;
     outline: none;
@@ -180,9 +176,8 @@
   }
   
   .login100-form-btn {
-    /* font-family: Montserrat-Bold; */
-    font-family: 'Trebuchet MS';
-    font-size: 15px;
+    font-family: Montserrat-Bold;
+    font-size: 13px;
     line-height: 1.5;
     color: #fff;
     text-transform: uppercase;
