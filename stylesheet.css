@@ -1,7 +1,7 @@
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
-@font-face {
+  @font-face {
     font-family: Poppins-Regular;
     src: url('fonts/poppins/Poppins-Regular.ttf'); 
   }
@@ -51,7 +51,7 @@
   
   a:hover {
       text-decoration: none;
-    color: #333333;
+      color: #333333;
   }
   
   /*---------------------------------------------*/
@@ -71,7 +71,19 @@
       margin: 0px;
       list-style-type: none;
   }
-  
+
+  /* */
+  th, td {
+    padding: 15px;
+  }
+
+  th {
+    text-align: left;
+    white-space: nowrap;
+    border-bottom: 2px solid #ddd;
+  }
+
+
   /*//////////////////////////////////////////////////////////////////
   [ Utility ]*/
   
@@ -83,25 +95,43 @@
   }
   
   /*//////////////////////////////////////////////////////////////////
-  [ login ]*/
+  [ Containers ]*/
   
   .limiter {
     width: 100%;
     margin: 0 auto;
   }
-  
-  .container-login100 {
+
+  .domain-container {
     width: 100%;  
     min-height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 15px;
+    padding: 30px;
     background: linear-gradient(-135deg, #addbc6, #a4d5dd);
   }
+
+  .card-container {
+    width: 960px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 40px 45px  40px 45px;
+  }
+
+  .login-input-container {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 10px;
+  }
   
-  .wrap-login100 {
+  .login-container {
     width: 960px;
     background: #fff;
     border-radius: 10px;
@@ -122,9 +152,6 @@
     max-width: 100%;
   }
   
-  
-  /*------------------------------------------------------------------
-  [  ]*/
   .login100-form {
     width: 290px;
   }
@@ -141,16 +168,7 @@
     padding-bottom: 54px;
   }
   
-  
-  /*---------------------------------------------*/
-  .wrap-input100 {
-    position: relative;
-    width: 100%;
-    z-index: 1;
-    margin-bottom: 10px;
-  }
-  
-  .input100 {
+  .login-input {
     font-family: Poppins-Medium;
     font-size: 14px;
     line-height: 1.5;
@@ -198,7 +216,7 @@
   }
   
   /*------------------------------------------------------------------
-  [ Responsivness - For resizing the page ]*/
+  [ Responsivness - For dynamically resizing the page ]*/
   
   @media (max-width: 992px) {
     .wrap-login100 {
@@ -234,3 +252,35 @@
     }
   }
   
+
+  /*//////////////////////////////////////////////////////////////////
+  [ Navigation Bar ]*/
+
+nav {
+  width: 100%;
+  justify-content: right;
+  align-items: right;
+  position:fixed;
+  right:10px;
+  top:5px;
+}
+
+nav ul li{
+	display:inline;
+	padding: 0 2%;
+  margin: 0;
+  float: right;
+}
+
+.logout-button {
+  font-family: Montserrat-Bold;
+    font-size: 13px;
+    color: #7e7e7e;
+    border: none;
+    text-align: center;
+  
+    width: 80px;
+    height: 25px;
+    border-radius: 10px;
+    background: #fff;
+}
