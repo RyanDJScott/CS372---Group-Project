@@ -33,6 +33,7 @@
   body, html {
       height: 100%;
       font-family: Poppins-Regular, sans-serif;
+      color: #333333;
   }
   
   /*---------------------------------------------*/
@@ -40,18 +41,23 @@
       font-family: Poppins-Regular;
       font-size: 14px;
       line-height: 1.7;
-      color: #666666;
+      color: #444444;
       margin: 0px;
       transition: all 0.4s;
+      text-decoration: none;
+      font-weight: bold;
   }
   
   a:focus {
       outline: none !important;
+      text-decoration: none;
+      font-weight: bold;
   }
   
   a:hover {
       text-decoration: none;
       color: #333333;
+      font-weight: bold;
   }
   
   /*---------------------------------------------*/
@@ -81,6 +87,10 @@
     text-align: left;
     white-space: nowrap;
     border-bottom: 2px solid #ddd;
+  }
+
+  header {
+    width: 100%;
   }
   
   .txt1 {
@@ -121,7 +131,7 @@
   }
 
   .manager-search-card-container {
-    width: 950px;
+    width: 970px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -132,7 +142,7 @@
   }
 
   .employee-search-card-container {
-    width: 870px;
+    width: 900px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -159,22 +169,90 @@
     justify-content: space-between;
     padding: 177px 130px  33px 95px;
   }
+
+/*//////////////////////////////////////////////////////////////////
+  [ BUTTONS ]*/
+
+  .logout-button {
+    font-family: Montserrat-Bold;
+      font-size: 13px;
+      color: #444444;
+      border: none;
+      text-align: center;
+    
+      width: 80px;
+      height: 25px;
+      border-radius: 10px;
+      background: #fff;
+  }
+  
+  .submit-button {
+    font-family: Montserrat-Bold;
+      font-size: 13px;
+      color: #fff;
+      border: none;
+      text-align: center;
+    
+      width: 130px;
+      height: 50px;
+      border-radius: 25px;
+      background: #a2c5be;
+  }
+
+  .delete-button {
+    background-color: #fff; /* Blue background */
+    border: none; /* Remove borders */
+    color: #666666; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+  }
+  
+  /*----------------------------------
+  [ Login Button ]*/
+  
+  .container-login-form-button {
+    width: 100%;
+    justify-content: center;
+    padding-top: 20px;
+  }
+  
+  .login-form-button {
+    font-family: Montserrat-Bold;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #fff;
+    border: none;
+  
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    background: #a2c5be;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    transition: all 0.4s;
+  }
+  
+  .login-form-button:hover {
+    background: #333333;
+  }
   
   /*------------------------------------------------------------------
   [ Login Page ]*/
-  .login100-pic {
+  .login-pic {
     width: 316px;
   }
   
-  .login100-pic img {
+  .login-pic img {
     max-width: 100%;
   }
   
-  .login100-form {
+  .login-form {
     width: 290px;
   }
   
-  .login100-form-title {
+  .login-form-title {
     font-family: Poppins-Bold;
     font-size: 27px;
     color: #333333;
@@ -194,58 +272,27 @@
     outline: none;
     border: none;
   
-    display: block;
     width: 100%;
+    border-radius: 25px;
     background: #e6e6e6;
     height: 50px;
-    border-radius: 25px;
-    padding: 0 30px 0 68px;
+    padding: 0 30px 0 30px;
   }
-  
+
+
   /*------------------------------------------------------------------
-  [ Login Button ]*/
-  
-  .container-login100-form-btn {
-    width: 100%;
-    justify-content: center;
-    padding-top: 20px;
-  }
-  
-  .login100-form-btn {
-    font-family: Montserrat-Bold;
-    font-size: 13px;
-    line-height: 1.5;
-    color: #fff;
-    text-transform: uppercase;
-    border: none;
-  
-    width: 100%;
-    height: 50px;
-    border-radius: 25px;
-    background: #819e7b;
-    justify-content: center;
-    align-items: center;
-    padding: 0 25px;
-    transition: all 0.4s;
-  }
-  
-  .login100-form-btn:hover {
-    background: #333333;
-  }
-  
-  /*------------------------------------------------------------------
-  [ Responsivness - For dynamically resizing the page ]*/
+  [ Responsivness - For dynamically resizing the Login page ]*/
   
   @media (max-width: 992px) {
     .login-container {
       padding: 177px 90px 33px 85px;
     }
   
-    .login100-pic {
+    .login-pic {
       width: 35%;
     }
   
-    .login100-form {
+    .login-form {
       width: 50%;
     }
   }
@@ -255,11 +302,11 @@
       padding: 100px 80px 33px 80px;
     }
   
-    .login100-pic {
+    .login-pic {
       display: none;
     }
   
-    .login100-form {
+    .login-form {
       width: 100%;
     }
   }
@@ -289,29 +336,3 @@ nav ul li{
   margin: 0;
   float: right;
 }
-
-.logout-button {
-  font-family: Montserrat-Bold;
-    font-size: 13px;
-    color: #7e7e7e;
-    border: none;
-    text-align: center;
-  
-    width: 80px;
-    height: 25px;
-    border-radius: 10px;
-    background: #fff;
-}
-
- /*//////////////////////////////////////////////////////////////////
-  [ Managet Landing ]*/
-
-.delete-button {
-  background-color: #fff; /* Blue background */
-  border: none; /* Remove borders */
-  color: #666666; /* White text */
-  padding: 12px 16px; /* Some padding */
-  font-size: 16px; /* Set a font size */
-  cursor: pointer; /* Mouse pointer on hover */
-}
-
