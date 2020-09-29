@@ -38,18 +38,21 @@
   
   /*---------------------------------------------*/
   a {
-      font-family: Poppins-Regular;
+      font-family: Poppins-Medium;
       font-size: 14px;
       line-height: 1.7;
       color: #444444;
       margin: 0px;
       transition: all 0.4s;
       text-decoration: none;
-      font-weight: bold;
+
+      height: 25px;
+      border-radius: 10px;
+      border: 1px #333333;
   }
   
   a:focus {
-      outline: none !important;
+      outline: none! important;
       text-decoration: none;
       font-weight: bold;
   }
@@ -64,7 +67,10 @@
   h1,h2,h3,h4,h5,h6 {
       margin: 0px;
   }
-  
+  div {
+    border-spacing: 100px;
+  }
+
   p {
       font-family: Poppins-Regular;
       font-size: 14px;
@@ -168,6 +174,15 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 177px 130px  33px 95px;
+  }
+
+  .submit-button-container {
+    padding: 10px;
+  }
+
+  .skills-container {
+    width: 100px;
+    flex-wrap: wrap;
   }
 
 /*//////////////////////////////////////////////////////////////////
@@ -279,7 +294,6 @@
     padding: 0 30px 0 30px;
   }
 
-
   /*------------------------------------------------------------------
   [ Responsivness - For dynamically resizing the Login page ]*/
   
@@ -335,4 +349,26 @@ nav ul li{
 	padding: 0 2%;
   margin: 0;
   float: right;
+}
+
+.text-input {
+  font-family: Poppins-Medium;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #333333;
+  outline: none;
+  border: none;
+  float: right;
+
+  width: 230px;
+  border-radius: 25px;
+  background: #ebebeb;
+  height: 35px;
+  padding: 0 30px 0 30px;
+}
+
+.custom-file-input {
+  font-size: 12px;
+  text-decoration: none;
+  font-family: Poppins-Regular;
 }
