@@ -105,6 +105,16 @@
     line-height: 1.5;
     color: #999999;
   }
+
+  .project-members-heading {
+    font-family: Poppins-Regular;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333333;
+    white-space: nowrap;
+    float: center;
+    width: 100%;
+  }
   
   /*//////////////////////////////////////////////////////////////////
   [ Containers ]*/
@@ -138,6 +148,17 @@
 
   .manager-search-card-container {
     width: 970px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 40px 45px  40px 45px;
+  }
+
+  .manager-create-new-project-card-container {
+    width: 680px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -181,7 +202,7 @@
   }
 
   .skills-container {
-    width: 100px;
+    width: 100%;
     flex-wrap: wrap;
   }
 
@@ -352,23 +373,54 @@ nav ul li{
 }
 
 .text-input {
-  font-family: Poppins-Medium;
+  font-family: Poppins-Regular;
   font-size: 13px;
   line-height: 1.5;
   color: #333333;
   outline: none;
-  border: none;
+  border: #a8a8a8;
   float: right;
 
   width: 230px;
   border-radius: 25px;
   background: #ebebeb;
   height: 35px;
-  padding: 0 30px 0 30px;
+  padding: 0 20px 0 20px;
+}
+
+textarea {
+
+  font-family: Poppins-Regular;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #333333;
+
+  width: 400px;
+  height: 90px;
+  border-radius: 25px;
+  padding: 0 20px 0 20px;
+  border: #a8a8a8;
+  background: #ebebeb;
+  padding: 12px 20px;
+  resize: none;
+  outline: none! important;
 }
 
 .custom-file-input {
   font-size: 12px;
   text-decoration: none;
   font-family: Poppins-Regular;
+}
+
+input[type="date"] {
+  background-color: #ebebeb;
+  border-radius: 25px;
+  border: #a8a8a8;
+  outline: none;
+  font-family: Poppins-Regular;
+  padding: 8px 8px 8px 18px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  font-size: 15px;
 }
