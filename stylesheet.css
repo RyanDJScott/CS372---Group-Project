@@ -146,6 +146,28 @@
     padding: 40px 45px  40px 45px;
   }
 
+  .edit-profile-card-container {
+    width: 900px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 40px 45px  40px 45px;
+  }
+
+  .create-new-user-card-container {
+    width: 950px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 40px 45px  40px 45px;
+  }
+
   .manager-search-card-container {
     width: 970px;
     background: #fff;
