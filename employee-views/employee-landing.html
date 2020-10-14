@@ -60,8 +60,35 @@
                                 <th>Project Members</th>
                             </tr>
                         </thead>
+                            
+                            <!-- <?php
+                                $db = mysqli_connect("localhost", "root", "", "cs-372-database");
 
-                        <tbody>
+                                if ($connection-> connect_error) {
+                                    die("Connection failed:".$db-> connect_error);
+                                }
+
+                                $sql = "SELECT projectTitle, description, startDate, endDate, projectMembers, from Employee";
+                                $result = $db-> query($sql);
+
+                                if($result-> num_rows > 0) {
+                                    while ($row = $result-> fetch_assoc()) {
+                                        echo "<tr><td>". $row["projectTitle"] ."
+                                            </td><td>". $row["description"] ."
+                                            </td><td>". $row["startDate"] ."
+                                            </td><td>". $row["endDate"] ."
+                                            </td><td>". $row["projectMembers"] ."
+                                            </td></tr>";
+                                    }
+
+                                    echo "</table>";
+                                } else {
+                                    echo "0 results";
+                                }
+
+                                $db-> close();
+                            ?> -->
+                            
                             <tr>
                                 <td>Company Website</td>
                                 <td>Create company website.</td>
@@ -87,8 +114,6 @@
                                 <td>05-10-2020</td>
                                 <td>05-15-2020</td>
                             </tr>
-                            
-                        </tbody>
                     </table>
             
             </article>

@@ -14,7 +14,6 @@
 
 	<div class="limiter">
 		<div class="domain-container">
-
             <nav>
                 <ul>
                     <li>
@@ -30,8 +29,6 @@
                     <li><a href="manager-create-new-user.html">Create New User</a></li>
                     <li><a href="manager-landing.html">Home</a></li>
                 </ul>
-
-                
             </nav>
 
 			<div class="card-container">
@@ -44,7 +41,13 @@
                                     <img src="../assets/images/emptypic.png" alt="PlaceHolder Pic" width="100px" height="100px">
                                 </td>
                                 <td>
-                                    <h2>Manager Name</h2>
+                                    <h2>Manager Name</h2> 
+                                </td>
+                                <td>
+                                    <form class="search-bar" action="/employee-views/employee-search-results.html">
+                                        <input type="text" placeholder="Search.." name="search">
+                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                         </tbody>
@@ -64,7 +67,37 @@
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <!-- <?php
+                            $db = mysqli_connect("localhost", "root", "", "cs-372-database");
+
+                            if ($connection-> connect_error) {
+                                die("Connection failed:".$db-> connect_error);
+                            }
+
+                            $sql = "SELECT projectTitle, description, startDate, endDate, projectMembers, from Employee";
+                            $result = $db-> query($sql);
+
+                            if($result-> num_rows > 0) {
+                                while ($row = $result-> fetch_assoc()) {
+                                    echo "<tr><td>". $row["projectTitle"] ."
+                                         </td><td>". $row["description"] ."
+                                         </td><td>". $row["startDate"] ."
+                                         </td><td>". $row["endDate"] ."
+                                         </td><td>". $row["projectMembers"] ."
+                                         </td><td>"<button class="delete-button"><i class="fa fa-trash"></i></button>"
+                                         </td></tr>";
+                                }
+
+                                echo "</table>";
+                            } else {
+                                echo "0 results";
+                            }
+
+                            // include some logic to delete row/project upon selecting trash can
+
+                            $db-> close();
+                        ?> -->
+
                             <tr>
                                 <td>Company Website</td>
                                 <td>Create company website.</td>
@@ -129,10 +162,7 @@
                                     <button class="delete-button"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
-                            
-                        </tbody>
                     </table>
-            
             </article>
 				
 			</div>
