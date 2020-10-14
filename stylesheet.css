@@ -224,6 +224,11 @@
     padding: 10px;
   }
 
+  .search-bar-container {
+    padding: 10px;
+    float: right;
+  }
+
   .skills-container {
     width: 100%;
     flex-wrap: wrap;
@@ -459,7 +464,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 25px;
     outline: none;
     border: 1px solid #a8a8a8;
-    
   }
 
   /* search button */
@@ -472,4 +476,3 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border: none;
     cursor: pointer;
   }
-
