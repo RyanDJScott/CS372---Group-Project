@@ -28,7 +28,9 @@ CREATE TABLE ProjectTeams (
 
 CREATE TABLE Projects (
     PID INT NOT NULL AUTO_INCREMENT,
-    Title VARCHAR(30),
+    Title VARCHAR(30) NOT NULL,
+    StartDate DATE NOT NULL,
+    EndDate DATE NOT NULL,
     Description TEXT,
     PRIMARY KEY (PID)
 );
@@ -106,8 +108,8 @@ VALUES ('Basic', 'Biotch', 'cantCodeKathy@hotmail.com', 'thankGodImPretty**!!');
 
 --Project 1: CS372 Software Project
 --Step 1: create basic project and get PID
-INSERT INTO Projects (Title, Description)
-VALUES ('CS372 Term Project', 'A project that was given to us by Tanzina and Nathan is very angry about it');
+INSERT INTO Projects (Title, StartDate, EndDate, Description)
+VALUES ('CS372 Term Project', '2020-09-03', '2020-12-02', 'A project that was given to us by Tanzina and Nathan is very angry about it');
 
 --Step 2: create team by inserting users into the project
 --Manager: Ryan
@@ -221,10 +223,22 @@ FROM Users LEFT JOIN CPs ON Users.UID = CPs.UID
 WHERE CPs.CodingLang = 'LISP';
 
 --<------------------Start Project Queries for Project Information------------------>
---Get all the information about the project that is needed to be displayed
+--Get all the information about the project that is needed to be displayed (manager views)
 --Results: works, even the manager who has no duties is displayed in the table.
 SELECT Projects.Title, Projects.Description, Users.UID, Users.managerID, Users.FirstName, Users.LastName, Tasks.TDescription, Tasks.Deadline
 FROM Projects INNER JOIN ProjectTeams ON Projects.PID = ProjectTeams.PID
 INNER JOIN Users ON ProjectTeams.UID = Users.UID
 LEFT JOIN Tasks ON ProjectTeams.UID = Tasks.UID
-WHERE Projects.PID = 1;
+WHERE Projects.PID > 0;
+
+--Get all the projects a single user is involved with
+--Results: works with a two step query: 1st step is to grab all PID's that the user is involved with, second is to use above query.
+--The initial query can return an array of all PID's, which can be ran through a set of queries to produce the results.
+SELECT PID FROM ProjectTeams
+WHERE UID = 3;
+
+SELECT Projects.Title, Projects.Description, Users.UID, Users.managerID, Users.FirstName, Users.LastName, Tasks.TDescription, Tasks.Deadline
+FROM Projects INNER JOIN ProjectTeams ON Projects.PID = ProjectTeams.PID
+INNER JOIN Users ON ProjectTeams.UID = Users.UID
+LEFT JOIN Tasks ON ProjectTeams.UID = Tasks.UID
+WHERE Projects.PID = 1; 
