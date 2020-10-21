@@ -18,9 +18,12 @@
 					<img src="assets/images/Logo.png" alt="Placeholder Text">
 				</div>
 
-				<form class="login-form validate-form">
+				<form class="login-form validate-form" action="PHP/login.php" method="post">
 					<span class="login-form-title">
 						Member Login
+					</span>
+					<span class="login-error">
+						<?=$errorMsg?>
 					</span>
 
 					<div class="login-input-container">
@@ -32,11 +35,11 @@
 					</div>
 					
 					<div class="container-login-form-button">
-						<button class="login-form-button">
+						<button class="login-form-button" type="submit" formmethod="post">
 							Login
 						</button>
 					</div>
-
+					
 					<div class="text-center p-t-136">
 						<a class="txt1">
 							Created by Devonian Software Development Ltd.

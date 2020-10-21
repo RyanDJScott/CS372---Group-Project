@@ -2,6 +2,9 @@
     //start a session
     session_start();
 
+    //Unset all session variables
+    $_SESSION = array();
+    
     //Destroy all session variables
     session_destroy();
 
