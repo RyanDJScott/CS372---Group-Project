@@ -22,8 +22,8 @@ CREATE TABLE ProjectTeams (
     UID INT,
     PID INT,
     PRIMARY KEY (UID, PID),
-    FOREIGN KEY (UID) REFERENCES Users (UID),
-    FOREIGN KEY (PID) REFERENCES Projects (PID)
+    FOREIGN KEY (UID) REFERENCES Users (UID) ON DELETE CASCADE,
+    FOREIGN KEY (PID) REFERENCES Projects (PID) ON DELETE CASCADE
 );
 
 CREATE TABLE Projects (
@@ -31,7 +31,7 @@ CREATE TABLE Projects (
     Title VARCHAR(30) NOT NULL,
     StartDate DATE NOT NULL,
     EndDate DATE NOT NULL,
-    Description TEXT,
+    Description TEXT NOT NULL,
     PRIMARY KEY (PID)
 );
 
@@ -42,7 +42,7 @@ CREATE TABLE Tasks (
     TDescription TEXT NOT NULL,
     Deadline DATE NOT NULL,
     PRIMARY KEY (TID),
-    FOREIGN KEY (UID) REFERENCES Users (UID) ON DELETE CASCADE,
+    FOREIGN KEY (UID) REFERENCES Users (UID) ON DELETE SET NULL,
     FOREIGN KEY (PID) REFERENCES Projects (PID) ON DELETE CASCADE
 );
 
@@ -115,6 +115,9 @@ VALUES ('CS372 Term Project', '2020-09-03', '2020-12-02', 'A project that was gi
 --Manager: Ryan
 --Team: Leanne, Nathan, Red Shirt
 INSERT INTO ProjectTeams (PID, UID)
+VALUES (1, 1);
+
+INSERT INTO ProjectTeams (PID, UID)
 VALUES (1, 2);
 
 INSERT INTO ProjectTeams (PID, UID)
@@ -123,28 +126,25 @@ VALUES (1, 3);
 INSERT INTO ProjectTeams (PID, UID)
 VALUES (1, 4);
 
-INSERT INTO ProjectTeams (PID, UID)
-VALUES (1, 5);
-
 --Step 3: create tasks by tying tasks/project to a specific task
 INSERT INTO Tasks (UID, PID, TDescription, Deadline)
-VALUES (3, 1, 'Create the UI using your vast UI knowledge', '2020-10-15');
+VALUES (2, 1, 'Create the UI using your vast UI knowledge', '2020-10-15');
 INSERT INTO Tasks (UID, PID, TDescription, Deadline)
-VALUES (3, 1, 'Fiddle with the CSS sheet to make it look pretty', '2020-10-31');
+VALUES (2, 1, 'Fiddle with the CSS sheet to make it look pretty', '2020-10-31');
 INSERT INTO Tasks (UID, PID, TDescription, Deadline)
-VALUES (3, 1, 'Tell Nathan to do his damn job!', '2020-09-01');
+VALUES (2, 1, 'Tell Nathan to do his damn job!', '2020-09-01');
 
 INSERT INTO Tasks (UID, PID, TDescription, Deadline)
-VALUES (4, 1, 'Remember how to write JavaScript code', '2020-09-01');
+VALUES (3, 1, 'Remember how to write JavaScript code', '2020-09-01');
 INSERT INTO Tasks (UID, PID, TDescription, Deadline)
-VALUES (4, 1, 'Validate user login page', '2020-10-16');
+VALUES (3, 1, 'Validate user login page', '2020-10-16');
 INSERT INTO Tasks (UID, PID, TDescription, Deadline)
-VALUES (4, 1, 'Validate all other fields in the site', '2020-10-31');
+VALUES (3, 1, 'Validate all other fields in the site', '2020-10-31');
 INSERT INTO Tasks (UID, PID, TDescription, Deadline)
-VALUES (4, 1, 'Help Ryan with AJAX', '2020-11-10');
+VALUES (3, 1, 'Help Ryan with AJAX', '2020-11-10');
 
 INSERT INTO Tasks (UID, PID, TDescription, Deadline)
-VALUES (5, 1, 'Try not to die today', '2020-12-31');
+VALUES (4, 1, 'Try not to die today', '2020-12-31');
 
 --<----------Start Sample Queries For Users Information--------------->
 --1: On user login, return UID for the session 
@@ -225,11 +225,11 @@ WHERE CPs.CodingLang = 'LISP';
 --<------------------Start Project Queries for Project Information------------------>
 --Get all the information about the project that is needed to be displayed (manager views)
 --Results: works, even the manager who has no duties is displayed in the table.
-SELECT Projects.Title, Projects.Description, Users.UID, Users.managerID, Users.FirstName, Users.LastName, Tasks.TDescription, Tasks.Deadline
+SELECT Projects.Title, Projects.Description, Projects.StartDate, Projects.EndDate, Users.UID, Users.managerID, Users.FirstName, Users.LastName, Tasks.TDescription, Tasks.Deadline
 FROM Projects INNER JOIN ProjectTeams ON Projects.PID = ProjectTeams.PID
 INNER JOIN Users ON ProjectTeams.UID = Users.UID
 LEFT JOIN Tasks ON ProjectTeams.UID = Tasks.UID
-WHERE Projects.PID > 0;
+WHERE Projects.PID > 0 ORDER BY Tasks.UID;
 
 --Get all the projects a single user is involved with
 --Results: works with a two step query: 1st step is to grab all PID's that the user is involved with, second is to use above query.
@@ -237,8 +237,8 @@ WHERE Projects.PID > 0;
 SELECT PID FROM ProjectTeams
 WHERE UID = 3;
 
-SELECT Projects.Title, Projects.Description, Users.UID, Users.managerID, Users.FirstName, Users.LastName, Tasks.TDescription, Tasks.Deadline
+SELECT Projects.Title, Projects.Description, Projects.StartDate, Projects.EndDate, Users.UID, Users.managerID, Users.FirstName, Users.LastName, Tasks.TDescription, Tasks.Deadline
 FROM Projects INNER JOIN ProjectTeams ON Projects.PID = ProjectTeams.PID
 INNER JOIN Users ON ProjectTeams.UID = Users.UID
 LEFT JOIN Tasks ON ProjectTeams.UID = Tasks.UID
-WHERE Projects.PID = 1; 
+WHERE Projects.PID = 1 ORDER BY Tasks.UID; 
