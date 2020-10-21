@@ -30,7 +30,7 @@
 
         //Fill session variables
         $_SESSION[UID] = $row[UID];
-        $_SESSION[MID] = $row[MID];
+        $_SESSION[MID] = $row[managerID];
 
         //Send the user to their landing page
         if ($_SESSION[MID] != NULL)
