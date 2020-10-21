@@ -26,8 +26,6 @@
                     <li><a href="employee-edit-profile.html">Edit Profile</a></li>
                     <li><a href="employee-landing.html">Home</a></li>
                 </ul>
-
-                
             </nav>
 
 			<div class="edit-profile-card-container">
@@ -50,12 +48,16 @@
                 <article>
                     <!-- add form tag here -->
                     <div>
+                        <table>
+                            <tr>
+                                <td>Profile Picture: </td><td> <input type="file" name="profilePicture" class="custom-file-input" /></td><td>Bio: </td><td> <textarea name="managerBio" id="managerBio" cols="30" rows="10"></textarea></td>
+                            </tr> 
+                        </table>
+                    </div>
+
+                    <div>
                         <table id="createUserTable">
                             <tbody>
-                                <tr>
-                                    <td>Profile Picture: </td><td> <input type="file" name="profilePicture" class="custom-file-input" /></td>
-                                </tr> 
-    
                                 <tr>
                                     <td>First Name: </td><td> <input type="text" name="firstName" size="30" class="text-input"/></td>
                                     <td>Last Name: </td><td> <input type="text" name="lastName" size="30" class="text-input"/></td>

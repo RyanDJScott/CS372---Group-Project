@@ -18,8 +18,7 @@
                 <ul>
                     <li>
                         <form align="right" name="form1" method="post" action="logout.php">
-                            <input class="logout-button" name="submit2" type="submit" id="submit2" value="Logout" >
-                            </label>
+                            <input class="logout-button" name="submit2" type="submit" id="submit2" value="Logout">
                         </form>
                     </li>
                     <li><a href="manager-all-employees.html">See All Employees</a></li>
@@ -32,8 +31,14 @@
             </nav>
 
 			<div class="card-container">
-
                 <header>
+                    <div class="search-bar-container">
+                        <form class="search-bar" action="manager-search-results.html">
+                            <input type="text" placeholder="Search.." name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+
                     <table>
                         <tbody>
                             <tr>
@@ -43,26 +48,10 @@
                                 <td>
                                     <h2>Manager Name</h2> 
                                 </td>
-                                <td>
-                                    <div class="search-bar-container">
-                                        <form class="search-bar" action="/employee-views/employee-search-results.html">
-                                            <input type="text" placeholder="Search.." name="search">
-                                            <button type="submit"><i class="fa fa-search"></i></button>
-                                        </form>
-                                    </div>
-                                </td>
                             </tr>
                         </tbody>
-                        <div class="search-bar-container">
-                            <form class="search-bar" action="/employee-views/employee-search-results.html">
-                                <input type="text" placeholder="Search.." name="search">
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
                     </table>
-                </header>
-                
-                
+                </header>           
                 
                 <article>
                     <table id="example" class="dataTable">

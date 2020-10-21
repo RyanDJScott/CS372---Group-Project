@@ -170,7 +170,18 @@
   }
 
   .manager-search-card-container {
-    width: 970px;
+    width: 870px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 40px 45px  40px 45px;
+  }
+
+  .manager-all-employees-card-container {
+    width: 850px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -192,7 +203,7 @@
   }
 
   .employee-search-card-container {
-    width: 900px;
+    width: 800px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -423,7 +434,7 @@ textarea {
   line-height: 1.5;
   color: #333333;
 
-  width: 400px;
+  width: 350px;
   height: 90px;
   border-radius: 25px;
   padding: 0 20px 0 20px;
