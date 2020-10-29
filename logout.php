@@ -1,4 +1,4 @@
-<? php 
+<?php 
     //start a session
     session_start();
 
@@ -9,7 +9,7 @@
     session_destroy();
 
     //Send the user back to the home page
-    header(Location: index.php);
+    header("Location: index.php");
 
     //Exit the logout script
     exit();
