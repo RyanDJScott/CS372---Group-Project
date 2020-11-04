@@ -22,7 +22,7 @@
                         </form>
                     </li>
                     <li><a href="manager-all-employees.html">See All Employees</a></li>
-                    <li><a href="manager-edit-profile.html">Edit Profile</a></li>
+                    <li><a href="manager-edit-profile.php">Edit Profile</a></li>
                     <li><a href="manager-edit-project.html">Edit Project</a></li>
                     <li><a href="manager-create-new-project.html">Create New Project</a></li>
                     <li><a href="manager-create-new-user.html">Create New User</a></li>

@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="assets/helper.css">
+	<link rel="stylesheet" type="text/css" href="../assets/helper.css">
     <link rel="stylesheet" type="text/css" href="../stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
@@ -24,7 +24,7 @@
                     </li>
                     <li><a href="manager-all-employees.html">See All Employees</a></li>
                     <li><a href="manager-edit-profile.html">Edit Profile</a></li>
-                    <li><a href="manager-edit-project.html">Edit Project</a></li>
+                    <li><a href="manager-edit-project.php">Edit Project</a></li>
                     <li><a href="manager-create-new-project.html">Create New Project</a></li>
                     <li><a href="manager-create-new-user.html">Create New User</a></li>
                     <li><a href="manager-landing.html">Home</a></li>
