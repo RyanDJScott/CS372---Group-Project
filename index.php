@@ -8,9 +8,9 @@
     //Check if the user is logged in, if so send them to their landing page based on emp/manager
     if (isset($_SESSION["UID"]) && $_SESSION["UID"] > 0) {
         if ($_SESSION["MID"] != NULL)
-            header("Location: manager-views/manager-landing.html");
+            header("Location: manager-views/manager-landing.php");
         else 
-            header("Location: employee-views/employee-landing.html");
+            header("Location: employee-views/employee-landing.php");
     } else {
         //Grab the information from the fields, set error message variable
         $email = $_POST["email"];
@@ -49,9 +49,9 @@
 
 					//Send the user to their landing page
 					if ($_SESSION["MID"] != NULL)
-						header("Location: manager-views/manager-landing.html");
+						header("Location: manager-views/manager-landing.php");
 					else
-						header("Location: employee-views/employee-landing.html");
+						header("Location: employee-views/employee-landing.php");
 				} else {
 					$errorMsg = "Invalid Login";
 				}
