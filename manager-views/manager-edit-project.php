@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Create New Project</title>
+	<title>Edit Project</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="assets/helper.css">
+	<link rel="stylesheet" type="text/css" href="../assets/helper.css">
     <link rel="stylesheet" type="text/css" href="../stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
@@ -18,26 +18,27 @@
             <nav>
                 <ul>
                     <li>
-                        <form align="right" name="form1" method="post" action="logout.php">
+                        <form align="right" name="form1" method="post" action="../logout.php">
                             <input class="logout-button" name="submit2" type="submit" id="submit2" value="Logout" >
                         </form>
                     </li>
-                    <li><a href="manager-all-employees.html">See All Employees</a></li>
-                    <li><a href="manager-edit-profile.html">Edit Profile</a></li>
-                    <li><a href="manager-edit-project.html">Edit Project</a></li>
-                    <li><a href="manager-create-new-project.html">Create New Project</a></li>
-                    <li><a href="manager-create-new-user.html">Create New User</a></li>
-                    <li><a href="manager-landing.html">Home</a></li>
+                    <li><a href="manager-all-employees.php">See All Employees</a></li>
+                    <li><a href="manager-edit-profile.php">Edit Profile</a></li>
+                    <li><a href="manager-edit-project.php">Edit Project</a></li>
+                    <li><a href="manager-create-new-project.php">Create New Project</a></li>
+                    <li><a href="manager-create-new-user.php">Create New User</a></li>
+                    <li><a href="manager-landing.php">Home</a></li>
                 </ul>
             </nav>
 
 			<div class="manager-create-new-project-card-container">
+
                 <header>
                     <table>
                         <tbody>
                             <tr>
                                 <td>
-                                    <h2>Create New Project</h2>
+                                    <h2>Edit Project</h2>
                                 </td>
                             </tr>
                         </tbody>

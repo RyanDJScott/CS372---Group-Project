@@ -354,6 +354,16 @@
     padding: 0 30px 0 30px;
   }
 
+  .login-error {
+    font-family: Poppins-Medium;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #FF0000;
+    outline: none;
+    border: none;
+    padding: 0 0 0 10px;
+  }
+
   /*------------------------------------------------------------------
   [ Responsivness - For dynamically resizing the Login page ]*/
   

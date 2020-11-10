@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>All Employees</title>
+	<title>Search Results</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="assets/helper.css">
+	<link rel="stylesheet" type="text/css" href="../assets/helper.css">
     <link rel="stylesheet" type="text/css" href="../stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
@@ -18,23 +18,24 @@
             <nav>
                 <ul>
                     <li>
-                        <form align="right" name="form1" method="post" action="logout.php">
+                        <form align="right" name="form1" method="post" action="../logout.php">
                             <input class="logout-button" name="submit2" type="submit" id="submit2" value="Logout" >
+                            </label>
                         </form>
                     </li>
-                    <li><a href="manager-all-employees.html">See All Employees</a></li>
-                    <li><a href="manager-edit-profile.html">Edit Profile</a></li>
-                    <li><a href="manager-edit-project.html">Edit Project</a></li>
-                    <li><a href="manager-create-new-project.html">Create New Project</a></li>
-                    <li><a href="manager-create-new-user.html">Create New User</a></li>
-                    <li><a href="manager-landing.html">Home</a></li>
+                    <li><a href="employee-all-employees.php">See All Employees</a></li>
+                    <li><a href="employee-edit-profile.php">Edit Profile</a></li>
+                    <li><a href="employee-landing.php">Home</a></li>
                 </ul>
+
+                
             </nav>
 
-			<div class="manager-all-employees-card-container">
+			<div class="employee-search-card-container">
+
                 <header>
                     <div class="search-bar-container">
-                        <form class="search-bar" action="manager-search-results.html">
+                        <form class="search-bar" action="employee-search-results.php">
                             <input type="text" placeholder="Search.." name="search">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
@@ -44,7 +45,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <h2>Employees</h2>
+                                    <h2>Search results for  "NodeJS"</h2>
                                 </td>
                             </tr>
                         </tbody>
@@ -53,48 +54,16 @@
                 
                 <article>
     
-                    <table>
+                    <table id="example" class="dataTable" >
                         <thead>
                             <tr>
                                 <th>User Type</th> 
-                                <th>First Name</th> 
+                                <th>First Name</th>
                                 <th>Last Name</th> 
                                 <th>Email</th>
                                 <th>Skills</th>
                             </tr>
                         </thead>
-
-                        <!-- <?php
-                            $db = mysqli_connect("localhost", "root", "", "cs-372-database");
-
-                            if ($connection-> connect_error) {
-                                die("Connection failed:".$db-> connect_error);
-                            }
-
-                            $sql = "SELECT userType, firstName, lastName, email, contract, skills from Employee";
-                            $result = $db-> query($sql);
-
-                            if($result-> num_rows > 0) {
-                                while ($row = $result-> fetch_assoc()) {
-                                    echo "<tr><td>". $row["userType"] ."
-                                         </td><td>". $row["firstName"] ."
-                                         </td><td>". $row["lastName"] ."
-                                         </td><td>". $row["email"] ."
-                                         </td><td>". $row["skills"] ."
-                                         </td><td>"<button class="delete-button"><i class="fa fa-trash"></i></button>"
-                                         </td></tr>";
-                                }
-
-                                echo "</table>"; 
-                            } else {
-                                echo "0 results"; 
-                            }
-
-                            // include some logic to delete row/project upon selecting trash can
-
-                            $db-> close();
-                        ?> -->
-                        
                             <tr>
                                 <td>Manager</td>
                                 <td>Jean</td>
@@ -105,9 +74,6 @@
                                         <li>Go</li>
                                         <li>NodeJS</li>
                                       </ul>  
-                                </td>
-                                <td>
-                                    <button class="delete-button"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
 
@@ -123,9 +89,6 @@
                                         <li>NodeJS</li>
                                       </ul>  
                                 </td>
-                                <td>
-                                    <button class="delete-button"><i class="fa fa-trash"></i></button>
-                                </td>
                             </tr>
                             
                             <tr>
@@ -140,23 +103,6 @@
                                         <li>Machine Code</li>
                                         <li>NodeJS</li>
                                       </ul>  
-                                </td>
-                                <td>
-                                    <button class="delete-button"><i class="fa fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Employee</td>
-                                <td>Geordi</td>
-                                <td>La Forge</td>
-                                <td>geordi@starfleet.com</td>
-                                <td>
-                                    <ul>
-                                        <li>ARM</li>
-                                      </ul>  
-                                </td>
-                                <td>
-                                    <button class="delete-button"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                     </table>
