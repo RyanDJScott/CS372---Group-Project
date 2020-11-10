@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="assets/helper.css">
+	<link rel="stylesheet" type="text/css" href="../assets/helper.css">
     <link rel="stylesheet" type="text/css" href="../stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
@@ -18,15 +18,15 @@
             <nav>
                 <ul>
                     <li>
-                        <form align="right" name="form1" method="post" action="logout.php">
+                        <form align="right" name="form1" method="post" action="../logout.php">
                             <input class="logout-button" name="submit2" type="submit" id="submit2" value="Logout" >
                             
                             </label>
                         </form>
                     </li>
-                    <li><a href="employee-all-employees.html">See All Employees</a></li>
-                    <li><a href="employee-edit-profile.html">Edit Profile</a></li>
-                    <li><a href="employee-landing.html">Home</a></li>
+                    <li><a href="employee-all-employees.php">See All Employees</a></li>
+                    <li><a href="employee-edit-profile.php">Edit Profile</a></li>
+                    <li><a href="employee-landing.php">Home</a></li>
                 </ul>
 
                 
@@ -36,7 +36,7 @@
 
                 <header>
                     <div class="search-bar-container">
-                        <form class="search-bar" action="employee-search-results.html">
+                        <form class="search-bar" action="employee-search-results.php">
                             <input type="text" placeholder="Search.." name="search">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
@@ -68,35 +68,6 @@
                                 <th>Project Members</th>
                             </tr>
                         </thead>
-                            
-                            <!-- <?php
-                                $db = mysqli_connect("localhost", "root", "", "cs-372-database");
-
-                                if ($connection-> connect_error) {
-                                    die("Connection failed:".$db-> connect_error);
-                                }
-
-                                $sql = "SELECT projectTitle, description, startDate, endDate, projectMembers, from Employee";
-                                $result = $db-> query($sql);
-
-                                if($result-> num_rows > 0) {
-                                    while ($row = $result-> fetch_assoc()) {
-                                        echo "<tr><td>". $row["projectTitle"] ."
-                                            </td><td>". $row["description"] ."
-                                            </td><td>". $row["startDate"] ."
-                                            </td><td>". $row["endDate"] ."
-                                            </td><td>". $row["projectMembers"] ."
-                                            </td></tr>";
-                                    }
-
-                                    echo "</table>";
-                                } else {
-                                    echo "0 results";
-                                }
-
-                                $db-> close();
-                            ?> -->
-                            
                             <tr>
                                 <td>Company Website</td>
                                 <td>Create company website.</td>

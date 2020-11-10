@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="assets/helper.css">
+	<link rel="stylesheet" type="text/css" href="../assets/helper.css">
     <link rel="stylesheet" type="text/css" href="../stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
@@ -18,13 +18,13 @@
             <nav>
                 <ul>
                     <li>
-                        <form align="right" name="form1" method="post" action="logout.php">
+                        <form align="right" name="form1" method="post" action="../logout.php">
                             <input class="logout-button" name="submit2" type="submit" id="submit2" value="Logout" >
                         </form>
                     </li>
-                    <li><a href="employee-all-employees.html">See All Employees</a></li>
-                    <li><a href="employee-edit-profile.html">Edit Profile</a></li>
-                    <li><a href="employee-landing.html">Home</a></li>
+                    <li><a href="employee-all-employees.php">See All Employees</a></li>
+                    <li><a href="employee-edit-profile.php">Edit Profile</a></li>
+                    <li><a href="employee-landing.php">Home</a></li>
                 </ul>
             </nav>
 

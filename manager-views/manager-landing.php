@@ -21,19 +21,19 @@
                             <input class="logout-button" name="submit2" type="submit" id="submit2" value="Logout">
                         </form>
                     </li>
-                    <li><a href="manager-all-employees.html">See All Employees</a></li>
+                    <li><a href="manager-all-employees.php">See All Employees</a></li>
                     <li><a href="manager-edit-profile.php">Edit Profile</a></li>
-                    <li><a href="manager-edit-project.html">Edit Project</a></li>
-                    <li><a href="manager-create-new-project.html">Create New Project</a></li>
-                    <li><a href="manager-create-new-user.html">Create New User</a></li>
-                    <li><a href="manager-landing.html">Home</a></li>
+                    <li><a href="manager-edit-project.php">Edit Project</a></li>
+                    <li><a href="manager-create-new-project.php">Create New Project</a></li>
+                    <li><a href="manager-create-new-user.php">Create New User</a></li>
+                    <li><a href="manager-landing.php">Home</a></li>
                 </ul>
             </nav>
 
 			<div class="card-container">
                 <header>
                     <div class="search-bar-container">
-                        <form class="search-bar" action="manager-search-results.html">
+                        <form class="search-bar" action="manager-search-results.php">
                             <input type="text" placeholder="Search.." name="search">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
