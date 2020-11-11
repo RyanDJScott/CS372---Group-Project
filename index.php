@@ -34,7 +34,7 @@
 				} 
 
 				//Query the db for the login credentials
-				$query = "SELECT UID, managerID FROM Users WHERE Email = '$email' AND Password = '$password'";
+				$query = "SELECT UID, managerID FROM Users WHERE Email = '".$db->real_escape_string($email)."' AND Password = '".$db->real_escape_string($password)."'";
 
 				//Execute the query
 				$results = $db->query($query);
