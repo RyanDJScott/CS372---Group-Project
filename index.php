@@ -13,8 +13,8 @@
             header("Location: employee-views/employee-landing.php");
     } else {
         //Grab the information from the fields, set error message variable
-        $email = $_POST["email"];
-        $password = $_POST["pass"];
+        $email = trim($_POST["email"]);
+        $password = trim($_POST["pass"]);
         $errorMsg = $usrError = $pwdError = "";
 		
 		//If the form was submitted from the login page, do the following
