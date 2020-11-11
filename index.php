@@ -34,7 +34,7 @@
 				} 
 
 				//Query the db for the login credentials
-				$query = "SELECT UID, managerID FROM Users WHERE Email = '$email' AND Password = '$password'";
+				$query = "SELECT UID, managerID, PictureURL FROM Users WHERE Email = '$email' AND Password = '$password'";
 
 				//Execute the query
 				$results = $db->query($query);
@@ -59,7 +59,7 @@
 				//Close the connection
 				$db->close();
 			}
-		}
+		} 
     }
 ?>
 <!DOCTYPE html>
@@ -86,16 +86,16 @@
 					<span class="login-form-title">
 						Member Login
 					</span>
-					<p class="login-error"><?=$errorMsg?></p>
+					<p class="generic-php-error"><?=$errorMsg?></p>
 
 					<div class="login-input-container">
 						<input class="login-input" type="text" name="email" placeholder="Email">
-						<p class="login-error"><?=$usrError?></p>
+						<p class="generic-php-error"><?=$usrError?></p>
 					</div>
 
 					<div class="login-input-container">
 						<input class="login-input" type="password" name="pass" placeholder="Password">
-						<p class="login-error"><?=$pwdError?></p> 
+						<p class="generic-php-error"><?=$pwdError?></p> 
 					</div>
 					
 					<div class="container-login-form-button">
