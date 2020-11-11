@@ -69,6 +69,11 @@
                             //Connect to the DB and insert all the values
                             $db = new mysqli('localhost', $serverName, $serverPW, $serverName);
 
+                            //Check if the connection failed
+				            if ($db->connect_error) {
+					            die ("Connection failed: ".$db->connect_error);
+                            }
+                             
                             //Upload the image if there is an actual image to upload
                             if ($pictureURL != "../assets/images/emptypic.png") {
                                 // Check if image file is a actual image or fake image
