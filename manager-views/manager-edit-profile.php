@@ -248,7 +248,6 @@
                     </li>
                     <li><a href="manager-all-employees.php">See All Employees</a></li>
                     <li><a href="manager-edit-profile.php">Edit Profile</a></li>
-                    <li><a href="manager-edit-project.php">Edit Project</a></li>
                     <li><a href="manager-create-new-project.php">Create New Project</a></li>
                     <li><a href="manager-create-new-user.php">Create New User</a></li>
                     <li><a href="manager-landing.php">Home</a></li>

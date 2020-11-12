@@ -13,8 +13,8 @@
             header("Location: employee-views/employee-landing.php");
     } else {
         //Grab the information from the fields, set error message variable
-        $email = $_POST["email"];
-        $password = $_POST["pass"];
+        $email = trim($_POST["email"]);
+        $password = trim($_POST["pass"]);
         $errorMsg = $usrError = $pwdError = "";
 		
 		//If the form was submitted from the login page, do the following
@@ -34,7 +34,7 @@
 				} 
 
 				//Query the db for the login credentials
-				$query = "SELECT UID, managerID, PictureURL FROM Users WHERE Email = '$email' AND Password = '$password'";
+				$query = "SELECT UID, managerID FROM Users WHERE Email = '".$db->real_escape_string($email)."' AND Password = '".$db->real_escape_string($password)."'";
 
 				//Execute the query
 				$results = $db->query($query);
