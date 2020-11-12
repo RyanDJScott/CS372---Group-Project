@@ -31,7 +31,7 @@
                 
             </nav>
 
-			<div class="employee-search-card-container">
+			<div class="search-card-container">
 
                 <header>
                     <div class="search-bar-container">
@@ -54,12 +54,13 @@
                 
                 <article>
     
-                    <table id="example" class="dataTable" >
+                    <table id="employee-all-employees-table">
                         <thead>
                             <tr>
                                 <th>User Type</th> 
                                 <th>First Name</th>
                                 <th>Last Name</th> 
+                                <th>Short Biography</th>
                                 <th>Email</th> 
                                 <th>Skills</th>
                             </tr>
@@ -68,6 +69,7 @@
                                 <td>Manager</td>
                                 <td>Jean</td>
                                 <td>Picard</td>
+                                <td>I'm Captain Jean Lus Picard of the USS Enterprise. Tea. Earl grey. Hot.</td>
                                 <td>picard@starfleet.com</td>
                                 <td>
                                     <ul>
@@ -81,6 +83,7 @@
                                 <td>Manager</td>
                                 <td>William</td>
                                 <td>Ryker</td>
+                                <td>I simp over aliens and play trombone in my free time.</td>
                                 <td>ryker@starfleet.com</td>
                                 <td>
                                     <ul>
@@ -95,6 +98,7 @@
                                 <td>Manager</td>
                                 <td>Data</td>
                                 <td>N/A</td>
+                                <td>Spot has been giving me trouble lately. It would be nice to understand him...</td>
                                 <td>data@starfleet.com</td>
                                 <td>
                                     <ul>
@@ -110,6 +114,7 @@
                                 <td>Employee</td>
                                 <td>Geordi</td>
                                 <td>La Forge</td>
+                                <td>I primarily work in engineering. I also spend a lot of time with Lt. Commander Data.</td>
                                 <td>geordi@starfleet.com</td>
                                 <td>
                                     <ul>

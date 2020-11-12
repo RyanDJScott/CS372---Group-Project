@@ -26,14 +26,13 @@
                     </li>
                     <li><a href="manager-all-employees.php">See All Employees</a></li>
                     <li><a href="manager-edit-profile.php">Edit Profile</a></li>
-                    <li><a href="manager-edit-project.php">Edit Project</a></li>
                     <li><a href="manager-create-new-project.php">Create New Project</a></li>
                     <li><a href="manager-create-new-user.php">Create New User</a></li>
                     <li><a href="manager-landing.php">Home</a></li>
                 </ul>
             </nav>
 
-			<div class="manager-search-card-container">
+			<div class="search-card-container">
                 <header>
                     <div class="search-bar-container">
                         <form class="search-bar" action="manager-search-results.php">
@@ -55,12 +54,13 @@
                 
                 <article>
     
-                    <table id="example" class="dataTable" >
+                    <table id="search-result-table">
                         <thead>
                             <tr>
                                 <th>User Type</th> 
                                 <th>First Name</th> 
                                 <th>Last Name</th> 
+                                <th>Short Biography</th> 
                                 <th>Email</th>
                                 <th>Skills</th>
                             </tr>
@@ -69,6 +69,7 @@
                                 <td>Manager</td>
                                 <td>Jean</td>
                                 <td>Picard</td>
+                                <td>I'm Captain Jean Lus Picard of the USS Enterprise. Tea.Earl grey. Hot.</td>
                                 <td>picard@starfleet.com</td>
                                 <td>
                                     <ul>
@@ -77,7 +78,7 @@
                                       </ul>  
                                 </td>
                                 <td>
-                                    <button class="delete-button"><i class="fa fa-trash"></i></button>
+                                    <button class="edit-delete-button"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
 
@@ -85,6 +86,7 @@
                                 <td>Manager</td>
                                 <td>William</td>
                                 <td>Ryker</td>
+                                <td>I simp over aliens and play trombone in my free time.</td>
                                 <td>ryker@starfleet.com</td>
                                 <td>
                                     <ul>
@@ -94,7 +96,7 @@
                                       </ul>  
                                 </td>
                                 <td>
-                                    <button class="delete-button"><i class="fa fa-trash"></i></button>
+                                    <button class="edit-delete-button"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                             
@@ -102,6 +104,7 @@
                                 <td>Manager</td>
                                 <td>Data</td>
                                 <td>N/A</td>
+                                <td>Spot has been giving me trouble lately. It would be nice to understand him...</td>
                                 <td>data@starfleet.com</td>
                                 <td>
                                     <ul>
@@ -112,7 +115,7 @@
                                       </ul>  
                                 </td>
                                 <td>
-                                    <button class="delete-button"><i class="fa fa-trash"></i></button>
+                                    <button class="edit-delete-button"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                     </table>
