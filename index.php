@@ -34,7 +34,7 @@
 				} 
 
 				//Query the db for the login credentials
-				$query = "SELECT UID, managerID FROM Users WHERE Email = '".$db->real_escape_string($email)."' AND Password = '".$db->real_escape_string($password)."'";
+				$query = "SELECT UID, managerID, FirstName, LastName, PictureURL FROM Users WHERE Email = '".$db->real_escape_string($email)."' AND Password = '".$db->real_escape_string($password)."'";
 
 				//Execute the query
 				$results = $db->query($query);
@@ -46,6 +46,9 @@
 					//Fill session variables
 					$_SESSION["UID"] = $row["UID"];
 					$_SESSION["MID"] = $row["managerID"];
+					$_SESSION["FirstName"] = $row["FirstName"];
+					$_SESSION["LastName"] = $row["LastName"];
+					$_SESSION["PictureURL"] = $row["PictureURL"];
 
 					//Send the user to their landing page
 					if ($_SESSION["MID"] != NULL)

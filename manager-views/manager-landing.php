@@ -1,3 +1,27 @@
+<?php 
+    //Include the db login creds
+    require_once("../assets/dbLgn.php");
+
+    //Start a session
+    session_start();
+
+    //Check to see if the user is logged in as a manager
+    if (isset($_SESSION["UID"]) && $_SESSION["UID"] > 0) {
+        if (isset($_SESSION["MID"]) && $_SESSION["MID"] != NULL)
+        {
+            //Grab user picture from session variables
+            $pictureURL = $_SESSION["PictureURL"];
+            $FirstName = $_SESSION["FirstName"];
+            $LastName = $_SESSION["LastName"];
+        } else {
+            //User is not a manager, redirect to employee landing
+            header("Location: ../employee-views/employee-landing.php");
+        }
+    } else {
+        //User is not logged in, redirect to login page
+        header("Location: ../index.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,18 +67,52 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="../assets/images/emptypic.png" alt="PlaceHolder Pic" width="80px" height="80px"> 
+                                    <img src="<?=$pictureURL?>" alt="<?=$FirstName?> <?=$LastName?>" width="80px" height="80px"> 
                                 </td>
                                 <td>
-                                    <h2>Manager Name</h2> 
+                                    <h2><?=$FirstName?> <?=$LastName?></h2> 
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+                    <p class="generic-php-error"><?=$errorMsg?></p>
                 </header>           
             </div>
             
             <!-- card to display per project on landing page, replicate for projects needed -->
+            <?php 
+                //Set an error message variable
+                $errorMsg = "";
+
+                //Connect the db, and test the connection
+                $db = new mysqli('localhost', $serverName, $serverPW, $serverName);
+
+                //Check if the connection failed
+                if ($db->connect_error) {
+                    die ("Connection failed: ".$db->connect_error);
+                } 
+
+                //Execute the query to find all projects and their team members
+                $firstQuery = "SELECT Projects.PID, Title, Description, StartDate, EndDate, Users.UID, FirstName, LastName 
+                            FROM Projects LEFT JOIN ProjectTeams ON Projects.PID = ProjectTeams.PID 
+                            INNER JOIN Users ON ProjectTeams.UID = Users.UID 
+                            ORDER BY Projects.PID";
+                
+                //Execute the query
+                $firstResults = $db->query($firstQuery);
+
+                //Set current PID flag
+                $currentPID = "";
+
+                //Start to iterate over the results
+                if ($firstResults->num_rows > 0) {
+                    while ($projectRows = $firstResults->fetch_assoc()) {
+                        if ($projectRows["PID"] != $currentPID) 
+                        {
+                            //Set the current PID to this project
+                            $currentPID = $projectRows["PID"];
+                        
+            ?>
             <div class="card-container">
                 <article>
                     <table id="project-landing-card">
@@ -68,10 +126,10 @@
                         </thead>
 
                             <tr>
-                                <td class="project-title">Karasuno team website</td>
-                                <td>Create team website so players can access stats and calendar for upcoming season.</td>
-                                <td>07-02-2020</td>
-                                <td>09-05-2020</td>
+                                <td class="project-title"><?=$projectRows["Title"]?></td>
+                                <td><?=$projectRows["Description"]?></td>
+                                <td><?=$projectRows["StartDate"]?></td>
+                                <td><?=$projectRows["EndDate"]?></td>
                                 <td>
                                     <button class="edit-delete-button"><i class="fa fa-edit"></i></button>
                                     <button class="edit-delete-button"><i class="fa fa-trash"></i></button>
@@ -89,89 +147,50 @@
                                 <th>Deadline</th>
                             </tr>
                         </thead>
-
                             <tr>
-                                <td>Daichi Sawamura</td>
-                                <td>Come up with development model for site.</td>
-                                <td>07-02-2020</td>
-                                <td>Create ERD for player stats and upcoming games. </td>
-                                <td>07-05-2020</td>
-                            </tr>
+                            <td><?=$projectRows["FirstName"]?> <?=$projectRows["LastName"]?></td>
+                            <?php
+                                }
 
-                            <tr>
-                                <td>Koushi Sugawara</td>
-                                <td>Create UI using Angular.</td>
-                                <td>07-27-2020</td>
-                                <td>Implement database based on Daichi's ERD. </td>
-                                <td>07-15-2020</td>
-                            </tr>
+                                //For each user in the project, if they have tasks, print them ordered by deadline
+                                $tasksQuery = "SELECT TDescription, Deadline 
+                                                FROM Tasks 
+                                                WHERE UID = '".$projectRows["UID"]."' AND PID = '$currentPID'
+                                                ORDER BY Deadline ASC";
 
-                            <tr>
-                                <td>Shoyo Hinata</td>
-                                <td>Find/create good action shots for the site.</td>
-                                <td>07-10-2020</td>
+                                //Execute query
+                                $taskResults = $db->query($tasksQuery);
+
+                                if ($taskResults->num_rows > 0) 
+                                {
+                                    while ($taskRows = $taskResults->fetch_assoc())
+                                    {
+                            ?>
+                                <td><?=$taskResults["TDescription"]?></td>
+                                <td><?=$taskResults["Deadline"]?></td>
+                            <?php 
+                                    }
+                                } else {
+                                    //Error message about retrieving tasks
+                                    $errorMsg = "There was an error retrieving user tasks from the database.";
+                                }
+                            ?>
                             </tr>
                     </table>
                 </article>
             </div>
+            <?php 
+                //Close while loop for this card
+                }
+                    } else {
+                        //Error in retrieving project details
+                        $errorMsg = "There was an error retrieving projects from the database.";
+                    }
+
+                    //If loop has ran to completion with no errors, close the Db
+                    $db->close();
+            ?>
             <!-- end of landing card -->
-
-            <div class="card-container">
-                <article>
-                    <table id="project-landing-card">
-                        <thead>
-                            <tr>
-                                <th>Project Title</th> 
-                                <th>Description</th> 
-                                <th>Start Date</th>
-                                <th>End Date</th> 
-                            </tr>
-                        </thead>
-
-                            <tr>
-                                <td class="project-title">Nekoma iOS App</td>
-                                <td>Create team app for stats and information reagarding upcoming games.</td>
-                                <td>07-02-2020</td>
-                                <td>07-05-2020</td>
-                                <td>
-                                    <button class="edit-delete-button"><i class="fa fa-edit"></i></button>
-                                    <button class="edit-delete-button"><i class="fa fa-trash"></i></button>
-                                </td>
-                            </tr>
-                    </table>
-
-                    <table id="members-landing-card">
-                        <thead>
-                            <tr>
-                                <th>Project Members</th>
-                                <th>Task 1</th>
-                                <th>Deadline</th> 
-                                <th>Task 2</th>
-                                <th>Deadline</th>
-                            </tr>
-                        </thead>
-
-                            <tr>
-                                <td>Kenma Kozume</td>
-                                <td>Implement the app using SwiftUI and reactive programming.</td>
-                                <td>07-02-2020</td>
-                                <td>Test implementation.</td>
-                                <td>07-05-2020</td>
-                            </tr>
-
-                            <tr>
-                                <td>Kuroo Tetsurou</td>
-                                <td>Create mocks of the app on Adobe XD</td>
-                                <td>07-27-2020</td>
-                                <td>Find and create graphics for the app.</td>
-                                <td>07-15-2020</td>
-                            </tr>
-
-                    </table>
-                </article>
-            </div>
-
-
         </div>
     </div>
 
