@@ -13,6 +13,15 @@
             $pictureURL = $_SESSION["PictureURL"];
             $FirstName = $_SESSION["FirstName"];
             $LastName = $_SESSION["LastName"];
+
+            //If you were redirected to this page, check the success variable for message
+            if ($_SERVER["REQUEST_METHOD"] == "GET")
+            {
+                if ($_GET["success"] == 0)
+                    $successMsg = "The project could not be deleted from the database. Please try again.";
+                else if ($_GET["success"] == 1)
+                    $successMsg = "The project was successfully deleted from the database.";
+            }
         } else {
             //User is not a manager, redirect to employee landing
             header("Location: ../employee-views/employee-landing.php");
@@ -75,7 +84,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p class="generic-php-error"><?=$errorMsg?></p>
+                    <p class="generic-php-error"><?=$successMsg?></p>
                 </header>           
             </div>
             
