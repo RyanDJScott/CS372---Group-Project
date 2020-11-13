@@ -70,7 +70,7 @@
                                     <img src="<?=$pictureURL?>" alt="<?=$FirstName?> <?=$LastName?>" width="80px" height="80px"> 
                                 </td>
                                 <td>
-                                    <h2><?=$FirstName?> <?=$LastName?></h2> 
+                                    <h2>Manager - <?=$FirstName?> <?=$LastName?></h2> 
                                 </td>
                             </tr>
                         </tbody>
@@ -109,6 +109,14 @@
                     while ($projectRows = $firstResults->fetch_assoc()) {
                         if ($projectRows["PID"] != $currentPID) 
                         {
+                            if ($projectRows["PID"] != $currentPID && $currentPID != "")
+                            {
+            ?>
+            </table>
+            </article>
+            </div>
+            <?php
+                            }
                             //Set the current PID to this project
                             $currentPID = $projectRows["PID"];
                         
@@ -131,8 +139,13 @@
                                 <td><?=$projectRows["StartDate"]?></td>
                                 <td><?=$projectRows["EndDate"]?></td>
                                 <td>
-                                    <button class="edit-delete-button"><i class="fa fa-edit"></i></button>
-                                    <button class="edit-delete-button"><i class="fa fa-trash"></i></button>
+                                    <form action="editProject.php?PID=<?=$currentPID?>" method="GET">
+                                        <button type="submit" class="edit-delete-button"><i class="fa fa-edit"></i></button>
+                                    </form>
+                                    
+                                    <form action="deleteProject.php?PID=<?=$currentPID?>" method="GET">
+                                        <button type="submit" class="edit-delete-button"><i class="fa fa-trash"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                     </table>
@@ -150,6 +163,7 @@
                             <tr>
                             <?php
                                 }
+
                                 //For each user in the project, if they have tasks, print them ordered by deadline
                                 $tasksQuery = "SELECT TDescription, Deadline 
                                                 FROM Tasks 
@@ -171,22 +185,22 @@
                                 <td><?=$taskRows["Deadline"]?></td>
                             <?php 
                                     }
-                                } else {
-                                    //Error message about retrieving tasks
-                                    $errorMsg = "There was an error retrieving user tasks from the database.";
-                                }
                             ?>
                             </tr>
+                            <?php
+                                } 
+
+                                //Loop back to the next result
+                                }
+                            ?>      
                     </table>
                 </article>
             </div>
             <!-- end of landing card -->
             <?php 
-                //Close while loop for this section
-                }
                     } else {
                         //Error in retrieving project details
-                        $errorMsg = "There was an error retrieving projects from the database.";
+                        echo("<p class=\"generic-php-error\">There was an error retrieving projects from the database.</p>");
                     }
 
                 //If loop has ran to completion with no errors, close the Db
