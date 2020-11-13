@@ -148,10 +148,8 @@
                             </tr>
                         </thead>
                             <tr>
-                            <td><?=$projectRows["FirstName"]?> <?=$projectRows["LastName"]?></td>
                             <?php
                                 }
-
                                 //For each user in the project, if they have tasks, print them ordered by deadline
                                 $tasksQuery = "SELECT TDescription, Deadline 
                                                 FROM Tasks 
@@ -163,11 +161,14 @@
 
                                 if ($taskResults->num_rows > 0) 
                                 {
+                            ?>
+                            <td><?=$projectRows["FirstName"]?> <?=$projectRows["LastName"]?></td>
+                            <?php 
                                     while ($taskRows = $taskResults->fetch_assoc())
                                     {
                             ?>
-                                <td><?=$taskResults["TDescription"]?></td>
-                                <td><?=$taskResults["Deadline"]?></td>
+                                <td><?=$taskRows["TDescription"]?></td>
+                                <td><?=$taskRows["Deadline"]?></td>
                             <?php 
                                     }
                                 } else {
@@ -179,18 +180,18 @@
                     </table>
                 </article>
             </div>
+            <!-- end of landing card -->
             <?php 
-                //Close while loop for this card
+                //Close while loop for this section
                 }
                     } else {
                         //Error in retrieving project details
                         $errorMsg = "There was an error retrieving projects from the database.";
                     }
 
-                    //If loop has ran to completion with no errors, close the Db
-                    $db->close();
+                //If loop has ran to completion with no errors, close the Db
+                $db->close();
             ?>
-            <!-- end of landing card -->
         </div>
     </div>
 
