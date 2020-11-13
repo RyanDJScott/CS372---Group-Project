@@ -90,9 +90,6 @@
             
             <!-- card to display per project on landing page, replicate for projects needed -->
             <?php 
-                //Set an error message variable
-                $errorMsg = "";
-
                 //Connect the db, and test the connection
                 $db = new mysqli('localhost', $serverName, $serverPW, $serverName);
 
