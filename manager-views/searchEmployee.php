@@ -16,7 +16,7 @@
     //Build query to get all information necessary
     $query = "SELECT Users.UID, Users.FirstName, Users.LastName, Users.ProfileBio, Users.Email, Users.managerId, CPs.CodingLang
             FROM Users INNER JOIN CPs ON (Users.UID = CPs.UID)
-            WHERE CPs.CodingLang LIKE '$codingLang%'";
+            WHERE CPs.CodingLang LIKE '$codingLang%' ORDER BY UID";
 
     //Execute query, create empty JSON array
     $result = $db->query($query);
