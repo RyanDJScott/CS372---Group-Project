@@ -46,6 +46,7 @@
 	<link rel="stylesheet" type="text/css" href="../assets/helper.css">
     <link rel="stylesheet" type="text/css" href="../stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="searchEmployee.js"></script>
 <!--===============================================================================================-->
 </head>
 <body>
@@ -72,7 +73,7 @@
                 <header>
                     <div class="search-bar-container">
                         <form class="search-bar" action="manager-search-results.php">
-                            <input type="text" placeholder="Search.." name="search">
+                            <input type="text" placeholder="Search.." name="search" id="employeeSearch">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
@@ -90,7 +91,7 @@
                 
                 <article>
     
-                    <table>
+                    <table id="searchEmployees">
                         <thead>
                             <tr>
                                 <th>User Type</th> 
@@ -121,7 +122,7 @@
                                         else
                                             $empType = "Employee";        
                             ?>          
-                            <tr>
+                            <tr id="employeeCard">
                                 <td><?=$empType?></td>
                                 <td><?=$empRows["FirstName"]?></td>
                                 <td><?=$empRows["LastName"]?></td>
