@@ -1,3 +1,31 @@
+<?php 
+    //Grab database credentials
+    require_once("../assets/dbLgn.php");
+
+    //Start a session
+    session_start();
+
+    //Check if the user is logged in as a manager
+    if (isset($_SESSION["UID"]) && $_SESSION["UID"] > 0)
+    {
+        if (isset($_SESSION["MID"]) && $_SESSION["MID"] != NULL)
+        {
+            //Connect to the database
+				$db = new mysqli('localhost', $serverName, $serverPW, $serverName);
+
+				//Check if the connection failed
+				if ($db->connect_error) {
+					die ("Connection failed: ".$db->connect_error);
+				} 
+        } else {
+            //User is an employee, redirect to employee landing
+            header("Location: ../employee-views/employee-landing.php");
+        }
+    } else {
+        //User is not logged in, redirect to login page
+        header("Location: ../index.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,75 +89,72 @@
                                 <th>Email</th>
                                 <th>Skills</th>
                             </tr>
-                        </thead>              
-                            <tr>
-                                <td>Manager</td>
-                                <td>Jean</td>
-                                <td>Picard</td>
-                                <td>I'm Captain Jean Lus Picard of the USS Enterprise. Tea. Earl grey. Hot.</td>
-                                <td>picard@starfleet.com</td>
-                                <td>
-                                    <ul>
-                                        <li>Go</li>
-                                        <li>NodeJS</li>
-                                      </ul>  
-                                </td>
-                                <td>
-                                    <button class="edit-delete-button"><i class="fa fa-trash"></i></button>
-                                </td>
-                            </tr>
+                        </thead>    
+                            <?php 
+                                //Build up query for finding all employees on the website
+                                $query = "SELECT UID, managerID, FirstName, LastName, ProfileBio, Email
+                                            FROM Users 
+                                            ORDER BY Users.UID";
 
+                                //Execute the query
+                                $queryResults = $db->query($query);
+
+                                //Iterate over results from DB
+                                if ($queryResults->num_rows > 0)
+                                {
+                                    while ($empRows = $queryResults->fetch_assoc())
+                                    {
+                                        //Set employee type based on the managerID
+                                        if ($empRows["managerID"] != NULL)
+                                            $empType = "Manager";
+                                        else
+                                            $empType = "Employee";        
+                            ?>          
                             <tr>
-                                <td>Manager</td>
-                                <td>William</td>
-                                <td>Ryker</td>
-                                <td>I simp over aliens and play trombone in my free time.</td>
-                                <td>ryker@starfleet.com</td>
+                                <td><?=$empType?></td>
+                                <td><?=$empRows["FirstName"]?></td>
+                                <td><?=$empRows["LastName"]?></td>
+                                <td><?=$empRows["ProfileBio"]?></td>
+                                <td><?=$empRows["Email"]?></td>
                                 <td>
                                     <ul>
-                                        <li>Swift</li>
-                                        <li>Kotlin</li>
-                                        <li>NodeJS</li>
+                                    <?php
+                                        //Find all the CP's of this user
+                                        $cpQuery = "SELECT CodingLang 
+                                                    FROM CPs WHERE UID = ".$empRows["UID"]."
+                                                    ORDER BY CPID";
+
+                                        //Execute query
+                                        $cpResults = $db->query($cpQuery);
+
+                                        if ($cpResults->num_rows > 0)
+                                        {
+                                            while ($cpRows = $cpResults->fetch_assoc())
+                                            {
+                                    ?>
+                                        <li><?=$cpRows["CodingLang"]?></li>
+                                    <?php
+                                            }
+                                        }
+                                    ?>
                                       </ul>  
                                 </td>
                                 <td>
-                                    <button class="edit-delete-button"><i class="fa fa-trash"></i></button>
+                                    <form action="deleteEmployee.php?UID=<?=$empRows["UID"]?>" method="GET">
+                                        <button type="submit" class="edit-delete-button"><i class="fa fa-trash"></i></button>
+                                    </form>
                                 </td>
                             </tr>
-                            
-                            <tr>
-                                <td>Manager</td>
-                                <td>Data</td>
-                                <td>N/A</td>
-                                <td>Spot has been giving me trouble lately. It would be nice to understand him...</td>
-                                <td>data@starfleet.com</td>
-                                <td>
-                                    <ul>
-                                        <li>C++</li>
-                                        <li>C</li>
-                                        <li>Machine Code</li>
-                                        <li>NodeJS</li>
-                                      </ul>  
-                                </td>
-                                <td>
-                                    <button class="edit-delete-button"><i class="fa fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Employee</td>
-                                <td>Geordi</td>
-                                <td>La Forge</td>
-                                <td>I primarily work in engineering. I also spend a lot of time with Lt. Commander Data.</td>
-                                <td>geordi@starfleet.com</td>
-                                <td>
-                                    <ul>
-                                        <li>ARM</li>
-                                      </ul>  
-                                </td>
-                                <td>
-                                    <button class="edit-delete-button"><i class="fa fa-trash"></i></button>
-                                </td>
-                            </tr>
+                            <?php
+                                    }
+                                } else {
+                                    //Error in DB or no employees
+                                    echo("<p class=\"generic-php-error\">There was an error in retrieving the employees.</p>");
+                                }
+
+                                //Done iterating over results, close db connection
+                                $db->close();
+                            ?>
                     </table>
             
             </article>
