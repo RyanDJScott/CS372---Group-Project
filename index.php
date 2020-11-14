@@ -90,12 +90,12 @@
 
 					<div class="login-input-container">
 						<input class="login-input" type="text" name="email" placeholder="Email">
-						<p class="generic-php-error"><?=$usrError?></p>
+						<p class="generic-php-error" id="emailError"><?=$usrError?></p>
 					</div>
 
 					<div class="login-input-container">
 						<input class="login-input" type="password" name="pass" placeholder="Password">
-						<p class="generic-php-error"><?=$pwdError?></p> 
+						<p class="generic-php-error" id="passwordError"><?=$pwdError?></p> 
 					</div>
 					
 					<div class="container-login-form-button">
