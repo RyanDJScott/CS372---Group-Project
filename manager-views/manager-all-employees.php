@@ -10,6 +10,16 @@
     {
         if (isset($_SESSION["MID"]) && $_SESSION["MID"] != NULL)
         {
+            if ($_SERVER["REQUEST_METHOD"] == "GET")
+            {
+                $success = $_GET["success"];
+
+                if ($success == 1)
+                    $deleteMessage = "The employee was successfully deleted from the database.";
+                else
+                    $deleteMessage = "A database error has occured. Please try again.";
+            }
+
             //Connect to the database
 				$db = new mysqli('localhost', $serverName, $serverPW, $serverName);
 
@@ -71,6 +81,7 @@
                             <tr>
                                 <td>
                                     <h2>Employees</h2>
+                                    <p class="generic-php-error"><?=$deleteMessage?></p>
                                 </td>
                             </tr>
                         </tbody>

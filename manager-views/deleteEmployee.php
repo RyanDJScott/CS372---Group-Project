@@ -10,6 +10,22 @@
 			die ("Connection failed: ".$db->connect_error);
         }
             
-        
+        //Grab user ID from GET method
+        $userID = $_GET["UID"];
+
+        //Build delete query
+        $deleteQuery = "DELETE FROM Users WHERE UID = '$userID'";
+
+        //Execute query
+        $result = $db->query($deleteQuery);
+
+        //Close DB connection
+        $db->close();
+
+        //If successful, redirect to the employee page with message
+        if ($result == true)
+            header("Location: manager-all-employees.php?success=1");
+        else
+            header("Location: manager-all-employees.php?success=2");
     }
 ?>
