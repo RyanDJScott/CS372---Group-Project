@@ -198,7 +198,7 @@
 <html lang="en">
 <head>
     <title>Create New User</title>
-    <script type="text/javascript" src="javascript/validationFunctions.js"></script>
+    <script type="text/javascript" src="../javascript/validationFunctions.js"></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -335,5 +335,5 @@
 	</div>
 
 </body>
-<script type="text/javascript" src="javascript/validationFunctionsR.js"></script>
+<script type="text/javascript" src="../javascript/validationFunctionsR.js"></script>
 </html>
