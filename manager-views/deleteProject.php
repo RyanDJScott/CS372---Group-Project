@@ -32,7 +32,7 @@
             if ($result == true) 
                 header("Location: manager-landing.php?success=1");
             else 
-                header("Location: manager-landing.php?success=0");
+                header("Location: manager-landing.php?success=2");
         } else {
             //Employee trying to get into manager pages, redirect to home page
             header("Location: ../employee-views/employee-landing.php");

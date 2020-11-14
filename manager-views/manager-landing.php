@@ -17,9 +17,9 @@
             //If you were redirected to this page, check the success variable for message
             if ($_SERVER["REQUEST_METHOD"] == "GET")
             {
-                if ($_GET["success"] == 0)
+                if ($_GET["success"] == 1)
                     $successMsg = "The project could not be deleted from the database. Please try again.";
-                else if ($_GET["success"] == 1)
+                else if ($_GET["success"] == 2)
                     $successMsg = "The project was successfully deleted from the database.";
             }
         } else {
@@ -178,9 +178,6 @@
 
                                 //Execute query
                                 $taskResults = $db->query($tasksQuery);
-
-                                if ($taskResults->num_rows > 0) 
-                                {
                             ?>
                             <td><?=$projectRows["FirstName"]?> <?=$projectRows["LastName"]?></td>
                             <?php 
@@ -194,8 +191,6 @@
                             ?>
                             </tr>
                             <?php
-                                } 
-
                                 //Loop back to the next result
                                 }
                             ?>      
