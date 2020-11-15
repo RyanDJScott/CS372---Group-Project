@@ -57,9 +57,9 @@
 
                 <header>
                     <div class="search-bar-container">
-                        <form class="search-bar" action="employee-search-results.php">
-                            <input type="text" placeholder="Search.." name="search">
-                            <button type="submit"><i class="fa fa-search"></i></button>
+                        <form class="search-bar">
+                            <input type="text" placeholder="Search.." name="search" id="employeeSearch">
+                            <button><i class="fa fa-search"></i></button>
                         </form>
                     </div>
     
@@ -76,7 +76,7 @@
                 
                 <article>
     
-                <table>
+                <table id="searchEmployees">
                         <thead>
                             <tr>
                                 <th>User Type</th> 
@@ -107,7 +107,7 @@
                                         else
                                             $empType = "Employee";        
                             ?>
-                            <tr>
+                            <tr name="employeeCard">
                                 <td><?=$empType?></td>
                                 <td><?=$empRows["FirstName"]?></td>
                                 <td><?=$empRows["LastName"]?></td>
@@ -155,6 +155,6 @@
 			</div>
 		</div>
 	</div>
-
+<script type="text/javascript" src="searchEmployee.js"></script>
 </body>
 </html>
