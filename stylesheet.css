@@ -352,6 +352,17 @@
     padding: 0 0 0 10px;
   }
 
+  .add-member-AJAX {
+    font-family: Poppins-Medium;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666666;
+    outline: none;
+    border: 1px solid #000000;
+    padding: 0px;
+    background-color: #a4d5dd;
+  }
+
   /*------------------------------------------------------------------
   [ Responsivness - For dynamically resizing the Login page ]*/
   

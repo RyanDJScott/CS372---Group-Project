@@ -102,6 +102,23 @@
                         //Set task/deadline error flag
                         $tdError = false;
 
+                        //Ensure that each user-task/deadline pair is valid
+                        $taskCounter = 0;
+
+                        //Validate the group of user-task-deadline
+                        for ($a = 0; $a < sizeof($projectMembers); $a++)
+                        {
+                            for ($b = 0; $b < 2; $b++)
+                            {
+                                if ($projectMembers[$a] == "" && ($tasks[$taskCounter] != "" || $deadlines[$taskCounter] != ""))
+                                {
+                                    $tdError = true;
+                                    break;
+                                }
+
+                                $taskCounter++;
+                            }
+                        }
                         //Validate the tasks/deadlines by checking if they're either an empty pair or a non-empty pair
                         for ($j = 0; $j < sizeof($tasks); $j++)
                         {
@@ -236,7 +253,7 @@
                             }
 
                         } else {
-                            $errorMsg = "Please ensure each task has a set deadline, and vice versa.";
+                            $errorMsg = "Please ensure each task has a set deadline and a dedicated user.";
                         }
                     } else {
                         $errorMsg = "Please ensure you have correctly typed in all of your members names into the fields below.";
@@ -339,7 +356,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td></td>
+                                        <td id="suggestMember1"></td>
                                         <td><input type="text" name="projectMember1Task2" class="text-input" value="<?=$tasks[1]?>" /></td>
                                         <td><input type="date" name="projectMember1DeadlineTask2" value="<?=$deadlines[1]?>" /></td>
                                     </tr>
@@ -351,7 +368,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td></td>
+                                        <td id="suggestMember2"></td>
                                         <td><input type="text" name="projectMember2Task2" class="text-input" value="<?=$tasks[3]?>" /></td>
                                         <td><input type="date" name="projectMember2DeadlineTask2" value="<?=$deadlines[3]?>" /></td>
                                     </tr>
@@ -363,7 +380,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td></td>
+                                        <td id="suggestMember3"></td>
                                         <td><input type="text" name="projectMember3Task2" class="text-input" value="<?=$tasks[5]?>" /></td>
                                         <td><input type="date" name="projectMember3DeadlineTask2" value="<?=$deadlines[5]?>" /></td>
                                     </tr>
@@ -375,7 +392,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td></td>
+                                        <td id="suggestMember4"></td>
                                         <td><input type="text" name="projectMember4Task2" class="text-input" value="<?=$tasks[7]?>" /></td>
                                         <td><input type="date" name="projectMember4DeadlineTask2" value="<?=$deadlines[7]?>" /></td>
                                     </tr>
@@ -393,6 +410,6 @@
 			</div>
 		</div>
 	</div>
-
+<script type="text/javascript" src="newProject.js"></script>
 </body>
 </html>
