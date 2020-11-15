@@ -145,11 +145,11 @@
                                 <td><?=$projectRows["StartDate"]?></td>
                                 <td><?=$projectRows["EndDate"]?></td>
                                 <td>
-                                    <form action="editProject.php?PID=<?=$currentPID?>" method="GET">
+                                    <form action="editProject.php?PID=<?=$currentPID?>" method="POST">
                                         <button type="submit" class="edit-delete-button"><i class="fa fa-edit"></i></button>
                                     </form>
                                     
-                                    <form action="deleteProject.php?PID=<?=$currentPID?>" method="GET">
+                                    <form action="deleteProject.php?PID=<?=$currentPID?>" method="POST">
                                         <button type="submit" class="edit-delete-button"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </td>
