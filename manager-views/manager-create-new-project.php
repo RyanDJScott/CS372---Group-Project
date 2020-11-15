@@ -202,6 +202,14 @@
                                         $errorMsg = "There was an error inserting your user tasks into the database. Please try again.";
 
                                         //Clean up any potential half-inserted data by deleting this project from the database
+                                        //Delete the whole project; will cascade down
+                                        $cleanUpQuery = "DELETE FROM Projects WHERE PID = '$PID'";
+
+                                        //Execute the query
+                                        $cleanUp = $db->query($cleanUpQuery);
+
+                                        //Close the database
+                                        $db->close();
                                     } else {
                                         //Project successfully created, close DB
                                         $db->close();
@@ -214,6 +222,14 @@
                                     $errorMsg = "There was an error inserting your team members into the database. Please try again.";
 
                                     //Clean up any potential half-inserted data by deleting this project from the database
+                                    //Delete the whole project; will cascade down
+                                    $cleanUpQuery = "DELETE FROM Projects WHERE PID = '$PID'";
+
+                                    //Execute the query
+                                    $cleanUp = $db->query($cleanUpQuery);
+
+                                    //Close the database
+                                    $db->close();
                                 }
                             } else {
                                 $errorMsg = "There was an error inserting the project into the database. Please try again.";
@@ -290,8 +306,8 @@
                             <table id="createUserTable">
                                 <tbody>
                                     <tr>
-                                        <td>Project Title: </td><td> <input type="text" name="projectTitle" class="text-input"/></td>
-                                        <td>Description: </td><td> <textarea name="projectDescription" id="projectDescription" cols="30" rows="10"></textarea></td>
+                                        <td>Project Title: </td><td> <input type="text" name="projectTitle" class="text-input" value="<?=$projectTitle?>" /></td>
+                                        <td>Description: </td><td> <textarea name="projectDescription" id="projectDescription" cols="30" rows="10"><?=$projectDescription?></textarea></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -300,8 +316,8 @@
                         <div>
                             <table>
                                 <tr>
-                                    <td>Start Date: </td><td> <input type="date" name="startDate"/></td>
-                                    <td>End Date: </td><td> <input type="date" name="endDate"/></td>
+                                    <td>Start Date: </td><td> <input type="date" name="startDate" value="<?=$startDate?>" /></td>
+                                    <td>End Date: </td><td> <input type="date" name="endDate" value="<?=$endDate?>" /></td>
                                 </tr>
                             </table>
                         </div>
@@ -317,51 +333,51 @@
                                 </thead>
         
                                     <tr>
-                                        <td><input type="text" name="projectMember1" class="text-input"/></td>
-                                        <td><input type="text" name="projectMember1Task1" class="text-input"/></td>
-                                        <td><input type="date" name="projectMember1DeadlineTask1"/></td>
+                                        <td><input type="text" name="projectMember1" class="text-input" value="<?=$projectMembers[0]?>"/></td>
+                                        <td><input type="text" name="projectMember1Task1" class="text-input" value="<?=$tasks[0]?>" /></td>
+                                        <td><input type="date" name="projectMember1DeadlineTask1" value="<?=$deadlines[0]?>" /></td>
                                     </tr>
 
                                     <tr>
                                         <td></td>
-                                        <td><input type="text" name="projectMember1Task2" class="text-input"/></td>
-                                        <td><input type="date" name="projectMember1DeadlineTask2"/</td>
+                                        <td><input type="text" name="projectMember1Task2" class="text-input" value="<?=$tasks[1]?>" /></td>
+                                        <td><input type="date" name="projectMember1DeadlineTask2" value="<?=$deadlines[1]?>" /></td>
                                     </tr>
 
                                     <tr>
-                                        <td><input type="text" name="projectMember2" class="text-input"/></td>
-                                        <td><input type="text" name="projectMember2Task1" class="text-input"/></td>
-                                        <td><input type="date" name="projectMember2DeadlineTask1"/></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td></td>
-                                        <td><input type="text" name="projectMember2Task2" class="text-input"/></td>
-                                        <td><input type="date" name="projectMember2DeadlineTask2"/></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td><input type="text" name="projectMember3" class="text-input"/></td>
-                                        <td><input type="text" name="projectMember3Task1" class="text-input"/></td>
-                                        <td><input type="date" name="projectMember3DeadlineTask1"/></td>
+                                        <td><input type="text" name="projectMember2" class="text-input" value="<?=$projectMembers[1]?>" /></td>
+                                        <td><input type="text" name="projectMember2Task1" class="text-input" value="<?=$tasks[2]?>" /></td>
+                                        <td><input type="date" name="projectMember2DeadlineTask1" value="<?=$deadlines[2]?>" /></td>
                                     </tr>
 
                                     <tr>
                                         <td></td>
-                                        <td><input type="text" name="projectMember3Task2" class="text-input"/></td>
-                                        <td><input type="date" name="projectMember3DeadlineTask2"/></td>
+                                        <td><input type="text" name="projectMember2Task2" class="text-input" value="<?=$tasks[3]?>" /></td>
+                                        <td><input type="date" name="projectMember2DeadlineTask2" value="<?=$deadlines[3]?>" /></td>
                                     </tr>
 
                                     <tr>
-                                        <td><input type="text" name="projectMember4" class="text-input"/></td>
-                                        <td><input type="text" name="projectMember4Task1" class="text-input"/></td>
-                                        <td><input type="date" name="projectMember4DeadlineTask1"/></td>
+                                        <td><input type="text" name="projectMember3" class="text-input" value="<?=$projectMembers[2]?>" /></td>
+                                        <td><input type="text" name="projectMember3Task1" class="text-input" value="<?=$tasks[4]?>" /></td>
+                                        <td><input type="date" name="projectMember3DeadlineTask1" value="<?=$deadlines[4]?>" /></td>
                                     </tr>
 
                                     <tr>
                                         <td></td>
-                                        <td><input type="text" name="projectMember4Task2" class="text-input"/></td>
-                                        <td><input type="date" name="projectMember4DeadlineTask2"/></td>
+                                        <td><input type="text" name="projectMember3Task2" class="text-input" value="<?=$tasks[5]?>" /></td>
+                                        <td><input type="date" name="projectMember3DeadlineTask2" value="<?=$deadlines[5]?>" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><input type="text" name="projectMember4" class="text-input" value="<?=$projectMembers[3]?>" /></td>
+                                        <td><input type="text" name="projectMember4Task1" class="text-input" value="<?=$tasks[6]?>" /></td>
+                                        <td><input type="date" name="projectMember4DeadlineTask1" value="<?=$deadlines[6]?>" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td><input type="text" name="projectMember4Task2" class="text-input" value="<?=$tasks[7]?>" /></td>
+                                        <td><input type="date" name="projectMember4DeadlineTask2" value="<?=$deadlines[7]?>" /></td>
                                     </tr>
                             </table>
                         </div>
