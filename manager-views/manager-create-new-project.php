@@ -202,6 +202,12 @@
                                         $errorMsg = "There was an error inserting your user tasks into the database. Please try again.";
 
                                         //Clean up any potential half-inserted data by deleting this project from the database
+                                    } else {
+                                        //Project successfully created, close DB
+                                        $db->close();
+
+                                        //Post message showing success!
+                                        $errorMsg = "Your project was successfully created!";
                                     }
 
                                 } else {
