@@ -1,3 +1,24 @@
+<?php
+    //Get the db login creds
+    require_once("../assets/dbLgn.php");
+
+    //Start a session
+    session_start();
+
+    //Check to see if the user is logged in 
+    if (isset($_SESSION["UID"]) && $_SESSION["UID"] > 0 && $_SESSION["MID"] == NULL)
+    {
+        //Grab the user information from the database
+        $pictureURL = $_SESSION["PictureURL"];
+        $FirstName = $_SESSION["FirstName"];
+        $LastName = $_SESSION["LastName"];
+        $UID = $_SESSION["UID"];
+    } else {
+        //User is not logged in, redirect to login page
+        header("Location: ../index.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,10 +64,10 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="../assets/images/emptypic.png" alt="PlaceHolder Pic" width="80px" height="80px"> 
+                                    <img src="<?=$pictureURL?>"" alt="<?=$FirstName?> <?=$LastName?>" width="80px" height="80px"> 
                                 </td>
                                 <td>
-                                    <h2>Employee Name</h2> 
+                                    <h2><?=$FirstName?> <?=$LastName?></h2> 
                                 </td>
                             </tr>
                         </tbody>
@@ -55,6 +76,54 @@
             </div>
             
             <!-- card to display per project on landing page, replicate for projects needed -->
+            <?php
+                //Connect the db, and test the connection
+                $db = new mysqli('localhost', $serverName, $serverPW, $serverName);
+
+                //Check if the connection failed
+                if ($db->connect_error) {
+                    die ("Connection failed: ".$db->connect_error);
+                } 
+
+                //Build the query to find all the PID's this employee is involved in.
+                $findPID = "SELECT PID FROM ProjectTeams WHERE UID = '$UID'";
+
+                //Execute the query
+                $pidResults = $db->query($findPID);
+
+                if ($pidResults->num_rows > 0)
+                {
+                    while ($pidRows = $pidResults->fetch_assoc())
+                    {
+                        //Execute the query to find all projects and their team members by PID
+                        $firstQuery = "SELECT Projects.PID, Title, Description, StartDate, EndDate, Users.UID, FirstName, LastName 
+                                        FROM Projects LEFT JOIN ProjectTeams ON Projects.PID = ProjectTeams.PID 
+                                        INNER JOIN Users ON ProjectTeams.UID = Users.UID 
+                                        WHERE Projects.PID = '".$pidRows["PID"]."'";
+    
+                        //Execute the query
+                        $firstResults = $db->query($firstQuery);
+
+                        //Set current PID flag
+                        $currentPID = "";
+
+                        //Start to iterate over the results
+                        if ($firstResults->num_rows > 0) {
+                            while ($projectRows = $firstResults->fetch_assoc()) {
+                                if ($projectRows["PID"] != $currentPID) 
+                                {
+                                    if ($projectRows["PID"] != $currentPID && $currentPID != "")
+                                    {
+                        ?>
+                        </table>
+                        </article>
+                        </div>
+                        <?php
+                                        }
+                                        //Set the current PID to this project
+                                        $currentPID = $projectRows["PID"];
+                                    
+                        ?>
             <div class="card-container">
                 <article>
                     <table id="project-landing-card">
@@ -68,10 +137,10 @@
                         </thead>
 
                             <tr>
-                                <td class="project-title">Karasuno team website</td>
-                                <td>Create team website so players can access stats and calendar for upcoming season.</td>
-                                <td>07-02-2020</td>
-                                <td>09-05-2020</td>
+                                <td class="project-title"><?=$projectRows["Title"]?></td>
+                                <td><?=$projectRows["Description"]?></td>
+                                <td><?=$projectRows["StartDate"]?></td>
+                                <td><?=$projectRows["EndDate"]?></td>
                             </tr>
                     </table>
 
@@ -86,31 +155,54 @@
                             </tr>
                         </thead>
 
-                            <tr>
-                                <td>Daichi Sawamura</td>
-                                <td>Come up with development model for site.</td>
-                                <td>07-02-2020</td>
-                                <td>Create ERD for player stats and upcoming games. </td>
-                                <td>07-05-2020</td>
-                            </tr>
+                        <?php
+                                }
 
-                            <tr>
-                                <td>Koushi Sugawara</td>
-                                <td>Create UI using Angular.</td>
-                                <td>07-27-2020</td>
-                                <td>Implement database based on Daichi's ERD. </td>
-                                <td>07-15-2020</td>
-                            </tr>
+                                //For each user in the project, if they have tasks, print them ordered by deadline
+                                $tasksQuery = "SELECT TDescription, Deadline 
+                                                FROM Tasks 
+                                                WHERE UID = '".$projectRows["UID"]."' AND PID = '$currentPID'
+                                                ORDER BY Deadline ASC";
 
-                            <tr>
-                                <td>Shoyo Hinata</td>
-                                <td>Find/create good action shots for the site.</td>
-                                <td>07-10-2020</td>
+                                //Execute query
+                                $taskResults = $db->query($tasksQuery);
+
+                                if ($taskResults->num_rows > 0) 
+                                {
+                            ?>
+                            <td><?=$projectRows["FirstName"]?> <?=$projectRows["LastName"]?></td>
+                            <?php 
+                                    while ($taskRows = $taskResults->fetch_assoc())
+                                    {
+                            ?>
+                                <td><?=$taskRows["TDescription"]?></td>
+                                <td><?=$taskRows["Deadline"]?></td>
+                            <?php 
+                                    }
+                            ?>
                             </tr>
+                            <?php
+                                } 
+
+                                //Loop back to the next result
+                                }
+                            ?>      
                     </table>
                 </article>
             </div>
             <!-- end of landing card -->
+            <?php 
+                    } else {
+                        //Error in retrieving project details
+                        echo("<p class=\"generic-php-error\">There was an error retrieving projects from the database.</p>");
+                    }
+                }
+            } else {
+                echo("<p class=\"generic-php-error\">You are not currently involved in any projects!</p>");
+            }
+                //If loop has ran to completion with no errors, close the Db
+                $db->close();
+            ?>
 			
 		</div>
 	</div>

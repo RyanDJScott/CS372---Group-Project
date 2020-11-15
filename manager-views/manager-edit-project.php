@@ -71,10 +71,8 @@
                             <thead>
                                 <tr>
                                     <td class="project-member-input">Project Members</td>
-                                    <td class="project-member-input">Task 1</td>
+                                    <td class="project-member-input">Task</td>
                                     <td class="project-member-input">Deadline</td> 
-                                    <td class="project-member-input">Task 2</td>
-                                    <td class="project-member-input">Deadline</td>
                                 </tr>
                             </thead>
     
@@ -82,32 +80,47 @@
                                     <td><input type="text" name="projectMember1" class="text-input"/></td>
                                     <td><input type="text" name="projectMember1Task1" class="text-input"/></td>
                                     <td><input type="date" name="projectMember1DeadlineTask1"/></td>
-                                    <td><input type="text" name="projectMember1Task2" class="text-input"/></td>
-                                    <td><input type="date" name="projectMember1DeadlineTask2"/</td>
                                 </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td><input type="text" name="projectMember1Task2" class="text-input"/></td>
+                                    <td><input type="date" name="projectMember1DeadlineTask2"/></td>
+                                </tr>       
 
                                 <tr>
                                     <td><input type="text" name="projectMember2" class="text-input"/></td>
                                     <td><input type="text" name="projectMember2Task1" class="text-input"/></td>
                                     <td><input type="date" name="projectMember2DeadlineTask1"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
                                     <td><input type="text" name="projectMember2Task2" class="text-input"/></td>
-                                    <td><input type="date" name="projectMember2DeadlineTask2"/</td>
+                                    <td><input type="date" name="projectMember2DeadlineTask2"/></td>
                                 </tr>
 
                                 <tr>
                                     <td><input type="text" name="projectMember3" class="text-input"/></td>
                                     <td><input type="text" name="projectMember3Task1" class="text-input"/></td>
                                     <td><input type="date" name="projectMember3DeadlineTask1"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
                                     <td><input type="text" name="projectMember3Task2" class="text-input"/></td>
-                                    <td><input type="date" name="projectMember3DeadlineTask2"/</td>
+                                    <td><input type="date" name="projectMember3DeadlineTask2"/></td>
                                 </tr>
 
                                 <tr>
                                     <td><input type="text" name="projectMember4" class="text-input"/></td>
                                     <td><input type="text" name="projectMember4Task1" class="text-input"/></td>
                                     <td><input type="date" name="projectMember4DeadlineTask1"/></td>
+                                </tr>
+
+                                <tr>
                                     <td><input type="text" name="projectMember4Task2" class="text-input"/></td>
-                                    <td><input type="date" name="projectMember4DeadlineTask2"/</td>
+                                    <td><input type="date" name="projectMember4DeadlineTask2"/></td>
                                 </tr>
     
                         </table>
