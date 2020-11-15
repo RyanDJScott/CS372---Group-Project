@@ -17,9 +17,9 @@
             //If you were redirected to this page, check the success variable for message
             if ($_SERVER["REQUEST_METHOD"] == "GET")
             {
-                if ($_GET["success"] == 1)
+                if ($_GET["success"] == 2)
                     $successMsg = "The project could not be deleted from the database. Please try again.";
-                else if ($_GET["success"] == 2)
+                else if ($_GET["success"] == 1)
                     $successMsg = "The project was successfully deleted from the database.";
             }
         } else {
@@ -145,11 +145,13 @@
                                 <td><?=$projectRows["StartDate"]?></td>
                                 <td><?=$projectRows["EndDate"]?></td>
                                 <td>
-                                    <form action="editProject.php?PID=<?=$currentPID?>" method="POST">
+                                    <form action="editProject.php" method="POST">
+                                        <input type="hidden" name="PID" value="<?=$currentPID?>" />
                                         <button type="submit" class="edit-delete-button"><i class="fa fa-edit"></i></button>
                                     </form>
                                     
-                                    <form action="deleteProject.php?PID=<?=$currentPID?>" method="POST">
+                                    <form action="deleteProject.php" method="POST">
+                                        <input type="hidden" name="PID" value="<?=$currentPID?>" />
                                         <button type="submit" class="edit-delete-button"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </td>

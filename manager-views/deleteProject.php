@@ -5,8 +5,6 @@
     //Start a session
     session_start();
 
-    var_dump($_SESSION);
-
     //Check if the user is logged in as a manager
     if (isset($_SESSION["UID"]) && $_SESSION["UID"] > 0) {
         if (isset($_SESSION["MID"]) && $_SESSION["MID"] != NULL) {
