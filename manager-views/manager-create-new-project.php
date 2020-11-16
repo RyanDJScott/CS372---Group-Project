@@ -274,7 +274,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Create New Project</title>
+    <title>Create New Project</title>
+    <script type="text/javascript" src="../javascript/newProject.js"></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -318,6 +319,7 @@
                 </header>
                 
                 <article>
+
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                         <div>
                             <table id="createUserTable">
@@ -325,6 +327,11 @@
                                     <tr>
                                         <td>Project Title: </td><td> <input type="text" name="projectTitle" class="text-input" value="<?=$projectTitle?>" /></td>
                                         <td>Description: </td><td> <textarea name="projectDescription" id="projectDescription" cols="30" rows="10"><?=$projectDescription?></textarea></td>
+                                    </tr>
+                                  
+                                    <tr>
+                                        <td id="projectTitleError" class="generic-php-error"></td>
+                                        <td id="projectDescriptionError" class="generic-php-error"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -334,11 +341,17 @@
                             <table>
                                 <tr>
                                     <td>Start Date: </td><td> <input type="date" name="startDate" value="<?=$startDate?>" /></td>
-                                    <td>End Date: </td><td> <input type="date" name="endDate" value="<?=$endDate?>" /></td>
+                                    <td>End Date: </td><td> <input type="date" name="endDate" value="<?=$endDate?>" disabled="disabled" /></td>
                                 </tr>
-                            </table>
-                        </div>
-                        
+
+                                <tr>
+                                    <td></td>
+                                    <td id="startDateError" class="generic-php-error"></td>
+                                    <td id="endDateError" class="generic-php-error"></td>
+                                </tr>
+                        </table>
+                    </div>
+                      
                         <div class="skills-container" style="margin-top: 20px";>
                             <table id="members-landing-card">
                                 <thead>
@@ -351,57 +364,113 @@
         
                                     <tr>
                                         <td><input type="text" name="projectMember1" class="text-input" value="<?=$projectMembers[0]?>"/></td>
-                                        <td><input type="text" name="projectMember1Task1" class="text-input" value="<?=$tasks[0]?>" /></td>
-                                        <td><input type="date" name="projectMember1DeadlineTask1" value="<?=$deadlines[0]?>" /></td>
+                                        <td><input type="text" name="projectMember1Task1" class="text-input" value="<?=$tasks[0]?>" disabled="disabled"/></td>
+                                        <td><input type="date" name="projectMember1DeadlineTask1" value="<?=$deadlines[0]?>" disabled="disabled"/></td>
                                     </tr>
+                              
+                                    <tr>
+                                        <td></td>
+                                        <td id="projectMember1Task1Error" class="generic-php-error"></td>
+                                        <td id="projectMember1DeadlineTask1Error" class="generic-php-error"></td>
+                                    </tr>
+                              
+                                    <tr>
+                                         <td id="projectMember1Error" class="generic-php-error"></td>
+                                         <td><input type="text" name="projectMember1Task2" class="text-input" disabled="disabled"/></td>
+                                         <td><input type="date" name="projectMember1DeadlineTask2" disabled="disabled"/></td>
+                                    </tr>
+                            </table>
+                        </div>
 
                                     <tr>
                                         <td id="suggestMember1"></td>
-                                        <td><input type="text" name="projectMember1Task2" class="text-input" value="<?=$tasks[1]?>" /></td>
-                                        <td><input type="date" name="projectMember1DeadlineTask2" value="<?=$deadlines[1]?>" /></td>
+                                        <td><input type="text" name="projectMember1Task2" class="text-input" value="<?=$tasks[1]?>" disabled="disabled" /></td>
+                                        <td><input type="date" name="projectMember1DeadlineTask2" value="<?=$deadlines[1]?>" disabled="disabled" /></td>
+                                    </tr>
+                  
+                                    <tr>
+                                        <td id="projectMember1Error" class="generic-php-error"></td>
+                                        <td id="projectMember1Task2Error" class="generic-php-error"></td>
+                                        <td id="projectMember1DeadlineTask2Error" class="generic-php-error"></td>
                                     </tr>
 
                                     <tr>
                                         <td><input type="text" name="projectMember2" class="text-input" value="<?=$projectMembers[1]?>" /></td>
-                                        <td><input type="text" name="projectMember2Task1" class="text-input" value="<?=$tasks[2]?>" /></td>
-                                        <td><input type="date" name="projectMember2DeadlineTask1" value="<?=$deadlines[2]?>" /></td>
+                                        <td><input type="text" name="projectMember2Task1" class="text-input" value="<?=$tasks[2]?>" disabled="disabled"/></td>
+                                        <td><input type="date" name="projectMember2DeadlineTask1" value="<?=$deadlines[2]?>" disabled="disabled"/></td>
+                                    </tr>
+                  
+                                    <tr>
+                                        <td></td>
+                                        <td id="projectMember2Task1Error" class="generic-php-error"></td>
+                                        <td id="projectMember2DeadlineTask1Error" class="generic-php-error"></td>
                                     </tr>
 
                                     <tr>
                                         <td id="suggestMember2"></td>
-                                        <td><input type="text" name="projectMember2Task2" class="text-input" value="<?=$tasks[3]?>" /></td>
-                                        <td><input type="date" name="projectMember2DeadlineTask2" value="<?=$deadlines[3]?>" /></td>
+                                        <td><input type="text" name="projectMember2Task2" class="text-input" value="<?=$tasks[3]?>" disabled="disabled"/></td>
+                                        <td><input type="date" name="projectMember2DeadlineTask2" value="<?=$deadlines[3]?>" disabled="disabled"/></td>
+                                    </tr>
+                  
+                                    <tr>
+                                        <td id="projectMember2Error" class="generic-php-error"></td>
+                                        <td id="projectMember2Task2Error" class="generic-php-error"></td>
+                                        <td id="projectMember2DeadlineTask2Error" class="generic-php-error"></td>
                                     </tr>
 
                                     <tr>
                                         <td><input type="text" name="projectMember3" class="text-input" value="<?=$projectMembers[2]?>" /></td>
-                                        <td><input type="text" name="projectMember3Task1" class="text-input" value="<?=$tasks[4]?>" /></td>
-                                        <td><input type="date" name="projectMember3DeadlineTask1" value="<?=$deadlines[4]?>" /></td>
+                                        <td><input type="text" name="projectMember3Task1" class="text-input" value="<?=$tasks[4]?>" disabled="disabled" /></td>
+                                        <td><input type="date" name="projectMember3DeadlineTask1" value="<?=$deadlines[4]?>" disabled="disabled" /></td>
+                                    </tr>
+                  
+                                    <tr>
+                                        <td></td>
+                                        <td id="projectMember3Task1Error" class="generic-php-error"></td>
+                                        <td id="projectMember3DeadlineTask1Error" class="generic-php-error"></td>
                                     </tr>
 
                                     <tr>
                                         <td id="suggestMember3"></td>
-                                        <td><input type="text" name="projectMember3Task2" class="text-input" value="<?=$tasks[5]?>" /></td>
-                                        <td><input type="date" name="projectMember3DeadlineTask2" value="<?=$deadlines[5]?>" /></td>
+                                        <td><input type="text" name="projectMember3Task2" class="text-input" value="<?=$tasks[5]?>" disabled="disabled" /></td>
+                                        <td><input type="date" name="projectMember3DeadlineTask2" value="<?=$deadlines[5]?>" disabled="disabled" /></td>
+                                    </tr>
+                  
+                                    <tr>
+                                        <td id="projectMember3Error" class="generic-php-error"></td>
+                                        <td id="projectMember3Task2Error" class="generic-php-error"></td>
+                                        <td id="projectMember3DeadlineTask2Error" class="generic-php-error"></td>
                                     </tr>
 
                                     <tr>
                                         <td><input type="text" name="projectMember4" class="text-input" value="<?=$projectMembers[3]?>" /></td>
-                                        <td><input type="text" name="projectMember4Task1" class="text-input" value="<?=$tasks[6]?>" /></td>
-                                        <td><input type="date" name="projectMember4DeadlineTask1" value="<?=$deadlines[6]?>" /></td>
+                                        <td><input type="text" name="projectMember4Task1" class="text-input" value="<?=$tasks[6]?>" disabled="disabled" /></td>
+                                        <td><input type="date" name="projectMember4DeadlineTask1" value="<?=$deadlines[6]?>" disabled="disabled" /></td>
+                                    </tr>
+                  
+                                    <tr>
+                                        <td></td>
+                                        <td id="projectMember4Task1Error" class="generic-php-error"></td>
+                                        <td id="projectMember4DeadlineTask1Error" class="generic-php-error"></td>
                                     </tr>
 
                                     <tr>
                                         <td id="suggestMember4"></td>
-                                        <td><input type="text" name="projectMember4Task2" class="text-input" value="<?=$tasks[7]?>" /></td>
-                                        <td><input type="date" name="projectMember4DeadlineTask2" value="<?=$deadlines[7]?>" /></td>
+                                        <td><input type="text" name="projectMember4Task2" class="text-input" value="<?=$tasks[7]?>" disabled="disabled" /></td>
+                                        <td><input type="date" name="projectMember4DeadlineTask2" value="<?=$deadlines[7]?>" disabled="disabled" /></td>
+                                    </tr>
+                  
+                                    <tr>
+                                        <td id="projectMember4Error" class="php-generic-error"></td>
+                                        <td id="projectMember4Task2Error" class="generic-php-error"></td>
+                                        <td id="projectMember4DeadlineTask2Error" class="generic-php-error"></td>
                                     </tr>
                             </table>
                         </div>
                         
                             <div class="submit-button-container" style="margin-top: 20px">
                                 <p>
-                                    <button type="submit" class="submit-button" style="float: right;">Submit</button> 
+                                    <button type="submit" class="submit-button" style="float: right;" name="submitBtn">Submit</button> 
                                 </p>
                             </div>
                     </form>
@@ -412,4 +481,5 @@
 	</div>
 <script type="text/javascript" src="newProject.js"></script>
 </body>
+<script type="text/javascript" src="../javascript/newProjectR.js></script>
 </html>
