@@ -46,42 +46,58 @@ function addToField4 (event) {
 
 //AJAX Function starts here
 function getMember (value, memNum) {
+    console.log("CHECKING VALUE: "+ value +"");
     //Create a new instance of an XMLHttpRequest Object
     var xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log("AJAX Function executing");
             //Parse the JSON object
             var possibleEmployees = JSON.parse(xhr.responseText);
 
             //Find the suggest member spot in the DOM
             var insertSpot = document.getElementById("suggestMember"+ memNum + "");
+            console.log("     INSERT SPOT:"+ insertSpot +"");
 
-            //Insert the value into this spot
-            var node = document.createElement("p");
-            node.classList.add("add-member-AJAX");
-            node.setAttribute("id", "possibleMember" + memNum + "");
+            //Find any old searches and remove them
+            var oldSearches = document.getElementsByClassName("add-member-AJAX"+ memNum +"");
+            var oldTags = oldSearches.length;
 
-            //Register an event on this item to insert into the field when clicked
-            switch (memNum) {
-                case 1: 
-                    node.addEventListener("click", addToField1);
-                    break;
-                case 2: 
-                    node.addEventListener("click", addToField2);
-                    break;
-                case 3: 
-                    node.addEventListener("click", addToField3);
-                    break;
-                case 4:
-                    node.addEventListener("click", addToField4);
-                    break;
+            for (var j = 0; j < oldTags; j++)
+                oldSearches[0].remove();
+            
+
+            //Iterate over the results
+            for (var i = 0; i < possibleEmployees.length; i++)
+            {
+                //Insert the value into this spot
+                var node = document.createElement("p");
+                node.classList.add("add-member-AJAX"+ memNum +"");
+                node.setAttribute("id", "possibleMember" + memNum + "");
+
+                //Register an event on this item to insert into the field when clicked
+                switch (memNum) {
+                    case 1: 
+                        node.addEventListener("click", addToField1);
+                        console.log("Adding Field1 Event Listener");
+                        break;
+                    case 2: 
+                        node.addEventListener("click", addToField2);
+                        console.log("Adding Field2 Event Listener");
+                        break;
+                    case 3: 
+                        node.addEventListener("click", addToField3);
+                        console.log("Adding Field3 Event Listener");
+                        break;
+                    case 4:
+                        node.addEventListener("click", addToField4);
+                        console.log("Adding Field4 Event Listener");
+                }
+
+                //Append the tag
+                insertSpot.appendChild(node);
+                node.innerHTML = ""+possibleEmployees[i].FirstName+" "+possibleEmployees[i].LastName+"";
             }
-
-            //Append the tag
-            insertSpot.appendChild(node);
-            node.innerHTML = ""+possibleEmployees[0].FirstName+" "+possibleEmployees[0].LastName+"";
         }
     }
 
@@ -93,24 +109,28 @@ function getMember (value, memNum) {
 function getMem1 (event) { 
     //Send to generic function with field input and ##
     var fieldInput1 = event.currentTarget.value;
+    console.log("Project Member 1: "+ fieldInput1 +"");
     getMember(fieldInput1, 1);
 }
 
 function getMem2 (event) {
     //Send to generic function with field input and ##
     var fieldInput2 = event.currentTarget.value;
+    console.log("Project Member 2: "+ fieldInput2 +"");
     getMember(fieldInput2, 2);
 }
 
 function getMem3 (event) {
     //Send to generic function with field input and ##
     var fieldInput3 = event.currentTarget.value;
+    console.log("Project Member 3: "+ fieldInput3 +"");
     getMember(fieldInput3, 3);
 }
 
 function getMem4 (event) {
     //Send to generic function with field input and ##
     var fieldInput4 = event.currentTarget.value;
+    console.log("Project Member 4: "+ fieldInput4 +"");
     getMember(fieldInput4, 4);
 }
 

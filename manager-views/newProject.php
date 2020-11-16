@@ -13,11 +13,16 @@
     //Get the variable from the get method
     $memberName = trim(strtolower($_GET["MemberName"]));
 
-    //Build query based on their first name
-    $findUser = "SELECT FirstName, LastName FROM Users WHERE FirstName LIKE '".$db->real_escape_string($userName[0])."%' LIMIT 1";
-    
-    //Execute query, build empty JSON array
-    $results = $db->query($findUser);
+    //If member name isn't empty
+    if ($memberName != "")
+    {   
+        //Build query based on their first name
+        $findUser = "SELECT FirstName, LastName FROM Users WHERE FirstName LIKE '".$db->real_escape_string($memberName)."%'";
+
+        //Execute query,
+        $results = $db->query($findUser);
+    }
+
     $jsonArray = array();
 
     //If there are results, iterate over them and insert them into the JSON array
