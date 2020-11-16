@@ -354,13 +354,20 @@
 
   .add-member-AJAX1, .add-member-AJAX2, .add-member-AJAX3, .add-member-AJAX4 {
     font-family: Poppins-Medium;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.5;
     color: #666666;
     outline: none;
+    border: 1px solid #e6e6e6;
+    border-radius: 25px;
+    padding: 5px 5px 5px 10px;
+    margin: 2px;
+    background-color: #cef1f7;
+  }
+
+  .add-member-AJAX1:hover, .add-member-AJAX2:hover, .add-member-AJAX3:hover, .add-member-AJAX4:hover {
+    background-color: #d7faea;
     border: 1px solid #000000;
-    padding: 0px;
-    background-color: #a4d5dd;
   }
 
   /*------------------------------------------------------------------
