@@ -218,6 +218,7 @@
 <html lang="en">
 <head>
 	<title>Edit Profile</title>
+    <script type="text/javascript" src="../javascript/userValidation.js"></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -321,4 +322,5 @@
 	</div>
 
 </body>
+<script type="text/javascript" src="../javascript/userValidationR.js"></script>
 </html>
