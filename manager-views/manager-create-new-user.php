@@ -244,6 +244,7 @@
                 
                 <article>
                     <!-- add form tag here -->
+                    <form method="POST" id="submitForm">
                     <div>
                         <table id="createUserTable">
                             <tbody>
@@ -328,6 +329,7 @@
                     </div>
 
                     <!-- form tag goes here -->
+                    </form>
             </article>
 				
 			</div>
