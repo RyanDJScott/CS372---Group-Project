@@ -1,3 +1,7 @@
+/*
+functions for checking form validation for creating and editing users
+*/
+
 function fileChecker(event)
 {
     var filePathInput = event.currentTarget.value;
@@ -64,9 +68,32 @@ function managerIdChecker(event)
 {
     var managerId = event.currentTarget.value;
 
+    managerIdChecker2(managerID);
+}
+
+function managerIdChecker2(managerId)
+{
     var managerIdMsg = document.getElementById("ManagerIdError");
 
     var validInput = true; 
+
+    if(document.getElementById("userTypeEmployee").checked == true)
+    {
+        if(managerID != "")
+        {
+            validInput = false;
+            managerIdMsg.innerHTML = "This is an employee, no manager ID needed";
+        }
+    }
+    if(document.getElementById("userTypeEmployee").checked == false)
+    {
+        if(managerID == "")
+        {
+            validInput = false;
+            managerIdMsg.innerHTML = "Manager ID needed";
+        }
+    }
+    return validInput;
 }
 
 function firstNameChecker(event)
