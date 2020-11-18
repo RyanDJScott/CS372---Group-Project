@@ -339,3 +339,105 @@ function skill4Checker2(skill4Input)
     return validInput;
 }
 
+//prevent default here
+function submitChecker(event)
+{
+    console.log("Submit recieved")
+    /*
+    Checks:
+        - picture
+        - user type
+        - managerID
+        - first name
+        - last name
+        - email
+        - password
+        - skills (5)
+    */
+
+    var profilePicture = document.getElementsByName("profilePicture");
+    if ((fileChecker2(profilePicture[0].value)) == false)
+    {
+        console.log("profile picture recieved on submit");
+        event.preventDefault();
+    }
+
+    //if neither checkbox is selected
+    if ((document.getElementById("userTypeEmployee").checked == false) && (document.getElementById("userTypeManager").checked == false))
+    {
+        console.log("employee type not specified");
+        radioChecker2();
+        event.preventDefault();
+    }
+
+    //check manager ID
+    var managerID = document.getElementById("managerId");
+    if((managerIdChecker2(managerId.value)) == false)
+    {
+        console.log("managerId invalid");
+        event.preventDefault();
+    }
+
+    var firstName = document.getElementsByName("firstName");
+    if((firstNameChecker2(firstName[0].value)) == false)
+    {
+        console.log("FirstName invalid onsubmit");
+        event.preventDefault();
+    }
+
+    var lastName = document.getElementsByName("lastName");
+    if((lastNameChecker2(lastName[0].value)) == false)
+    {
+        console.log("Lastname invalid onsubmit");
+        event.preventDefault();
+    }
+
+    var email = document.getElementsByName("email");
+    if((emailChecker2(email[0].value)) == false)
+    {
+        console.log("email invalid onsubmit");
+        event.preventDefault();
+    }
+
+    var password = document.getElementsByName("password");
+    if((passwordChecker2(password[0].value)) == false)
+    {
+        console.log("password invlid onsubmit");
+        event.preventDefault();
+    }
+
+    var skill1 = document.getElementsByName("skill1");
+    if((skill1Checker2(skill1)) == false)
+    {
+        console.log("skill1 invalid onsubmit");
+        event.preventDefault();
+    }
+
+    var skill2 = document.getElementsByName("skill2");
+    if((skill2Checker2(skill1)) == false)
+    {
+        console.log("skill1 invalid onsubmit");
+        event.preventDefault();
+    }
+    
+    var skill3 = document.getElementsByName("skill3");
+    if((skill3Checker2(skill1)) == false)
+    {
+        console.log("skill1 invalid onsubmit");
+        event.preventDefault();
+    }
+
+    var skill4 = document.getElementsByName("skill4");
+    if((skill4Checker2(skill1)) == false)
+    {
+        console.log("skill1 invalid onsubmit");
+        event.preventDefault();
+    }
+
+    var skill5 = document.getElementsByName("skill5");
+    if((skill5Checker2(skill1)) == false)
+    {
+        console.log("skill1 invalid onsubmit");
+        event.preventDefault();
+    }
+}
