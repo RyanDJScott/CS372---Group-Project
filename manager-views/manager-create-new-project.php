@@ -318,46 +318,8 @@
                 </header>
                 
                 <article>
-<<<<<<< HEAD
-                    <div>
-                        <table id="createUserTable">
-                            <tbody>
-                                <tr>
-                                    <td>Project Title: </td><td> <input type="text" name="projectTitle" class="text-input"/></td>
-                                    <td>Description: </td><td> <textarea name="projectDescription" id="projectDescription" cols="30" rows="10"></textarea></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div>
-                        <table>
-                            <tr>
-                                <td>Start Date: </td><td> <input type="date" name="startDate"/></td>
-                                <td>End Date: </td><td> <input type="date" name="endDate"/></td>
-                            </tr>
-                        </table>
-                    </div>
-                    
-                    <div class="skills-container" style="margin-top: 20px";>
-                        <table id="members-landing-card">
-                            <thead>
-                                <tr>
-                                    <td class="project-member-input">Project Members</td>
-                                    <td class="project-member-input">Task</td>
-                                    <td class="project-member-input">Deadline</td> 
-                                </tr>
-                            </thead>
-    
-                                <tr>
-                                    <td><input type="text" name="projectMember1" class="text-input"/></td>
-                                    <td><input type="text" name="projectMember1Task1" class="text-input"/></td>
-                                    <td><input type="date" name="projectMember1DeadlineTask1"/></td>
-                                </tr>
-=======
->>>>>>> 7f1ef79746dd75b580f9addb6c26af116b67befe
 
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" id="submitForm">
                         <div>
                             <table id="createUserTable">
                                 <tbody>
@@ -377,61 +339,12 @@
                         <div>
                             <table>
                                 <tr>
-<<<<<<< HEAD
-                                    <td></td>
-                                    <td><input type="text" name="projectMember1Task2" class="text-input"/></td>
-                                    <td><input type="date" name="projectMember1DeadlineTask2"/</td>
-                                </tr>
-
-                                <tr>
-                                    <td><input type="text" name="projectMember2" class="text-input"/></td>
-                                    <td><input type="text" name="projectMember2Task1" class="text-input"/></td>
-                                    <td><input type="date" name="projectMember2DeadlineTask1"/></td>
-=======
                                     <td>Start Date: </td><td> <input type="date" name="startDate" value="<?=$startDate?>" /></td>
                                     <td>End Date: </td><td> <input type="date" name="endDate" value="<?=$endDate?>" disabled="disabled" /></td>
->>>>>>> 7f1ef79746dd75b580f9addb6c26af116b67befe
                                 </tr>
 
                                 <tr>
                                     <td></td>
-<<<<<<< HEAD
-                                    <td><input type="text" name="projectMember2Task2" class="text-input"/></td>
-                                    <td><input type="date" name="projectMember2DeadlineTask2"/></td>
-                                </tr>
-
-                                <tr>
-                                    <td><input type="text" name="projectMember3" class="text-input"/></td>
-                                    <td><input type="text" name="projectMember3Task1" class="text-input"/></td>
-                                    <td><input type="date" name="projectMember3DeadlineTask1"/></td>
-                                </tr>
-
-                                <tr>
-                                    <td></td>
-                                    <td><input type="text" name="projectMember3Task2" class="text-input"/></td>
-                                    <td><input type="date" name="projectMember3DeadlineTask2"/></td>
-                                </tr>
-
-                                <tr>
-                                    <td><input type="text" name="projectMember4" class="text-input"/></td>
-                                    <td><input type="text" name="projectMember4Task1" class="text-input"/></td>
-                                    <td><input type="date" name="projectMember4DeadlineTask1"/></td>
-                                </tr>
-
-                                <tr>
-                                    <td></td>
-                                    <td><input type="text" name="projectMember4Task2" class="text-input"/></td>
-                                    <td><input type="date" name="projectMember4DeadlineTask2"/></td>
-                                </tr>
-                        </table>
-                    </div>
-                    
-                    <div class="submit-button-container" style="margin-top: 20px">
-                        <p>
-                            <input type="button" value="Submit" class="submit-button" style="float: right;"/> 
-                        </p>
-                    </div>
-=======
                                     <td id="startDateError" class="generic-php-error"></td>
                                     <td id="endDateError" class="generic-php-error"></td>
                                 </tr>
@@ -560,7 +473,6 @@
                                 </p>
                             </div>
                     </form>
->>>>>>> 7f1ef79746dd75b580f9addb6c26af116b67befe
             </article>
 				
 			</div>
