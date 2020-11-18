@@ -184,20 +184,24 @@ function member1Checker2(member)
     var task2 = document.getElementsByName("projectMember1Task2");
     var dead1 = document.getElementsByName("projectMember1DeadlineTask1")
     var dead2 = document.getElementsByName("projectMember1DeadlineTask2");
-    if(validInput == true)
+    if(member != "" && member.length < 50)
     {
         task1[0].disabled = false;
         task2[0].disabled = false;
         dead1[0].disabled = false;
         dead2[0].disabled = false;
-        memberMsg.innerHTML = "";
+        validInput = true;
     }
-    if(validInput == false)
+    if(member == "")
     {
         task1[0].disabled = true;
         task2[0].disabled = true;
         dead1[0].disabled = true;
         dead2[0].disabled = true;
+    }
+    if(validInput == true)
+    {
+        memberMsg.innerHTML = "";
     }
     return validInput
 }
@@ -220,20 +224,24 @@ function member2Checker2(member)
     var task2 = document.getElementsByName("projectMember2Task2");
     var dead1 = document.getElementsByName("projectMember2DeadlineTask1")
     var dead2 = document.getElementsByName("projectMember2DeadlineTask2");
-    if(validInput == true)
+    if(member != "" && member.length < 50)
     {
         task1[0].disabled = false;
         task2[0].disabled = false;
         dead1[0].disabled = false;
         dead2[0].disabled = false;
-        memberMsg.innerHTML = "";
+        validInput = true;
     }
-    if(validInput == false)
+    if(member == "")
     {
         task1[0].disabled = true;
         task2[0].disabled = true;
         dead1[0].disabled = true;
         dead2[0].disabled = true;
+    }
+    if(validInput == true)
+    {
+        memberMsg.innerHTML = "";
     }
     return validInput
 }
@@ -256,20 +264,24 @@ function member3Checker2(member)
     var task2 = document.getElementsByName("projectMember3Task2");
     var dead1 = document.getElementsByName("projectMember3DeadlineTask1")
     var dead2 = document.getElementsByName("projectMember3DeadlineTask2");
-    if(validInput == true)
+    if(member != "" && member.length < 50)
     {
         task1[0].disabled = false;
         task2[0].disabled = false;
         dead1[0].disabled = false;
         dead2[0].disabled = false;
-        memberMsg.innerHTML = "";
+        validInput = true;
     }
-    if(validInput == false)
+    if(member == "")
     {
         task1[0].disabled = true;
         task2[0].disabled = true;
         dead1[0].disabled = true;
         dead2[0].disabled = true;
+    }
+    if(validInput == true)
+    {
+        memberMsg.innerHTML = "";
     }
     return validInput
 }
@@ -292,20 +304,24 @@ function member4Checker2(member)
     var task2 = document.getElementsByName("projectMember4Task2");
     var dead1 = document.getElementsByName("projectMember4DeadlineTask1")
     var dead2 = document.getElementsByName("projectMember4DeadlineTask2");
-    if(validInput == true)
+    if(member != "" && member.length < 50)
     {
         task1[0].disabled = false;
         task2[0].disabled = false;
         dead1[0].disabled = false;
         dead2[0].disabled = false;
-        memberMsg.innerHTML = "";
+        validInput = true;
     }
-    if(validInput == false)
+    if(member == "")
     {
         task1[0].disabled = true;
         task2[0].disabled = true;
         dead1[0].disabled = true;
         dead2[0].disabled = true;
+    }
+    if(validInput == true)
+    {
+        memberMsg.innerHTML = "";
     }
     return validInput
 }
