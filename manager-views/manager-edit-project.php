@@ -54,10 +54,21 @@
                     {
                         if ($teamRows["managerID"] == NULL)
                         {
+                            //Don't populate the array with the manager; they're technically not a working member
                             $teamFN[] = $teamRows["FirstName"];
                             $teamLN[] = $teamRows["LastName"];
                             $teamUIDS[] = $teamRows["UID"];
+                        } else {
+                            //Still need to save the manager ID for the update; we don't want to change that
+                            $managerUID = $teamRows["UID"];
                         }
+                    }
+
+                    //If the array isn't full (4 entries), fill with NULL spots
+                    if (sizeof($teamUIDS) !=  4)
+                    {
+                        for ($j = sizeof($teamUIDS) - 1; $j < 4; $j++)
+                            $teamUIDS[] = NULL;                                                
                     }
 
 
@@ -97,6 +108,19 @@
                             $userDeadlines[] = "";
                             $userDeadlines[] = "";
                         }
+                    }
+
+                    //If the tasks/deadlines arrays aren't at 8 each; fill the cells with NULL
+                    if (sizeof($userTasks) != 8)
+                    {
+                        for ($z = sizeof($userTasks) - 1; $z < 8; $z++)
+                            $userTasks[$z] == NULL;
+                    }
+
+                    if (sizeof($userDeadlines) != 8)
+                    {
+                        for ($x = sizeof($userDeadlines) - 1; $x < 8; $x++)
+                            $userDeadlines[$x] = NULL;
                     }
                 }
             } else {
@@ -151,8 +175,8 @@
                     //Set error flag to false
                     $errorFlag = false;
 
-                    //Add the manager as the first member of the project
-                    $memberUIDS[] = $_SESSION["UID"];
+                    //Add the previous manager as the first member of the project; that hasn't changed
+                    $memberUIDS[] = $managerUID;
 
                     //Validate project members array by checking if this member exists in the db
                     for ($i = 0; $i < sizeof($projectMembers); $i++)
@@ -215,55 +239,66 @@
                             }
                         }
 
-                        //Validation complete; insert this data into the database
+                        //Validation complete; update/insert this data into the database
                         if ($tdError == false)
                         {
                             //Ensure date/times from the picker are in mySql format
-                            $startDateInsert = date("Y-m-d", strtotime($startDate));
-                            $endDateInsert = date("Y-m-d", strtotime($endDate));
+                            $startDateUpdate = date("Y-m-d", strtotime($startDate));
+                            $endDateUpdate = date("Y-m-d", strtotime($endDate));
                             
-                            //Build insert query for projects
-                            $projectInsert = "INSERT INTO Projects (Title, Description, StartDate, EndDate) 
-                                                VALUES ('".$db->real_escape_string($projectTitle)."', '".$db->real_escape_string($projectDescription)."', 
-                                                '".$db->real_escape_string($startDateInsert)."', '".$db->real_escape_string($endDateInsert)."')";
+                            //Build update query for projects
+                            $projectUpdate = "UPDATE Projects SET Title = '".$db->real_escape_string($projectTitle)."',
+                                                Description = '".$db->real_escape_string($projectDescription)."',
+                                                StartDate = '".$db->real_escape_string($startDateUpdate)."',
+                                                EndDate = '".$db->real_escape_string($endDateUpdate)."'
+                                                WHERE PID = '$PID'";
                             
                             //Execute query
-                            $projectResults = $db->query($projectInsert);
+                            $projectUpdateResults = $db->query($projectUpdate);
 
                             //If it worked, insert the project team members
-                            if ($projectResults == true)
-                            {
-                                //Get the PID of the inserted project (by title)
-                                $getPID = "SELECT PID FROM Projects WHERE Title = '".$db->real_escape_string($projectTitle)."'";
-
-                                //Execute query
-                                $getPIDResults = $db->query($getPID);
-
-                                //Grab the result; there has to be one
-                                $pidVal = $getPIDResults->fetch_assoc();
-
-                                //Set the PID value for other inserts
-                                $PID = $pidVal["PID"];
-
+                            if ($projectUpdateResults == true)
+                            { 
                                 //Set an error flag for member inserts
-                                $memberError = false;
+                                $memberUpdateError = false;
 
-                                //Insert project members into the database
-                                for ($k = 0; $k < sizeof($memberUIDS); $k++)
+                                //Set a update flag for each member to see what happened, so we can work accordingly for the tasks/deadlines
+                                $memberUpdateStatus = array();
+
+                                //Update project members and their respective into the database based on four cases 
+                                for ($k = 0; $k < 4; $k++)
                                 {
-                                    //Build an insert query based on PID/UID 
-                                    $insertMember = "INSERT INTO ProjectTeams (PID, UID) VALUES ('$PID', '$memberUIDS[$k]')";
+                                    //Case 1: both fields empty; do nothing
+                                    if (empty($teamUIDS[$k]) == true && empty($memberUIDS[$k]) == true) {
+                                        $memberUpdateStatus[] = "SKIP";
+                                        continue;
+                                    }
+                                    //Case 2: both fields are full; perform update
+                                    else if (empty($teamUIDS[$k]) == false && empty($memberUIDS[$k]) == false) {
+                                        $updateMember = "UPDATE ProjectTeams SET UID = '$teamUIDS[$k]' WHERE UID = '$memberUIDS[$k]' AND PID = '$PID'";
+                                        $memberUpdateStatus[] = "USWITCH";
+                                    }
+                                    //Case 3: first field is full, second field is empty; perform delete
+                                    else if (empty($teamUIDS[$k]) == false && empty($memberUIDS[$k]) == true) {
+                                        $updateMember = "DELETE FROM ProjectTeams WHERE UID = '$teamUIDS[$k]' AND PID = '$PID'";
+                                        $memberUpdateStatus[] = "DELETE";
+                                    }
+                                    //Case 4: first field is empty, second field is full; perform inset
+                                    else if (empty($teamUIDS[$k]) == true && empty($memberUIDS[$k]) == false) {
+                                        $updateMember = "INSERT INTO ProjectTeams (UID, PID) VALUES ('$memberUIDS[$k]', '$PID')";
+                                        $memberUpdateStatus[] = "INSERT";
+                                    }
 
                                     //Execute query
-                                    $memberInsertResults = $db->query($insertMember);
+                                    $memberUpdateResults = $db->query($updateMember);
 
                                     //If query fails, set an error flag
-                                    if ($memberInsertResults == false)
-                                        $memberError == true;
+                                    if ($memberUpdateResults == false)
+                                        $memberUpdateError == true;
                                 }
 
-                                //If the team members are all inserted, add their tasks into the db
-                                if ($memberError == false)
+                                //If the team members are all updated, update the tasks in the db
+                                if ($memberUpdateError == false)
                                 {
                                     //Set a counter to 0
                                     $counter = 0;
@@ -271,37 +306,89 @@
                                     //Set an error flag to false
                                     $taskError = false;
 
-                                    //For each member in the member array (except the manager, who is in spot 0), add their tasks
-                                    for ($l = 1; $l < sizeof($memberUIDS); $l++)
+                                    //For each member in the member array, update the tasks based on status 
+                                    for ($l = 0; $l < 4; $l++)
                                     {
-                                        for ($m = 0; $m < 2; $m++)
-                                        {
-                                            //Check if the user has been assigned a task. If not, skip to the next one.
-                                            if ($tasks[$counter] != "" && $deadlines[$counter] != "")
+                                        if ($memberUpdateStatus[$l] == "SKIP") {
+                                            $counter += 2;
+                                            continue;
+                                        } else if ($memberUpdateStatus[$l] == "USWITCH") {
+                                            //Delete the two tasks that were previously there out of the DB
+                                            for ($m = 0; $m < 2; $m++)
                                             {
-                                                //Ensure the deadline is in the correct format before inserting
-                                                $deadlineInsert = date("Y-m-d", strtotime($deadlines[$counter]));
-                                                
-                                                //Build up task query
-                                                //Need this current users UID, the same PID, and the two tasks they may have been assigned
-                                                $taskQuery = "INSERT INTO Tasks (UID, PID, TDescription, Deadline) 
-                                                                VALUES ('$memberUIDS[$l]', '$PID', '".$db->real_escape_string($tasks[$counter])."', 
-                                                                '".$db->real_escape_string($deadlineInsert)."')";
+                                                //Execute a delete query for the user
+                                                $tdDelete = "DELETE FROM Tasks WHERE UID = '$teamUIDS[$l]' AND PID = '$PID'";
 
-                                                $taskResult = $db->query($taskQuery);
+                                                $tdDResult = $db->query($tdDelete);
 
-                                                if ($taskResult == false)
+                                                if ($tdDResult == false)
                                                     $taskError = true;
+
+                                                //Execute an insert query for the user
+                                                //Check if the user has been assigned a task. If not, skip to the next one.
+                                                if ($tasks[$counter] != "" && $deadlines[$counter] != "")
+                                                {
+                                                    //Ensure the deadline is in the correct format before inserting
+                                                    $deadlineInsert = date("Y-m-d", strtotime($deadlines[$counter]));
+                                                    
+                                                    //Build up task query
+                                                    //Need this current users UID, the same PID, and the two tasks they may have been assigned
+                                                    $taskQuery = "INSERT INTO Tasks (UID, PID, TDescription, Deadline) 
+                                                                    VALUES ('$memberUIDS[$l]', '$PID', '".$db->real_escape_string($tasks[$counter])."', 
+                                                                    '".$db->real_escape_string($deadlineInsert)."')";
+
+                                                    $taskResult = $db->query($taskQuery);
+
+                                                    if ($taskResult == false)
+                                                        $taskError = true;
+                                                }
+
+                                                $counter++;
+                                            }                                             
+                                        } else if ($memberUpdateStatus[$l] == "DELETE") {
+                                            //Delete the two tasks that were previously there out of the DB
+                                            for ($m = 0; $m < 2; $m++)
+                                            {
+                                                $tdDelete = "DELETE FROM Tasks WHERE UID = '$teamUIDS[$m]' AND PID = '$PID'";
+
+                                                $tdDResult = $db->query($tdDelete);
+
+                                                if ($tdDResult == false)
+                                                    $taskError = true;
+
+                                                $counter++;
                                             }
-                                            
-                                            //Increment the counter
-                                            $counter++;
+                                        } else if ($memberUpdateStatus[$l] == "INSERT") {
+                                            //Insert the tasks into the tasks table
+                                            for ($m = 0; $m < 2; $m++)
+                                            {
+                                                //Check if the user has been assigned a task. If not, skip to the next one.
+                                                if ($tasks[$counter] != "" && $deadlines[$counter] != "")
+                                                {
+                                                    //Ensure the deadline is in the correct format before inserting
+                                                    $deadlineInsert = date("Y-m-d", strtotime($deadlines[$counter]));
+                                                    
+                                                    //Build up task query
+                                                    //Need this current users UID, the same PID, and the two tasks they may have been assigned
+                                                    $taskQuery = "INSERT INTO Tasks (UID, PID, TDescription, Deadline) 
+                                                                    VALUES ('$memberUIDS[$l]', '$PID', '".$db->real_escape_string($tasks[$counter])."', 
+                                                                    '".$db->real_escape_string($deadlineInsert)."')";
+
+                                                    $taskResult = $db->query($taskQuery);
+
+                                                    if ($taskResult == false)
+                                                        $taskError = true;
+                                                }
+                                                
+                                                //Increment the counter
+                                                $counter++;
+                                            }
                                         }
                                     }
 
                                     if ($taskError == true)
                                     {
-                                        $errorMsg = "There was an error inserting your user tasks into the database. Please try again.";
+                                        $errorMsg = "There was an error updating your user tasks into the database. Please try again.";
 
                                         //Clean up any potential half-inserted data by deleting this project from the database
                                         //Delete the whole project; will cascade down
@@ -317,11 +404,11 @@
                                         $db->close();
 
                                         //Post message showing success!
-                                        $errorMsg = "Your project was successfully created!";
+                                        $errorMsg = "Your project was successfully updated!";
                                     }
 
                                 } else {
-                                    $errorMsg = "There was an error inserting your team members into the database. Please try again.";
+                                    $errorMsg = "There was an error updating your team members into the database. Please try again.";
 
                                     //Clean up any potential half-inserted data by deleting this project from the database
                                     //Delete the whole project; will cascade down
@@ -334,7 +421,7 @@
                                     $db->close();
                                 }
                             } else {
-                                $errorMsg = "There was an error inserting the project into the database. Please try again.";
+                                $errorMsg = "There was an error updating the project into the database. Please try again.";
                             }
 
                         } else {
@@ -408,94 +495,94 @@
                 </header>
                 
                 <article>
-                    <!-- add form tag here -->
-                    <div>
-                        <table id="createUserTable">
-                            <tbody>
-                                <tr>
-                                    <td>Project Title: </td><td> <input type="text" name="projectTitle" class="text-input" value="<?=$title?>" /></td>
-                                    <td>Description: </td><td> <textarea name="projectDescription" id="projectDescription" cols="30" rows="10"><?=$description?></textarea></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                        <div>
+                            <table id="createUserTable">
+                                <tbody>
+                                    <tr>
+                                        <td>Project Title: </td><td> <input type="text" name="projectTitle" class="text-input" value="<?=$title?>" /></td>
+                                        <td>Description: </td><td> <textarea name="projectDescription" id="projectDescription" cols="30" rows="10"><?=$description?></textarea></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-                    <div>
-                        <table>
-                            <tr>
-                                <td>Start Date: </td><td> <input type="date" name="startDate" value="<?=$startDate?>" /></td>
-                                <td>End Date: </td><td> <input type="date" name="endDate" value="<?=$endDate?>" /></td>
-                            </tr>
-                        </table>
-                    </div>
-                    
-                    <div class="skills-container" style="margin-top: 20px";>
-                        <table id="members-landing-card">
-                            <thead>
+                        <div>
+                            <table>
                                 <tr>
-                                    <td class="project-member-input">Project Members</td>
-                                    <td class="project-member-input">Task</td>
-                                    <td class="project-member-input">Deadline</td> 
+                                    <td>Start Date: </td><td> <input type="date" name="startDate" value="<?=$startDate?>" /></td>
+                                    <td>End Date: </td><td> <input type="date" name="endDate" value="<?=$endDate?>" /></td>
                                 </tr>
-                            </thead>
-    
-                                <tr>
-                                    <td><input type="text" name="projectMember1" class="text-input" value="<?=$teamFN[0]?> <?=$teamLN[0]?>"/></td>
-                                    <td><input type="text" name="projectMember1Task1" class="text-input" value="<?=$userTasks[0]?>" /></td>
-                                    <td><input type="date" name="projectMember1DeadlineTask1" value="<?=$userDeadlines[0]?>" /></td>
-                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div class="skills-container" style="margin-top: 20px";>
+                            <table id="members-landing-card">
+                                <thead>
+                                    <tr>
+                                        <td class="project-member-input">Project Members</td>
+                                        <td class="project-member-input">Task</td>
+                                        <td class="project-member-input">Deadline</td> 
+                                    </tr>
+                                </thead>
+        
+                                    <tr>
+                                        <td><input type="text" name="projectMember1" class="text-input" value="<?=$teamFN[0]?> <?=$teamLN[0]?>"/></td>
+                                        <td><input type="text" name="projectMember1Task1" class="text-input" value="<?=$userTasks[0]?>" /></td>
+                                        <td><input type="date" name="projectMember1DeadlineTask1" value="<?=$userDeadlines[0]?>" /></td>
+                                    </tr>
 
-                                <tr>
-                                    <td></td>
-                                    <td><input type="text" name="projectMember1Task2" class="text-input" value="<?=$userTasks[1]?>" /></td>
-                                    <td><input type="date" name="projectMember1DeadlineTask2" value="<?=$userDeadlines[1]?>" /></td>
-                                </tr>       
+                                    <tr>
+                                        <td></td>
+                                        <td><input type="text" name="projectMember1Task2" class="text-input" value="<?=$userTasks[1]?>" /></td>
+                                        <td><input type="date" name="projectMember1DeadlineTask2" value="<?=$userDeadlines[1]?>" /></td>
+                                    </tr>       
 
-                                <tr>
-                                    <td><input type="text" name="projectMember2" class="text-input" value="<?=$teamFN[1]?> <?=$teamLN[1]?>" /></td>
-                                    <td><input type="text" name="projectMember2Task1" class="text-input" value="<?=$userTasks[2]?>" /></td>
-                                    <td><input type="date" name="projectMember2DeadlineTask1" value="<?=$userDeadlines[2]?>" /></td>
-                                </tr>
+                                    <tr>
+                                        <td><input type="text" name="projectMember2" class="text-input" value="<?=$teamFN[1]?> <?=$teamLN[1]?>" /></td>
+                                        <td><input type="text" name="projectMember2Task1" class="text-input" value="<?=$userTasks[2]?>" /></td>
+                                        <td><input type="date" name="projectMember2DeadlineTask1" value="<?=$userDeadlines[2]?>" /></td>
+                                    </tr>
 
-                                <tr>
-                                    <td></td>
-                                    <td><input type="text" name="projectMember2Task2" class="text-input" value="<?=$userTasks[3]?>" /></td>
-                                    <td><input type="date" name="projectMember2DeadlineTask2" value="<?=$userDeadlines[3]?>" /></td>
-                                </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><input type="text" name="projectMember2Task2" class="text-input" value="<?=$userTasks[3]?>" /></td>
+                                        <td><input type="date" name="projectMember2DeadlineTask2" value="<?=$userDeadlines[3]?>" /></td>
+                                    </tr>
 
-                                <tr>
-                                    <td><input type="text" name="projectMember3" class="text-input" value="<?=$teamFN[2]?> <?=$teamLN[2]?>" /></td>
-                                    <td><input type="text" name="projectMember3Task1" class="text-input" value="<?=$userTasks[4]?>" /></td>
-                                    <td><input type="date" name="projectMember3DeadlineTask1" value="<?=$userDeadlines[4]?>" /></td>
-                                </tr>
+                                    <tr>
+                                        <td><input type="text" name="projectMember3" class="text-input" value="<?=$teamFN[2]?> <?=$teamLN[2]?>" /></td>
+                                        <td><input type="text" name="projectMember3Task1" class="text-input" value="<?=$userTasks[4]?>" /></td>
+                                        <td><input type="date" name="projectMember3DeadlineTask1" value="<?=$userDeadlines[4]?>" /></td>
+                                    </tr>
 
-                                <tr>
-                                    <td></td>
-                                    <td><input type="text" name="projectMember3Task2" class="text-input" value="<?=$userTasks[5]?>" /></td>
-                                    <td><input type="date" name="projectMember3DeadlineTask2" value="<?=$userDeadlines[5]?>" /></td>
-                                </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><input type="text" name="projectMember3Task2" class="text-input" value="<?=$userTasks[5]?>" /></td>
+                                        <td><input type="date" name="projectMember3DeadlineTask2" value="<?=$userDeadlines[5]?>" /></td>
+                                    </tr>
 
-                                <tr>
-                                    <td><input type="text" name="projectMember4" class="text-input" value="<?=$teamFN[3]?> <?=$teamLN[3]?>" /></td>
-                                    <td><input type="text" name="projectMember4Task1" class="text-input" value="<?=$userTasks[6]?>" /></td>
-                                    <td><input type="date" name="projectMember4DeadlineTask1" value="<?=$userDeadlines[6]?>" /></td>
-                                </tr>
+                                    <tr>
+                                        <td><input type="text" name="projectMember4" class="text-input" value="<?=$teamFN[3]?> <?=$teamLN[3]?>" /></td>
+                                        <td><input type="text" name="projectMember4Task1" class="text-input" value="<?=$userTasks[6]?>" /></td>
+                                        <td><input type="date" name="projectMember4DeadlineTask1" value="<?=$userDeadlines[6]?>" /></td>
+                                    </tr>
 
-                                <tr>
-                                    <td></td>
-                                    <td><input type="text" name="projectMember4Task2" class="text-input" value="<?=$userTasks[7]?>" /></td>
-                                    <td><input type="date" name="projectMember4DeadlineTask2" value="<?=$userDeadlines[7]?>" /></td>
-                                </tr>
-    
-                        </table>
-                    </div>
-                    
-                    <div class="submit-button-container">
-                        <p>
-                            <input type="button" value="Submit" class="submit-button" style="float: right;"/> 
-                        </p>
-                    </div>
-                    <!-- form tag goes here -->
+                                    <tr>
+                                        <td></td>
+                                        <td><input type="text" name="projectMember4Task2" class="text-input" value="<?=$userTasks[7]?>" /></td>
+                                        <td><input type="date" name="projectMember4DeadlineTask2" value="<?=$userDeadlines[7]?>" /></td>
+                                    </tr>
+        
+                            </table>
+                        </div>
+                        
+                        <div class="submit-button-container">
+                            <p>
+                                <button type="submit" class="submit-button" style="float: right;"/>Submit</button>
+                            </p>
+                        </div>
+                    </form>
             </article>
 				
 			</div>
