@@ -197,8 +197,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Create New User</title>
-    <script type="text/javascript" src="../javascript/validationFunctions.js"></script>
+	<title>Create New User</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -236,6 +235,8 @@
                             <tr>
                                 <td>
                                     <h2>Create New User</h2>
+                                    <p class="generic-php-error"><?=$errorMsg?></p>
+                                    <p class="generic-php-error"><?=$uploadError?></p>
                                 </td>
                             </tr>
                         </tbody>
@@ -243,97 +244,71 @@
                 </header>
                 
                 <article>
-                    <!-- add form tag here -->
-                    <div>
-                        <table id="createUserTable">
-                            <tbody>
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" enctype="multipart/form-data">
+                        <div>
+                            <table id="createUserTable">
+                                <tbody>
+                                    <tr>
+                                        <td>Profile Picture: </td><td> <input type="file" name="profilePicture" class="custom-file-input" /></td>
+                                    </tr> 
+        
+                                    <tr>
+                                        <td>
+                                            <label id="userType">User Type:</label>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="radio" id="userTypeManager" name="userType" value="userTypeManager">
+                                            <label for="userTypeManager">&nbsp;Manager</label>&nbsp;&nbsp;
+                                            <input type="radio" id="userTypeEmployee" name="userType" value="userTypeEmployee">
+                                            <label for="userTypeEmployee">&nbsp;Employee</label>
+                                        </td>
+                                        
+                                        <td>Manager ID: </td><td> <input type="text" name="managerId" size="20" class="text-input"/></td>
+                                    </tr>
+        
+                                    <tr>
+                                        <td>First Name: </td><td> <input type="text" name="firstName" size="30" class="text-input"/></td>
+                                        <td>Last Name: </td><td> <input type="text" name="lastName" size="30" class="text-input"/></td>
+                                    </tr>
+        
+                                    <tr>
+                                        <td>Email: </td><td> <input type="text" name="email" size="30" class="text-input"/></td>
+                                        <td>Password: </td><td> <input type="password" name="password" size="30" class="text-input"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="skills-container" style="margin-top: -22px";>
+                            <table>
                                 <tr>
-                                    <td>Profile Picture: </td><td> <input type="file" name="profilePicture" class="custom-file-input" /></td>
-                                </tr> 
-                                
+                                    <td>Skills: </td><td> <input type="text" name="skill1" size="30" class="text-input"/></td>
+                                    <td></td><td> <input type="text" name="skill2" size="30" class="text-input"/></td><br>
+                                </tr>
+                        
                                 <tr>
-                                    <td></td><td id="profilePictureError" class="generic-php-error"></td>
+                                    <td></td><td> <input type="text" name="skill3" size="30" class="text-input"/></td>
+                                    <td></td><td> <input type="text" name="skill4" size="30" class="text-input"/></td>
                                 </tr>
 
                                 <tr>
-                                    <td>
-                                        <label id="userType">User Type:</label>
-                                    </td>
-                                    
-                                    <td>
-                                        <input type="radio" id="userTypeManager" name="userType" value="userTypeManager">
-                                        <label for="userTypeManager">&nbsp;Manager</label>&nbsp;&nbsp;
-                                        <input type="radio" id="userTypeEmployee" name="userType" value="userTypeEmployee">
-                                        <label for="userTypeEmployee">&nbsp;Employee</label>
-                                    </td>
-                                    
-                                    <td>Manager ID: </td><td> <input type="text" id="managerId" name="managerId" size="20" class="text-input"/></td>
-                                </tr>
+                                    <td></td><td> <input type="text" name="skill5" size="30" class="text-input"/></td>
+                            </table>
+                        </div>
+                        
+                        <div class="submit-button-container">
+                            <p>
+                                <button type="submit" name="submit" id="submit" class="submit-button" style="float: right;">Submit</button> 
+                            </p>
+                        </div>
 
-                                <tr>
-                                    <td></td><td></td><td></td><td id="managerIdError" class="generic-php-error"></td>
-                                </tr>
-    
-                                <tr>
-                                    <td>First Name: </td><td> <input type="text" name="firstName" size="30" class="text-input"/></td>
-                                    <td>Last Name: </td><td> <input type="text" name="lastName" size="30" class="text-input"/></td>
-                                </tr>
-    
-                                <tr>
-                                    <td></td><td id="firstNameError" class="generic-php-error"></td>
-                                    <td></td><td id="lastNameError" class="generic-php-error"></td>
-                                </tr>
-
-                                <tr>
-                                    <td>Email: </td><td> <input type="text" name="email" size="30" class="text-input"/></td>
-                                    <td>Password: </td><td> <input type="text" name="password" size="30" class="text-input"/></td>
-                                </tr>
-
-                                <tr>
-                                    <td></td><td id="emailError" class="generic-php-error"></td>
-                                    <td></td><td id="passwordError" class="generic-php-error"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="skills-container" style="margin-top: -22px";>
-                        <table>
-                            <tr>
-                                <td>Skills: </td><td> <input type="text" name="skill1" size="30" class="text-input"/></td>
-                                <td></td><td> <input type="text" name="skill2" size="30" class="text-input"/></td><br>
-                            </tr>
-                            
-                            <tr>
-                                <td></td><td id="skill1Error" class="generic-php-error"></td>
-                                <td></td><td id="skill2Error" class="generic-php-error"></td>
-                            </tr>
-
-                            <tr>
-                                <td></td><td> <input type="text" name="skill3" size="30" class="text-input"/></td>
-                                <td></td><td> <input type="text" name="skill4" size="30" class="text-input"/></td>
-                            </tr>
-
-                            <tr>
-                                <td></td><td id="skill3Error" class="generic-php-error"></td>
-                                <td></td><td id="skill4Error" class="generic-php-error"></td>
-                            </tr>
-                        </table>
-                    </div>
-                    
-                    <div class="submit-button-container">
-                        <p>
-                            <input type="button" value="Submit" class="submit-button" style="float: right;"/> 
-                        </p>
-                    </div>
-
-                    <!-- form tag goes here -->
-            </article>
+                    </form>
+                </article>
 				
 			</div>
 		</div>
 	</div>
 
 </body>
-<script type="text/javascript" src="../javascript/validationFunctionsR.js"></script>
 </html>
