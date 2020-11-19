@@ -50,17 +50,31 @@ function radioChecker2()
 {
     console.log(document.getElementsByName("userType"));
     var managerID = document.getElementById("managerId");
-    if(document.getElementById("userTypeEmployee").checked == true)
+    if((document.getElementById("userTypeEmployee").checked == true) && (document.getElementById("userTypeManager").checked == false))
     {//block managerID
         console.log("employee true");
         managerID.disabled = true;
         managerID.readOnly = true;
         managerID.value = "";
+        return true;
     }
-    if(document.getElementById("userTypeEmployee").checked == false)
+    if((document.getElementById("userTypeEmployee").checked == false) && (document.getElementById("userTypeManager").checked == true))
     {
         managerID.disabled = false;
         managerID.readOnly = false;   
+        return true; //still valid
+    }
+    var radioMsg = document.getElementById("radioError");
+    if((document.getElementById("userTypeEmployee").checked == false) && (document.getElementById("userTypeManager").checked == false))
+    {//neither of them are checked
+        radioMsg.innerHTML = "Please select a user type";
+        return false; //not valid
+    }
+    if((document.getElementById("userTypeEmployee").checked == true) && (document.getElementById("userTypeManager").checked == true))
+    {
+        radioMsg.innerHTML = "Please select just one user type";
+        return false;
+        //should be impossible
     }
 }
 
@@ -68,12 +82,13 @@ function managerIdChecker(event)
 {
     var managerId = event.currentTarget.value;
 
-    managerIdChecker2(managerID);
+    managerIdChecker2(managerId);
 }
 
-function managerIdChecker2(managerId)
+function managerIdChecker2(managerID)
 {
-    var managerIdMsg = document.getElementById("ManagerIdError");
+    var managerIdMsg = document.getElementById("managerIdError");
+    console.log("managerIdMsg:" + managerIdMsg);
 
     var validInput = true; 
 
@@ -85,9 +100,9 @@ function managerIdChecker2(managerId)
             managerIdMsg.innerHTML = "This is an employee, no manager ID needed";
         }
     }
-    if(document.getElementById("userTypeEmployee").checked == false)
-    {
-        if(managerID == "")
+    if((document.getElementById("userTypeEmployee").checked == false) && (document.getElementById("userTypeManager").checked == true))
+    {//if employee is not checked and manager is
+        if((managerID == "") && (radioChecker2() == true))
         {
             validInput = false;
             managerIdMsg.innerHTML = "Manager ID needed";
@@ -236,14 +251,10 @@ function skill1Checker2(skill1Input)
 
     var validInput = true;
 
-    if(skill1Input == "")
-    {
-        skillMsg.innerHTML = "This skill is empty";
-        validInput = false;
-    }
     if(skill1Input.length > 10)
     {
         skillMsg.innerHTML = "This skill is too long";
+        validInput = false;
     }
     if(validInput == true)
     {
@@ -265,14 +276,10 @@ function skill2Checker2(skill2Input)
 
     var validInput = true;
 
-    if(skill2Input == "")
-    {
-        skillMsg.innerHTML = "This skill is empty";
-        validInput = false;
-    }
     if(skill2Input.length > 10)
     {
         skillMsg.innerHTML = "This skill is too long";
+        validInput = false;
     }
     if(validInput == true)
     {
@@ -294,14 +301,10 @@ function skill3Checker2(skill3Input)
 
     var validInput = true;
 
-    if(skill3Input == "")
-    {
-        skillMsg.innerHTML = "This skill is empty";
-        validInput = false;
-    }
     if(skill3Input.length > 10)
     {
         skillMsg.innerHTML = "This skill is too long";
+        validInput = false;
     }
     if(validInput == true)
     {
@@ -323,14 +326,10 @@ function skill4Checker2(skill4Input)
 
     var validInput = true;
 
-    if(skill4Input == "")
-    {
-        skillMsg.innerHTML = "This skill is empty";
-        validInput = false;
-    }
     if(skill4Input.length > 10)
     {
         skillMsg.innerHTML = "This skill is too long";
+        validInput = false;
     }
     if(validInput == true)
     {
@@ -407,37 +406,37 @@ function submitChecker(event)
     }
 
     var skill1 = document.getElementsByName("skill1");
-    if((skill1Checker2(skill1)) == false)
+    if((skill1Checker2(skill1[0].value)) == false)
     {
         console.log("skill1 invalid onsubmit");
         event.preventDefault();
     }
 
     var skill2 = document.getElementsByName("skill2");
-    if((skill2Checker2(skill1)) == false)
+    if((skill2Checker2(skill2[0].value)) == false)
     {
-        console.log("skill1 invalid onsubmit");
+        console.log("skill2 invalid onsubmit");
         event.preventDefault();
     }
     
     var skill3 = document.getElementsByName("skill3");
-    if((skill3Checker2(skill1)) == false)
+    if((skill3Checker2(skill3[0].value)) == false)
     {
-        console.log("skill1 invalid onsubmit");
+        console.log("skill3 invalid onsubmit");
         event.preventDefault();
     }
 
     var skill4 = document.getElementsByName("skill4");
-    if((skill4Checker2(skill1)) == false)
+    if((skill4Checker2(skill4[0].value)) == false)
     {
-        console.log("skill1 invalid onsubmit");
+        console.log("skill4 invalid onsubmit");
         event.preventDefault();
     }
 
     var skill5 = document.getElementsByName("skill5");
-    if((skill5Checker2(skill1)) == false)
+    if((skill5Checker2(skill5[0].value)) == false)
     {
-        console.log("skill1 invalid onsubmit");
+        console.log("skill5 invalid onsubmit");
         event.preventDefault();
     }
 }
