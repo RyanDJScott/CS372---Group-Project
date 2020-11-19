@@ -33,3 +33,6 @@ skill3Listener[0].addEventListener("blur", skill3Checker, false);
 
 var skill4Listener = document.getElementsByName("skill4");
 skill4Listener[0].addEventListener("blur", skill4Checker, false);
+
+var submitListener = document.getElementById("submitForm");
+submitListener.addEventListener("submit",submitChecker, false);
