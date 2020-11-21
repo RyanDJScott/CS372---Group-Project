@@ -68,7 +68,7 @@
                     }
 
                     //If the array isn't full (4 entries), fill with NULL spots
-                    if (sizeof($teamUIDS) !=  4)
+                    if (sizeof($teamUIDS) <  4)
                     {
                         for ($j = sizeof($teamUIDS); $j < 4; $j++)
                             $teamUIDS[] = NULL;                                                
@@ -113,13 +113,13 @@
                     }
 
                     //If the tasks/deadlines arrays aren't at 8 each; fill the cells with NULL
-                    if (sizeof($userTasks) != 8)
+                    if (sizeof($userTasks) < 8)
                     {
                         for ($z = sizeof($userTasks); $z < 8; $z++)
                             $userTasks[$z] == NULL;
                     }
 
-                    if (sizeof($userDeadlines) != 8)
+                    if (sizeof($userDeadlines) < 8)
                     {
                         for ($x = sizeof($userDeadlines); $x < 8; $x++)
                             $userDeadlines[$x] = NULL;
@@ -147,32 +147,32 @@
                 //Create an array of project members
                 $projectMembers = array();
                 $memberUIDS = array();
-                $projectMembers[] = $_POST["projectMember1"];
-                $projectMembers[] = $_POST["projectMember2"];
-                $projectMembers[] = $_POST["projectMember3"];
+                $projectMembers[] = trim($_POST["projectMember1"]);
+                $projectMembers[] = trim($_POST["projectMember2"]);
+                $projectMembers[] = trim($_POST["projectMember3"]);
                 $projectMembers[] = trim($_POST["projectMember4"]);
 
                 //Create an array of tasks
                 $tasks = array();
-                $tasks[] = $_POST["projectMember1Task1"];
-                $tasks[] = $_POST["projectMember1Task2"];
-                $tasks[] = $_POST["projectMember2Task1"];
-                $tasks[] = $_POST["projectMember2Task2"];
-                $tasks[] = $_POST["projectMember3Task1"];
-                $tasks[] = $_POST["projectMember3Task2"];
-                $tasks[] = $_POST["projectMember4Task1"];
-                $tasks[] = $_POST["projectMember4Task2"];
+                $tasks[] = trim($_POST["projectMember1Task1"]);
+                $tasks[] = trim($_POST["projectMember1Task2"]);
+                $tasks[] = trim($_POST["projectMember2Task1"]);
+                $tasks[] = trim($_POST["projectMember2Task2"]);
+                $tasks[] = trim($_POST["projectMember3Task1"]);
+                $tasks[] = trim($_POST["projectMember3Task2"]);
+                $tasks[] = trim($_POST["projectMember4Task1"]);
+                $tasks[] = trim($_POST["projectMember4Task2"]);
 
                 //Create an array of deadlines
                 $deadlines = array();
-                $deadlines[] = $_POST["projectMember1DeadlineTask1"];
-                $deadlines[] = $_POST["projectMember1DeadlineTask2"];
-                $deadlines[] = $_POST["projectMember2DeadlineTask1"];
-                $deadlines[] = $_POST["projectMember2DeadlineTask2"];
-                $deadlines[] = $_POST["projectMember3DeadlineTask1"];
-                $deadlines[] = $_POST["projectMember3DeadlineTask2"];
-                $deadlines[] = $_POST["projectMember4DeadlineTask1"];
-                $deadlines[] = $_POST["projectMember4DeadlineTask2"];
+                $deadlines[] = trim($_POST["projectMember1DeadlineTask1"]);
+                $deadlines[] = trim($_POST["projectMember1DeadlineTask2"]);
+                $deadlines[] = trim($_POST["projectMember2DeadlineTask1"]);
+                $deadlines[] = trim($_POST["projectMember2DeadlineTask2"]);
+                $deadlines[] = trim($_POST["projectMember3DeadlineTask1"]);
+                $deadlines[] = trim($_POST["projectMember3DeadlineTask2"]);
+                $deadlines[] = trim($_POST["projectMember4DeadlineTask1"]);
+                $deadlines[] = trim($_POST["projectMember4DeadlineTask2"]);
                 
                 //Validate the Projects information
                 if (($projectTitle != "" && strlen($projectTitle) <= 50) && $projectDescription != "" && $startDate != "" && $endDate != "")
@@ -180,11 +180,8 @@
                     //Set error flag to false
                     $errorFlag = false;
 
-                    //Add the previous manager as the first member of the project; that hasn't changed
-                    //$memberUIDS[] = $managerUID;
-
                     //Validate project members array by checking if this member exists in the db
-                    for ($i = 0; $i < sizeof($projectMembers); $i++)
+                    for ($i = 0; $i < 4; $i++)
                     {
                         if ($projectMembers[$i] != "")
                         {
@@ -207,8 +204,11 @@
                                 $errorFlag == true;
                                 break;
                             }
+                        } else {
+                            $memberUIDS[] = NULL;
                         }
-                    }                   
+                    }  
+                
                     
                     //If the error flag is still false; continue. Else, stop and print error message
                     if ($errorFlag == false)
@@ -278,7 +278,7 @@
                                     }
                                     //Case 2: both fields are full; perform update
                                     else if (empty($teamUIDS[$k]) == false && empty($memberUIDS[$k]) == false) {
-                                        $updateMember = "UPDATE ProjectTeams SET UID = '$teamUIDS[$k]' WHERE UID = '$memberUIDS[$k]' AND PID = '$PID'";
+                                        $updateMember = "UPDATE ProjectTeams SET UID = '$memberUIDS[$k]' WHERE UID = '$teamUIDS[$k]' AND PID = '$PID'";
                                         $memberUpdateStatus[] = "USWITCH";
                                     }
                                     //Case 3: first field is full, second field is empty; perform delete
@@ -286,7 +286,7 @@
                                         $updateMember = "DELETE FROM ProjectTeams WHERE UID = '$teamUIDS[$k]' AND PID = '$PID'";
                                         $memberUpdateStatus[] = "DELETE";
                                     }
-                                    //Case 4: first field is empty, second field is full; perform inset
+                                    //Case 4: first field is empty, second field is full; perform insert
                                     else if (empty($teamUIDS[$k]) == true && empty($memberUIDS[$k]) == false) {
                                         $updateMember = "INSERT INTO ProjectTeams (UID, PID) VALUES ('$memberUIDS[$k]', '$PID')";
                                         $memberUpdateStatus[] = "INSERT";
@@ -299,12 +299,14 @@
                                     if ($memberUpdateResults == false)
                                         $memberUpdateError == true;
                                 }
-
+            
+                     
                                 //If the team members are all updated, update the tasks in the db
                                 if ($memberUpdateError == false)
                                 {
                                     //Set a counter to 0
                                     $counter = 0;
+                                    $insertCounter = 0;
 
                                     //Set an error flag to false
                                     $taskError = false;
@@ -317,28 +319,30 @@
                                             continue;
                                         } else if ($memberUpdateStatus[$l] == "USWITCH") {
                                             //Delete the two tasks that were previously there out of the DB
-                                            for ($m = 0; $m < 2; $m++)
-                                            {
-                                                //Execute a delete query for the user
-                                                $tdDelete = "DELETE FROM Tasks WHERE UID = '$teamUIDS[$l]' AND PID = '$PID'";
+                                            $tdDelete = "DELETE FROM Tasks WHERE UID = '$teamUIDS[$l]' AND PID = '$PID'";
 
-                                                $tdDResult = $db->query($tdDelete);
+                                            //Execute a delete query for the user
+                                            $tdDResult = $db->query($tdDelete);
 
-                                                if ($tdDResult == false)
+                                            if ($tdDResult == false)
                                                     $taskError = true;
 
+                                            for ($m = 0; $m < 2; $m++)
+                                            {
                                                 //Execute an insert query for the user
                                                 //Check if the user has been assigned a task. If not, skip to the next one.
-                                                if ($tasks[$counter] != "" && $deadlines[$counter] != "")
+                                                if (empty($tasks[$counter]) == false && empty($deadlines[$counter]) == false)
                                                 {
                                                     //Ensure the deadline is in the correct format before inserting
                                                     $deadlineInsert = date("Y-m-d", strtotime($deadlines[$counter]));
-                                                    
+                                                        
                                                     //Build up task query
                                                     //Need this current users UID, the same PID, and the two tasks they may have been assigned
                                                     $taskQuery = "INSERT INTO Tasks (UID, PID, TDescription, Deadline) 
                                                                     VALUES ('$memberUIDS[$l]', '$PID', '".$db->real_escape_string($tasks[$counter])."', 
-                                                                    '".$db->real_escape_string($deadlineInsert)."')";
+                                                                        '".$db->real_escape_string($deadlineInsert)."')";
+
+                                                    $insertCounter++;
 
                                                     $taskResult = $db->query($taskQuery);
 
@@ -347,26 +351,23 @@
                                                 }
 
                                                 $counter++;
-                                            }                                             
+                                            }                                            
                                         } else if ($memberUpdateStatus[$l] == "DELETE") {
                                             //Delete the two tasks that were previously there out of the DB
-                                            for ($m = 0; $m < 2; $m++)
-                                            {
-                                                $tdDelete = "DELETE FROM Tasks WHERE UID = '$teamUIDS[$m]' AND PID = '$PID'";
+                                            $tdDelete = "DELETE FROM Tasks WHERE UID = '$teamUIDS[$l]' AND PID = '$PID'";
 
-                                                $tdDResult = $db->query($tdDelete);
+                                            $tdDResult = $db->query($tdDelete);
 
-                                                if ($tdDResult == false)
-                                                    $taskError = true;
+                                            if ($tdDResult == false)
+                                                $taskError = true;
 
-                                                $counter++;
-                                            }
+                                            $counter += 2;  
                                         } else if ($memberUpdateStatus[$l] == "INSERT") {
                                             //Insert the tasks into the tasks table
                                             for ($m = 0; $m < 2; $m++)
                                             {
                                                 //Check if the user has been assigned a task. If not, skip to the next one.
-                                                if ($tasks[$counter] != "" && $deadlines[$counter] != "")
+                                                if (empty($tasks[$counter]) == false && empty($deadlines[$counter]) == false)
                                                 {
                                                     //Ensure the deadline is in the correct format before inserting
                                                     $deadlineInsert = date("Y-m-d", strtotime($deadlines[$counter]));
@@ -400,9 +401,8 @@
                                         $db->close();
 
                                         //Redirect to the same page with updates
-                                        header("Location: manager-edit-project.php?PID=".$PID."");
+                                        header("Location: manager-edit-project.php?PID=".$PID."&success=1");
                                     }
-
                                 } else {
                                     $errorMsg = "There was an error updating your team members into the database. Please try again.";
 
@@ -432,7 +432,7 @@
     } else {
         //User is not logged in; redirect to the login page
         header("Location: ../index.php");
-    }*/
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -520,7 +520,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td></td>
+                                        <td id="suggestMember1"></td>
                                         <td><input type="text" name="projectMember1Task2" class="text-input" value="<?php echo $userTasks[1];?>" /></td>
                                         <td><input type="date" name="projectMember1DeadlineTask2" value="<?php echo $userDeadlines[1];?>" /></td>
                                     </tr>       
@@ -532,7 +532,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td></td>
+                                        <td id="suggestMember2"></td>
                                         <td><input type="text" name="projectMember2Task2" class="text-input" value="<?php echo $userTasks[3];?>" /></td>
                                         <td><input type="date" name="projectMember2DeadlineTask2" value="<?php echo $userDeadlines[3];?>" /></td>
                                     </tr>
@@ -544,7 +544,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td></td>
+                                        <td id="suggestMember3"></td>
                                         <td><input type="text" name="projectMember3Task2" class="text-input" value="<?php echo $userTasks[5];?>" /></td>
                                         <td><input type="date" name="projectMember3DeadlineTask2" value="<?php echo $userDeadlines[5];?>" /></td>
                                     </tr>
@@ -556,7 +556,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td></td>
+                                        <td id="suggestMember4"></td>
                                         <td><input type="text" name="projectMember4Task2" class="text-input" value="<?php echo $userTasks[7];?>" /></td>
                                         <td><input type="date" name="projectMember4DeadlineTask2" value="<?php echo $userDeadlines[7];?>" /></td>
                                     </tr>
@@ -573,6 +573,6 @@
 			</div>
 		</div>
 	</div>
-    <?php var_dump($projectMembers); var_dump($memberQuery); var_dump($memberUIDS); ?>
+    <script type="text/javascript" src="newProject.js"></script>
 </body>
 </html>
