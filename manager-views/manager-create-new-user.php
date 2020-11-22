@@ -274,7 +274,7 @@
 
                                     <tr>
                                         <td></td><td id="radioError" class="generic-php-error"></td>
-                                        <td id="managerIdError" class="generic-php-error"></td>
+                                        <td></td><td id="managerIdError" class="generic-php-error"></td>
                                     </tr>
         
                                     <tr>

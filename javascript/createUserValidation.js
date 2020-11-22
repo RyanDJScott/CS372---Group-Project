@@ -70,7 +70,7 @@ function radioChecker2()
         validInput = false;
         //should be impossible
     }
-    if(validInput = true)
+    if(validInput == true)
     {
         radioMsg.innerHTML = "";
     }
@@ -110,7 +110,7 @@ function managerIdChecker2(managerID)
     {
         managerIdMsg.innerHTML = ""
     }
-    
+
     return validInput;
 }
 
