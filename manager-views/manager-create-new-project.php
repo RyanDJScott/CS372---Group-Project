@@ -251,7 +251,6 @@
                             } else {
                                 $errorMsg = "There was an error inserting the project into the database. Please try again.";
                             }
-
                         } else {
                             $errorMsg = "Please ensure each task has a set deadline and a dedicated user.";
                         }
@@ -319,7 +318,6 @@
                 </header>
                 
                 <article>
-
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" id="submitForm">
                         <div>
                             <table id="createUserTable">
@@ -475,7 +473,6 @@
                             </div>
                     </form>
             </article>
-				
 			</div>
 		</div>
 	</div>
