@@ -53,13 +53,6 @@
 
             <div class="card-container">
                 <header>
-                    <div class="search-bar-container">
-                        <form class="search-bar" action="manager-search-results.php">
-                            <input type="text" placeholder="Search.." name="search">
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
-
                     <table>
                         <tbody>
                             <tr>
@@ -166,9 +159,6 @@
 
                                 //Execute query
                                 $taskResults = $db->query($tasksQuery);
-
-                                if ($taskResults->num_rows > 0) 
-                                {
                             ?>
                             <td><?=$projectRows["FirstName"]?> <?=$projectRows["LastName"]?></td>
                             <?php 
@@ -182,8 +172,6 @@
                             ?>
                             </tr>
                             <?php
-                                } 
-
                                 //Loop back to the next result
                                 }
                             ?>      

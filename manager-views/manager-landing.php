@@ -65,13 +65,6 @@
 
 			<div class="card-container">
                 <header>
-                    <div class="search-bar-container">
-                        <form class="search-bar" action="manager-search-results.php">
-                            <input type="text" placeholder="Search.." name="search">
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
-
                     <table>
                         <tbody>
                             <tr>
