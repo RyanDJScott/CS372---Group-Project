@@ -50,32 +50,38 @@ function radioChecker2()
 {
     console.log(document.getElementsByName("userType"));
     var managerID = document.getElementById("managerId");
+    var validInput = true;
     if((document.getElementById("userTypeEmployee").checked == true) && (document.getElementById("userTypeManager").checked == false))
     {//block managerID
         console.log("employee true");
         managerID.disabled = true;
         managerID.readOnly = true;
         managerID.value = "";
-        return true;
+        validInput = true;
     }
     if((document.getElementById("userTypeEmployee").checked == false) && (document.getElementById("userTypeManager").checked == true))
     {
         managerID.disabled = false;
         managerID.readOnly = false;   
-        return true; //still valid
+        validInput = true; //still valid
     }
     var radioMsg = document.getElementById("radioError");
     if((document.getElementById("userTypeEmployee").checked == false) && (document.getElementById("userTypeManager").checked == false))
     {//neither of them are checked
         radioMsg.innerHTML = "Please select a user type";
-        return false; //not valid
+        validInput = false; //not valid
     }
     if((document.getElementById("userTypeEmployee").checked == true) && (document.getElementById("userTypeManager").checked == true))
     {
         radioMsg.innerHTML = "Please select just one user type";
-        return false;
+        validInput = false;
         //should be impossible
     }
+    if(validInput = true)
+    {
+        radioMsg.innerHTML = "";
+    }
+    return validInput;
 }
 
 function managerIdChecker(event)
