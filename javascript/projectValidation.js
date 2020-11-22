@@ -184,20 +184,24 @@ function member1Checker2(member)
     var task2 = document.getElementsByName("projectMember1Task2");
     var dead1 = document.getElementsByName("projectMember1DeadlineTask1")
     var dead2 = document.getElementsByName("projectMember1DeadlineTask2");
-    if(validInput == true)
+    if(member != "" && member.length < 50)
     {
         task1[0].disabled = false;
         task2[0].disabled = false;
         dead1[0].disabled = false;
         dead2[0].disabled = false;
-        memberMsg.innerHTML = "";
+        validInput = true;
     }
-    if(validInput == false)
+    if(member == "")
     {
         task1[0].disabled = true;
         task2[0].disabled = true;
         dead1[0].disabled = true;
         dead2[0].disabled = true;
+    }
+    if(validInput == true)
+    {
+        memberMsg.innerHTML = "";
     }
     return validInput
 }
@@ -220,20 +224,24 @@ function member2Checker2(member)
     var task2 = document.getElementsByName("projectMember2Task2");
     var dead1 = document.getElementsByName("projectMember2DeadlineTask1")
     var dead2 = document.getElementsByName("projectMember2DeadlineTask2");
-    if(validInput == true)
+    if(member != "" && member.length < 50)
     {
         task1[0].disabled = false;
         task2[0].disabled = false;
         dead1[0].disabled = false;
         dead2[0].disabled = false;
-        memberMsg.innerHTML = "";
+        validInput = true;
     }
-    if(validInput == false)
+    if(member == "")
     {
         task1[0].disabled = true;
         task2[0].disabled = true;
         dead1[0].disabled = true;
         dead2[0].disabled = true;
+    }
+    if(validInput == true)
+    {
+        memberMsg.innerHTML = "";
     }
     return validInput
 }
@@ -256,20 +264,24 @@ function member3Checker2(member)
     var task2 = document.getElementsByName("projectMember3Task2");
     var dead1 = document.getElementsByName("projectMember3DeadlineTask1")
     var dead2 = document.getElementsByName("projectMember3DeadlineTask2");
-    if(validInput == true)
+    if(member != "" && member.length < 50)
     {
         task1[0].disabled = false;
         task2[0].disabled = false;
         dead1[0].disabled = false;
         dead2[0].disabled = false;
-        memberMsg.innerHTML = "";
+        validInput = true;
     }
-    if(validInput == false)
+    if(member == "")
     {
         task1[0].disabled = true;
         task2[0].disabled = true;
         dead1[0].disabled = true;
         dead2[0].disabled = true;
+    }
+    if(validInput == true)
+    {
+        memberMsg.innerHTML = "";
     }
     return validInput
 }
@@ -292,20 +304,24 @@ function member4Checker2(member)
     var task2 = document.getElementsByName("projectMember4Task2");
     var dead1 = document.getElementsByName("projectMember4DeadlineTask1")
     var dead2 = document.getElementsByName("projectMember4DeadlineTask2");
-    if(validInput == true)
+    if(member != "" && member.length < 50)
     {
         task1[0].disabled = false;
         task2[0].disabled = false;
         dead1[0].disabled = false;
         dead2[0].disabled = false;
-        memberMsg.innerHTML = "";
+        validInput = true;
     }
-    if(validInput == false)
+    if(member == "")
     {
         task1[0].disabled = true;
         task2[0].disabled = true;
         dead1[0].disabled = true;
         dead2[0].disabled = true;
+    }
+    if(validInput == true)
+    {
+        memberMsg.innerHTML = "";
     }
     return validInput
 }
@@ -733,3 +749,178 @@ function deadline8Checker(event)
 **********************************************
 check all before submit
 */
+
+function submitChecker(event)
+{
+    console.log("found submit");
+    //call every function if needed
+    //if anything fails, cancel
+    /*
+    need:
+    - title
+    - desc.
+    - start/end
+    optional:
+    - members
+    - task
+        - if task, need deadline too
+    */
+    var title = document.getElementsByName("projectTitle");
+    if((titleChecker2(title[0].value)) == false)
+    {
+        console.log("onSubmit title error");
+        event.preventDefault();
+    }
+
+    var desc = document.getElementsByName("projectDescription");
+    if((descriptionChecker2(desc[0].value)) == false)
+    {
+        console.log("onSubmit Description error");
+        event.preventDefault();
+    }
+
+    var start = document.getElementsByName("startDate");
+    if((startDateChecker2(start[0].value)) == false)
+    {
+        console.log("onSubmit startDate error");
+        event.preventDefault();
+    }
+
+    var end = document.getElementsByName("endDate");
+    if((endDateChecker2(end[0].value)) == false)
+    {
+        console.log("onSubmit endDate error")
+        event.preventDefault();
+    }
+
+    //if members are found, then check them
+    //if tasks are found, make sure they have a corresponding group member
+    //and a deadline
+
+    var member1 = document.getElementsByName("projectMember1");
+    if(member1[0].value != "")
+    {
+        console.log("onSubmit member found: " + member1[0].value);
+        if(member1Checker2(member1[0].value) == false)
+        {
+            console.log("onSubmit member error");
+            event.preventDefault();
+        }
+    }
+
+    var member2 = document.getElementsByName("projectMember2");
+    if(member2[0].value != "")
+    {
+        console.log("onSubmit member found: " + member2[0].value);
+        if(member2Checker2(member2[0].value) == false)
+        {
+            console.log("onSubmit member error, member:" + member2[0].value);
+            event.preventDefault();
+        }
+    }
+
+    var member3 = document.getElementsByName("projectMember3");
+    if(member3[0].value != "")
+    {
+        console.log("onSubmit member found: " + member3[0].value);
+        if(member3Checker2(member3[0].value) == false)
+        {
+            console.log("onSubmit member error");
+            event.preventDefault();
+        }
+    }
+
+    var member4 = document.getElementsByName("projectMember4");
+    if(member4[0].value != "")
+    {
+        console.log("onSubmit member found: " + member4[0].value);
+        if(member4Checker2(member4[0].value) == false)
+        {
+            console.log("onSubmit member error");
+            event.preventDefault();
+        }
+    }
+
+    var task1 = document.getElementsByName("projectMember1Task1");
+    var deadline1 = document.getElementsByName("projectMember1DeadlineTask1");
+    if(task1[0].value != "" || deadline1[0].value != "")
+    {
+        //if either the task or the deadline is present, check validity of both
+        //if they are valid, then check to see if the corresponding member is there
+        if((task1Checker2(task1[0].value, deadline1[0].value) == false) || (member1[0].value == ""))
+        {
+            event.preventDefault();
+        }
+    }
+
+    var task2 = document.getElementsByName("projectMember1Task2");
+    var deadline2 = document.getElementsByName("projectMember1DeadlineTask2");
+    if(task2[0].value != "" || deadline2[0].value != "")
+    {
+        if((task2Checker2(task2[0].value, deadline2[0].value) == false) || (member1[0].value == ""))
+        {
+            event.preventDefault();
+        }
+    }
+
+    var task3 = document.getElementsByName("projectMember2Task1");
+    var deadline3 = document.getElementsByName("projectMember2DeadlineTask1");
+    if(task3[0].value != "" || deadline3[0].value != "")
+    {
+        if((task3Checker2(task3[0].value, deadline3[0].value) == false) || (member2[0].value == ""))
+        {
+            event.preventDefault();
+        }
+    }
+
+    var task4 = document.getElementsByName("projectMember2Task2");
+    var deadline4 = document.getElementsByName("projectMember2DeadlineTask2");
+    if(task4[0].value != "" || deadline4[0].value != "")
+    {
+        if((task4Checker2(task4[0].value, deadline4[0].value) == false) || (member2[0].value == ""))
+        {
+            event.preventDefault();
+        }
+    }
+
+    var task5 = document.getElementsByName("projectMember3Task1");
+    var deadline5 = document.getElementsByName("projectMember3DeadlineTask1");
+    if(task5[0].value != "" || deadline5[0].value != "")
+    {
+        if((task5Checker2(task5[0].value, deadline5[0].value) == false) || (member3[0].value == ""))
+        {
+            event.preventDefault();
+        }
+    }
+
+    var task6 = document.getElementsByName("projectMember3Task2");
+    var deadline6 = document.getElementsByName("projectMember3DeadlineTask2");
+    if(task6[0].value != "" || deadline6[0].value != "")
+    {
+        if((task6Checker2(task6[0].value, deadline6[0].value) == false) || (member3[0].value == ""))
+        {
+            event.preventDefault();
+        }
+    }
+
+    var task7 = document.getElementsByName("projectMember4Task1");
+    var deadline7 = document.getElementsByName("projectMember4DeadlineTask1");
+    if(task5[0].value != "" || deadline5[0].value != "")
+    {
+        if((task7Checker2(task7[0].value, deadline7[0].value) == false) || (member4[0].value == ""))
+        {
+            event.preventDefault();
+        }
+    }
+
+    var task8 = document.getElementsByName("projectMember4Task2");
+    var deadline8 = document.getElementsByName("projectMember4DeadlineTask2");
+    if(task8[0].value != "" || deadline8[0].value != "")
+    {
+        if((task8Checker2(task8[0].value, deadline8[0].value) == false) || (member4[0].value == ""))
+        {
+            event.preventDefault();
+        }
+    }
+
+}

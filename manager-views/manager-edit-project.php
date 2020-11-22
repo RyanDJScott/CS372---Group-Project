@@ -438,6 +438,7 @@
 <html lang="en">
 <head>
 	<title>Edit Project</title>
+    <script type="text/javascript" src="projectValidation.js"></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -575,4 +576,5 @@
 	</div>
     <script type="text/javascript" src="newProject.js"></script>
 </body>
+<script type="text/javascript" src="projectValidationR.js"></script>
 </html>

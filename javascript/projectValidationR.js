@@ -73,3 +73,6 @@ deadline7Listener[0].addEventListener("change", deadline1Checker, false);
 
 var deadline2Listener = document.getElementsByName("projectMember4DeadlineTask2");
 deadline8Listener[0].addEventListener("change", deadline2Checker, false);
+
+var submitListener = document.getElementById("submitForm");
+submitListener.addEventListener("submit",submitChecker, false);

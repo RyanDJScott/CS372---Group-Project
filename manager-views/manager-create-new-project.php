@@ -274,6 +274,7 @@
 <html lang="en">
 <head>
 	<title>Create New Project</title>
+    <script type="text/javascript" src="projectValidation.js"></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -317,7 +318,7 @@
                 </header>
                 
                 <article>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" id="submitForm">
                         <div>
                             <table id="createUserTable">
                                 <tbody>
@@ -475,6 +476,6 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="newProject.js"></script>
+<script type="text/javascript" src="projectValidationR.js"></script>
 </body>
 </html>
