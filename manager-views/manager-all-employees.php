@@ -41,6 +41,7 @@
 <head>
 	<title>All Employees</title>
 	<meta charset="UTF-8">
+    <script type="text/javascript" src="../javascript/deleteButtonCertain.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="../assets/helper.css">
@@ -152,7 +153,7 @@
                                 </td>
                                 <td>
                                     <form action="deleteEmployee.php?UID=<?=$empRows["UID"]?>" method="GET">
-                                        <button type="submit" class="edit-delete-button"><i class="fa fa-trash"></i></button>
+                                        <button type="submit" class="edit-delete-button" name="delete"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -175,5 +176,6 @@
 	</div>
 
 <script type="text/javascript" src="searchEmployee.js"></script>
+<script type="text/javascript" src="../javascript/deleteButtonCertainR.js"></script>
 </body>
 </html>

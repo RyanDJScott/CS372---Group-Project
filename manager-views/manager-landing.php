@@ -36,6 +36,7 @@
 <head>
 	<title>Manager Home</title>
 	<meta charset="UTF-8">
+    <script type="text/javascript" src="../javascript/deleteButtonCertain.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="../assets/helper.css">
@@ -140,12 +141,12 @@
                                 <td>
                                     <form action="editProject.php" method="POST">
                                         <input type="hidden" name="PID" value="<?=$currentPID?>" />
-                                        <button type="submit" class="edit-delete-button"><i class="fa fa-edit"></i></button>
+                                        <button type="submit" class="edit-delete-button" ><i class="fa fa-edit"></i></button>
                                     </form>
                                     
                                     <form action="deleteProject.php" method="POST">
                                         <input type="hidden" name="PID" value="<?=$currentPID?>" />
-                                        <button type="submit" class="edit-delete-button"><i class="fa fa-trash"></i></button>
+                                        <button type="submit" class="edit-delete-button" name="delete"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -206,4 +207,5 @@
     </div>
 
 </body>
+<script type="text/javascript" src="../javascript/deleteButtonCertainR.js"></script>
 </html>
