@@ -1,5 +1,3 @@
-console.log("event listener all up in this bitch")
-
 var fileListener = document.getElementsByName("profilePicture"); 
 fileListener[0].addEventListener("change", fileChecker, false); 
 

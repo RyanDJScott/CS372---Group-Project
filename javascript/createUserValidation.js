@@ -108,6 +108,11 @@ function managerIdChecker2(managerID)
             managerIdMsg.innerHTML = "Manager ID needed";
         }
     }
+    if(validInput == true)
+    {
+        managerIdMsg.innerHTML = ""
+    }
+    
     return validInput;
 }
 
@@ -327,6 +332,31 @@ function skill4Checker2(skill4Input)
     var validInput = true;
 
     if(skill4Input.length > 10)
+    {
+        skillMsg.innerHTML = "This skill is too long";
+        validInput = false;
+    }
+    if(validInput == true)
+    {
+        skillMsg.innerHTML = "";
+    }
+    return validInput;
+}
+
+function skill5Checker(event)
+{
+    var skillInput = event.currentTarget.value;
+
+    skill5Checker2(skillInput);
+}
+
+function skill5Checker2(skill5Input)
+{
+    var skillMsg = document.getElementById("skill5Error");
+
+    var validInput = true;
+
+    if(skill5Input.length > 10)
     {
         skillMsg.innerHTML = "This skill is too long";
         validInput = false;

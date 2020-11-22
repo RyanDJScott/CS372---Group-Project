@@ -245,13 +245,17 @@
                 </header>
                 
                 <article>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" enctype="multipart/form-data">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" enctype="multipart/form-data" id="submitForm">
                         <div>
                             <table id="createUserTable">
                                 <tbody>
                                     <tr>
                                         <td>Profile Picture: </td><td> <input type="file" name="profilePicture" class="custom-file-input" /></td>
                                     </tr> 
+
+                                    <tr>
+                                        <td></td><td id="profilePictureError" class="generic-php-error"></td>
+                                    </tr>
         
                                     <tr>
                                         <td>
@@ -265,17 +269,32 @@
                                             <label for="userTypeEmployee">&nbsp;Employee</label>
                                         </td>
                                         
-                                        <td>Manager ID: </td><td> <input type="text" name="managerId" size="20" class="text-input"/></td>
+                                        <td>Manager ID: </td><td> <input type="text" name="managerId" size="20" class="text-input" id="managerId" disabled="disabled" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td><td id="radioError" class="generic-php-error"></td>
+                                        <td id="managerIdError" class="generic-php-error"></td>
                                     </tr>
         
                                     <tr>
-                                        <td>First Name: </td><td> <input type="text" name="firstName" size="30" class="text-input"/></td>
+                                        <td>First Name: </td><td> <input type="text" name="firstName" size="30" class="text-input" /></td>
                                         <td>Last Name: </td><td> <input type="text" name="lastName" size="30" class="text-input"/></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td><td id="firstNameError" class="generic-php-error"></td>
+                                        <td></td><td id="lastNameError" class="generic-php-error"></td>
                                     </tr>
         
                                     <tr>
                                         <td>Email: </td><td> <input type="text" name="email" size="30" class="text-input"/></td>
                                         <td>Password: </td><td> <input type="password" name="password" size="30" class="text-input"/></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td><td id="emailError" class="generic-php-error"></td>
+                                        <td></td><td id="passwordError" class="generic-php-error"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -287,6 +306,11 @@
                                     <td>Skills: </td><td> <input type="text" name="skill1" size="30" class="text-input"/></td>
                                     <td></td><td> <input type="text" name="skill2" size="30" class="text-input"/></td><br>
                                 </tr>
+
+                                <tr>
+                                    <td></td><td id="skill1Error" class="generic-php-error"></td>
+                                    <td></td><td id="skill2Error" class="generic-php-error"></td>
+                                </tr>
                         
                                 <tr>
                                     <td></td><td> <input type="text" name="skill3" size="30" class="text-input"/></td>
@@ -294,7 +318,18 @@
                                 </tr>
 
                                 <tr>
+                                    <td></td><td id="skill3Error" class="generic-php-error"></td>
+                                    <td></td><td id="skill4Error" class="generic-php-error"></td>
+                                </tr>
+
+                                <tr>
                                     <td></td><td> <input type="text" name="skill5" size="30" class="text-input"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td></td><td id="skill5Error" class="generic-php-error"></td>
+                                </tr>
+
                             </table>
                         </div>
                         
