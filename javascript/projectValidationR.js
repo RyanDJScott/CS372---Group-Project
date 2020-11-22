@@ -56,23 +56,23 @@ deadline1Listener[0].addEventListener("change", deadline1Checker, false);
 var deadline2Listener = document.getElementsByName("projectMember1DeadlineTask2");
 deadline2Listener[0].addEventListener("change", deadline2Checker, false);
 
-var deadline1Listener = document.getElementsByName("projectMember2DeadlineTask1");
-deadline3Listener[0].addEventListener("change", deadline1Checker, false);
+var deadline3Listener = document.getElementsByName("projectMember2DeadlineTask1");
+deadline3Listener[0].addEventListener("change", deadline3Checker, false);
 
-var deadline2Listener = document.getElementsByName("projectMember2DeadlineTask2");
-deadline4Listener[0].addEventListener("change", deadline2Checker, false);
+var deadline4Listener = document.getElementsByName("projectMember2DeadlineTask2");
+deadline4Listener[0].addEventListener("change", deadline4Checker, false);
 
-var deadline1Listener = document.getElementsByName("projectMember3DeadlineTask1");
-deadline5Listener[0].addEventListener("change", deadline1Checker, false);
+var deadline5Listener = document.getElementsByName("projectMember3DeadlineTask1");
+deadline5Listener[0].addEventListener("change", deadline5Checker, false);
 
-var deadline2Listener = document.getElementsByName("projectMember3DeadlineTask2");
-deadline6Listener[0].addEventListener("change", deadline2Checker, false);
+var deadline6Listener = document.getElementsByName("projectMember3DeadlineTask2");
+deadline6Listener[0].addEventListener("change", deadline6Checker, false);
 
-var deadline1Listener = document.getElementsByName("projectMember4DeadlineTask1");
-deadline7Listener[0].addEventListener("change", deadline1Checker, false);
+var deadline7Listener = document.getElementsByName("projectMember4DeadlineTask1");
+deadline7Listener[0].addEventListener("change", deadline7Checker, false);
 
-var deadline2Listener = document.getElementsByName("projectMember4DeadlineTask2");
-deadline8Listener[0].addEventListener("change", deadline2Checker, false);
+var deadline8Listener = document.getElementsByName("projectMember4DeadlineTask2");
+deadline8Listener[0].addEventListener("change", deadline8Checker, false);
 
 var submitListener = document.getElementById("submitForm");
 submitListener.addEventListener("submit",submitChecker, false);

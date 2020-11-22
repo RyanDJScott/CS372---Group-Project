@@ -328,8 +328,8 @@
                                     </tr>
                                   
                                     <tr>
-                                        <td id="projectTitleError" class="generic-php-error"></td>
-                                        <td id="projectDescriptionError" class="generic-php-error"></td>
+                                        <td></td><td id="projectTitleError" class="generic-php-error"></td>
+                                        <td></td><td id="projectDescriptionError" class="generic-php-error"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -343,9 +343,8 @@
                                 </tr>
 
                                 <tr>
-                                    <td></td>
-                                    <td id="startDateError" class="generic-php-error"></td>
-                                    <td id="endDateError" class="generic-php-error"></td>
+                                <td></td><td id="startDateError" class="generic-php-error"></td>
+                                <td></td><td id="endDateError" class="generic-php-error"></td>
                                 </tr>
                         </table>
                     </div>
@@ -371,14 +370,6 @@
                                         <td id="projectMember1Task1Error" class="generic-php-error"></td>
                                         <td id="projectMember1DeadlineTask1Error" class="generic-php-error"></td>
                                     </tr>
-                              
-                                    <tr>
-                                         <td id="projectMember1Error" class="generic-php-error"></td>
-                                         <td><input type="text" name="projectMember1Task2" class="text-input" disabled="disabled"/></td>
-                                         <td><input type="date" name="projectMember1DeadlineTask2" disabled="disabled"/></td>
-                                    </tr>
-                            </table>
-                        </div>
 
                                     <tr>
                                         <td id="suggestMember1"></td>
@@ -477,5 +468,6 @@
 		</div>
 	</div>
 <script type="text/javascript" src="../javascript/projectValidationR.js"></script>
+<script type="text/javascript" src="newProject.js"></script>
 </body>
 </html>

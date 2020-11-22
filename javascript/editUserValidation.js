@@ -23,11 +23,6 @@ function fileChecker2(filePathInput)
             filePathMsg.innerHTML = "This is not a valid file type";
         }
     }
-    if(filePathInput == "")
-    {
-        filePathMsg.innerHTML = "Please select a file";
-        validInput = false;
-    }
     if(filePathInput.length > 30)
     {
         filePathMsg.innerHTML = "This file path is too long";
@@ -136,36 +131,6 @@ function emailChecker2(emailInput)
     return validInput;
 }
 
-function passwordChecker(event)
-{
-    var passwordInput = event.currentTarget.value;
-
-    passwordChecker2(passwordInput);
-}
-
-function passwordChecker2(passwordInput)
-{
-    var passwordMsg = document.getElementById("passwordError");
-
-    var validInput = true;
-
-    if(passwordInput == "")
-    {
-        passwordMsg.innerHTML = "You have not entered a password";
-        validInput = false;
-    }
-    if(passwordInput.length > 20)
-    {
-        passwordMsg.innerHTML = "Please enter a valid password";
-        validInput = false; 
-    }
-    if(validInput == true)
-    {
-        passwordMsg.innerHTML = "";
-    }
-    return validInput;
-}
-
 function skill1Checker(event)
 {
     var skillInput = event.currentTarget.value;
@@ -266,6 +231,31 @@ function skill4Checker2(skill4Input)
     return validInput;
 }
 
+function skill5Checker(event)
+{
+    var skillInput = event.currentTarget.value;
+
+    skill5Checker2(skillInput);
+}
+
+function skill5Checker2(skill5Input)
+{
+    var skillMsg = document.getElementById("skill5Error");
+
+    var validInput = true;
+
+    if(skill5Input.length > 10)
+    {
+        skillMsg.innerHTML = "This skill is too long";
+        validInput = false;
+    }
+    if(validInput == true)
+    {
+        skillMsg.innerHTML = "";
+    }
+    return validInput;
+}
+
 //prevent default here
 function submitChecker(event)
 {
@@ -305,13 +295,6 @@ function submitChecker(event)
     if((emailChecker2(email[0].value)) == false)
     {
         console.log("email invalid onsubmit");
-        event.preventDefault();
-    }
-
-    var password = document.getElementsByName("password");
-    if((passwordChecker2(password[0].value)) == false)
-    {
-        console.log("password invlid onsubmit");
         event.preventDefault();
     }
 

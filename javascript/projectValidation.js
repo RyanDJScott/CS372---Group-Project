@@ -134,6 +134,12 @@ function endDateChecker2(endDate)
         endDateMsg.innerHTML = "End date has to be after the start date";
         validInput = false;
     }
+
+    if(validInput == true)
+    {
+        endDateMsg.innerHTML = "";
+    }
+    
     return validInput;
 }
 

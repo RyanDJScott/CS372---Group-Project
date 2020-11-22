@@ -12,9 +12,6 @@ lastNameListener[0].addEventListener("blur", lastNameChecker, false);
 var emailListener = document.getElementsByName("email");
 emailListener[0].addEventListener("blur", emailChecker, false);
 
-var passwordListener = document.getElementsByName("password");
-passwordListener[0].addEventListener("blur", passwordChecker, false);
-
 var skill1Listener = document.getElementsByName("skill1");
 skill1Listener[0].addEventListener("blur", skill1Checker, false); 
 
@@ -26,6 +23,9 @@ skill3Listener[0].addEventListener("blur", skill3Checker, false);
 
 var skill4Listener = document.getElementsByName("skill4");
 skill4Listener[0].addEventListener("blur", skill4Checker, false);
+
+var skill5Listener = document.getElementsByName("skill5");
+skill5Listener[0].addEventListener("blur", skill5Checker, false);
 
 var submitListener = document.getElementById("submitForm");
 submitListener.addEventListener("submit",submitChecker, false);

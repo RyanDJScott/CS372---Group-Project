@@ -278,12 +278,16 @@
                     <p class="generic-php-error"><?=$errorMsg?></p>
                     <p class="generic-php-error"><?=$inputError?></p>
                     <p class="generic-php-error"><?=$skillsError?></p>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" enctype="multipart/form-data">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" enctype="multipart/form-data" id="submitForm">
                         <div>
                             <table>
                                 <tr>
                                     <td>Profile Picture: </td><td> <input type="file" name="profilePicture" id="profilePicture" class="custom-file-input" /><p class="generic-php-error"><?=$uploadError?></td><td>Bio: </td><td> <textarea name="managerBio" id="managerBio" cols="30" rows="10"><?php echo $ProfileBio; ?></textarea></td>
                                 </tr> 
+
+                                <tr>
+                                    <td></td><td id="profilePictureError" class="generic-php-error"></td>
+                                </tr>
                             </table>
                         </div>
                         <div>
@@ -293,10 +297,19 @@
                                         <td>First Name: </td><td> <input type="text" name="firstName" size="30" class="text-input" value="<?php echo $firstName; ?>"/></td>
                                         <td>Last Name: </td><td> <input type="text" name="lastName" size="30" class="text-input" value="<?php echo $lastName; ?>"/></td>
                                     </tr>
+
+                                    <tr>
+                                        <td></td><td id="firstNameError" class="generic-php-error"></td>
+                                        <td></td><td id="lastNameError" class="generic-php-error"></td>
+                                    </tr>
         
                                     <tr>
                                         <td>Email: </td><td> <input type="text" name="email" size="30" class="text-input" value="<?php echo $Email; ?>"/></td>
                                         <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td><td id="emailError" class="generic-php-error"></td>
                                     </tr>
                                     
                                 </tbody>
@@ -309,6 +322,11 @@
                                     <td>Skills: </td><td> <input type="text" name="skill1" size="30" class="text-input" value="<?php echo $skill[0]; ?>"/></td>
                                     <td></td><td> <input type="text" name="skill2" size="30" class="text-input" value="<?php echo $skill[1]; ?>"/></td><br>
                                 </tr>
+
+                                <tr>
+                                    <td></td><td id="skill1Error" class="generic-php-error"></td>
+                                    <td></td><td id="skill2Error" class="generic-php-error"></td>
+                                </tr>
                         
                                 <tr>
                                     <td></td><td> <input type="text" name="skill3" size="30" class="text-input" value="<?php echo $skill[2]; ?>"/></td>
@@ -316,8 +334,17 @@
                                 </tr>
 
                                 <tr>
+                                    <td></td><td id="skill3Error" class="generic-php-error"></td>
+                                    <td></td><td id="skill4Error" class="generic-php-error"></td>
+                                </tr>
+
+                                <tr>
                                     <td></td><td> <input type="text" name="skill5" size="30" class="text-input" value="<?php echo $skill[4]; ?>"/></td>
                                     <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td></td><td id="skill5Error" class="generic-php-error"></td>
                                 </tr>
                             </table>
                         </div>
