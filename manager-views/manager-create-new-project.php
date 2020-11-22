@@ -274,7 +274,7 @@
 <html lang="en">
 <head>
 	<title>Create New Project</title>
-    <script type="text/javascript" src="projectValidation.js"></script>
+    <script type="text/javascript" src="../javascript/projectValidation.js"></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -476,6 +476,6 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="projectValidationR.js"></script>
+<script type="text/javascript" src="../javascript/projectValidationR.js"></script>
 </body>
 </html>
