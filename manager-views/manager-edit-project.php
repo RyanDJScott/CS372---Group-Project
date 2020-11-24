@@ -175,7 +175,7 @@
                 $deadlines[] = trim($_POST["projectMember4DeadlineTask2"]);
                 
                 //Validate the Projects information
-                if (($projectTitle != "" && strlen($projectTitle) <= 50) && $projectDescription != "" && $startDate != "" && $endDate != "")
+                if (($projectTitle != "" && strlen($projectTitle) <= 50) && $projectDescription != "" && $startDate != "" && $endDate != "" && ($startDate < $endDate))
                 {
                     //Set error flag to false
                     $errorFlag = false;

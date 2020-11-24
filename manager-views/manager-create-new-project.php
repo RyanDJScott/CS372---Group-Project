@@ -61,7 +61,7 @@
                 } 
                 
                 //Validate the Projects information
-                if (($projectTitle != "" && strlen($projectTitle) <= 50) && $projectDescription != "" && $startDate != "" && $endDate != "")
+                if (($projectTitle != "" && strlen($projectTitle) <= 50) && $projectDescription != "" && $startDate != "" && $endDate != "" && ($startDate > $endDate))
                 {
                     //Set error flag to false
                     $errorFlag = false;
@@ -70,7 +70,7 @@
                     $memberUIDS[] = $_SESSION["UID"];
 
                     //Validate project members array by checking if this member exists in the db
-                    for ($i = 0; $i < sizeof($projectMembers); $i++)
+                    for ($i = 0; $i < 5; $i++)
                     {
                         if ($projectMembers[$i] != "")
                         {
@@ -93,6 +93,8 @@
                                 $errorFlag == true;
                                 break;
                             }
+                        } else {
+                            $memberUIDS[] = NULL;
                         }
                     }
 
@@ -164,17 +166,20 @@
                                 $memberError = false;
 
                                 //Insert project members into the database
-                                for ($k = 0; $k < sizeof($memberUIDS); $k++)
+                                for ($k = 0; $k < 5; $k++)
                                 {
-                                    //Build an insert query based on PID/UID 
-                                    $insertMember = "INSERT INTO ProjectTeams (PID, UID) VALUES ('$PID', '$memberUIDS[$k]')";
+                                    if ($memberUIDS[$k] != NULL)
+                                    {
+                                        //Build an insert query based on PID/UID 
+                                        $insertMember = "INSERT INTO ProjectTeams (PID, UID) VALUES ('$PID', '$memberUIDS[$k]')";
 
-                                    //Execute query
-                                    $memberInsertResults = $db->query($insertMember);
+                                        //Execute query
+                                        $memberInsertResults = $db->query($insertMember);
 
-                                    //If query fails, set an error flag
-                                    if ($memberInsertResults == false)
-                                        $memberError == true;
+                                        //If query fails, set an error flag
+                                        if ($memberInsertResults == false)
+                                            $memberError == true;
+                                    }
                                 }
 
                                 //If the team members are all inserted, add their tasks into the db
@@ -187,7 +192,7 @@
                                     $taskError = false;
 
                                     //For each member in the member array (except the manager, who is in spot 0), add their tasks
-                                    for ($l = 1; $l < sizeof($memberUIDS); $l++)
+                                    for ($l = 1; $l < 5; $l++)
                                     {
                                         for ($m = 0; $m < 2; $m++)
                                         {
@@ -219,11 +224,15 @@
                                         $errorMsg = "There was an error inserting your user tasks into the database. Please try again.";
 
                                         //Clean up any potential half-inserted data by deleting this project from the database
-                                        //Delete the whole project; will cascade down
-                                        $cleanUpQuery = "DELETE FROM Projects WHERE PID = '$PID'";
+                                        //Delete the whole project
+                                        $cleanUpQuery1 = "DELETE FROM Projects WHERE PID = '$PID'";
+                                        $cleanUpQuery2 = "DELETE FROM ProjectTeams WHERE PID = '$PID'";
+                                        $cleanUpQuery3 = "DELETE FROM Tasks WHERE PID = '$PID'";
 
                                         //Execute the query
-                                        $cleanUp = $db->query($cleanUpQuery);
+                                        $cleanUp1 = $db->query($cleanUpQuery1);
+                                        $cleanUp2 = $db->query($cleanUpQuery2);
+                                        $cleanUp3 = $db->query($cleanUpQuery3);
 
                                         //Close the database
                                         $db->close();
@@ -231,8 +240,8 @@
                                         //Project successfully created, close DB
                                         $db->close();
 
-                                        //Post message showing success!
-                                        $errorMsg = "Your project was successfully created!";
+                                        //Navigate to the manager-landing with success
+                                        header("Location: manager-landing.php?success=5");
                                     }
 
                                 } else {
@@ -240,11 +249,13 @@
 
                                     //Clean up any potential half-inserted data by deleting this project from the database
                                     //Delete the whole project; will cascade down
-                                    $cleanUpQuery = "DELETE FROM Projects WHERE PID = '$PID'";
+                                    $cleanUpQuery1 = "DELETE FROM Projects WHERE PID = '$PID'";
+                                    $cleanUpQuery2 = "DELETE FROM ProjectTeams WHERE PID = '$PID'";
 
                                     //Execute the query
-                                    $cleanUp = $db->query($cleanUpQuery);
-
+                                    $cleanUp1 = $db->query($cleanUpQuery1);
+                                    $cleanUp2 = $db->query($cleanUpQuery2);
+                                    
                                     //Close the database
                                     $db->close();
                                 }

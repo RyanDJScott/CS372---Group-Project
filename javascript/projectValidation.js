@@ -127,7 +127,7 @@ function endDateChecker2(endDate)
     //get startDate
     var startDate = document.getElementsByName("startDate");
     var startDateInput = startDate[0].value;
-    console.log("startDate input:" + startDate);
+    console.log("startDate input:" + startDate[0]);
 
     if(startDateInput > endDate)
     {
@@ -855,6 +855,7 @@ function submitChecker(event)
         //if they are valid, then check to see if the corresponding member is there
         if((task1Checker2(task1[0].value, deadline1[0].value) == false) || (member1[0].value == ""))
         {
+            console.log("There is an error with field one set 1");
             event.preventDefault();
         }
     }
@@ -865,6 +866,7 @@ function submitChecker(event)
     {
         if((task2Checker2(task2[0].value, deadline2[0].value) == false) || (member1[0].value == ""))
         {
+            console.log("There is an error with field one set 2");
             event.preventDefault();
         }
     }
@@ -875,6 +877,7 @@ function submitChecker(event)
     {
         if((task3Checker2(task3[0].value, deadline3[0].value) == false) || (member2[0].value == ""))
         {
+            console.log("There is an error with field two set 1");
             event.preventDefault();
         }
     }
@@ -885,6 +888,7 @@ function submitChecker(event)
     {
         if((task4Checker2(task4[0].value, deadline4[0].value) == false) || (member2[0].value == ""))
         {
+            console.log("There is an error with field two set 2");
             event.preventDefault();
         }
     }
@@ -895,6 +899,7 @@ function submitChecker(event)
     {
         if((task5Checker2(task5[0].value, deadline5[0].value) == false) || (member3[0].value == ""))
         {
+            console.log("There is an error with field three set 1");
             event.preventDefault();
         }
     }
@@ -905,16 +910,18 @@ function submitChecker(event)
     {
         if((task6Checker2(task6[0].value, deadline6[0].value) == false) || (member3[0].value == ""))
         {
+            console.log("There is an error with field three set 2");
             event.preventDefault();
         }
     }
 
     var task7 = document.getElementsByName("projectMember4Task1");
     var deadline7 = document.getElementsByName("projectMember4DeadlineTask1");
-    if(task5[0].value != "" || deadline5[0].value != "")
+    if(task7[0].value != "" || deadline7[0].value != "")
     {
         if((task7Checker2(task7[0].value, deadline7[0].value) == false) || (member4[0].value == ""))
         {
+            console.log("There is an error with field four set 1");
             event.preventDefault();
         }
     }
@@ -925,6 +932,7 @@ function submitChecker(event)
     {
         if((task8Checker2(task8[0].value, deadline8[0].value) == false) || (member4[0].value == ""))
         {
+            console.log("There is an error with field four set 2");
             event.preventDefault();
         }
     }

@@ -19,19 +19,51 @@
                 die ("Connection failed: ".$db->connect_error);
             } 
 
-            //Delete the project from the projects table; should cascade downwards
-            $deleteQuery = "DELETE FROM Projects WHERE PID = '$projectID'";
+            //Set error flag
+            $error = false;
+
+            //Start a cascading delete for this project
+            //Delete the project from the projects table
+            $deleteProject = "DELETE FROM Projects WHERE PID = '$projectID'";
 
             //Execute the query
-            $result = $db->query($deleteQuery);
+            $projectResult = $db->query($deleteProject);
 
+            //If the project was successfully deleted, delete the project members
+            if ($projectResult == true)
+            {
+                //Delete all of the members from this project in ProjectTeams
+                $deleteMembers = "DELETE FROM ProjectTeams WHERE PID = '$projectID'";
+
+                //Execute query
+                $memberResult = $db->query($deleteMembers);
+
+                //If the team members were deleted, delete the tasks
+                if ($memberResult == true)
+                {
+                    //Delete all of the tasks associated with this PID
+                    $deleteTasks = "DELETE FROM Tasks WHERE PID = '$projectID'";
+
+                    //Execute the query
+                    $taskResult = $db->query($deleteTasks);
+
+                    //Set error flag if something happened
+                    if ($taskResult == false)
+                        $error = true;
+                } else {
+                    $error = true;
+                }
+
+            } else {
+                $error = true;
+            }
             //Close the db connection
             $db->close();
             
             //Redirect back to the manager page with success/failure flag
-            if ($result == true) 
+            if ($error == false) 
                 header("Location: manager-landing.php?success=1");
-            else 
+            else if ($error == true)
                 header("Location: manager-landing.php?success=2");
         } else {
             //Employee trying to get into manager pages, redirect to home page

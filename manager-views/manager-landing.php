@@ -17,10 +17,12 @@
             //If you were redirected to this page, check the success variable for message
             if ($_SERVER["REQUEST_METHOD"] == "GET")
             {
-                if ($_GET["success"] == 2)
-                    $successMsg = "The project could not be deleted from the database. Please try again.";
-                else if ($_GET["success"] == 1)
+                if ($_GET["success"] == 1)
                     $successMsg = "The project was successfully deleted from the database.";
+                else if ($_GET["success"] == 2)
+                    $successMsg = "The project could not be deleted from the database. Please try again.";
+                else if ($_GET["success"] == 5)
+                    $successMsg = "Your project was successfully created!";
             }
         } else {
             //User is not a manager, redirect to employee landing
@@ -96,6 +98,7 @@
                 $firstQuery = "SELECT Projects.PID, Title, Description, StartDate, EndDate, Users.UID, FirstName, LastName 
                             FROM Projects LEFT JOIN ProjectTeams ON Projects.PID = ProjectTeams.PID 
                             INNER JOIN Users ON ProjectTeams.UID = Users.UID 
+                            WHERE managerID IS NULL
                             ORDER BY Projects.PID";
                 
                 //Execute the query
@@ -153,6 +156,22 @@
                     </table>
 
                     <table id="members-landing-card">
+                        <thead>
+                            <tr>
+                                <th>Project Manager</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <?php 
+                                    $findManager = "SELECT Users.FirstName, Users.LastName FROM ProjectTeams LEFT JOIN Users ON (ProjectTeams.UID = Users.UID) WHERE ProjectTeams.PID = '$currentPID' AND Users.managerID IS NOT NULL";
+
+                                    $managerQuery = $db->query($findManager);
+
+                                    if ($managerQuery->num_rows > 0)
+                                        $managerResult = $managerQuery->fetch_assoc();
+                                ?>
+                                <td><?=$managerResult["FirstName"]?> <?=$managerResult["LastName"]?></td>
+                            </tr>
                         <thead>
                             <tr>
                                 <th>Project Members</th>
