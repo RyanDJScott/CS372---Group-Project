@@ -239,7 +239,7 @@
                             <input class="logout-button" name="submit2" type="submit" id="submit2" value="Logout" >
                         </form>
                     </li>
-                    <li><a href="employee-all-employees.php">See All Employees</a></li>
+                    <li><a href="employee-all-employees.php">Search Employees</a></li>
                     <li><a href="employee-edit-profile.php">Edit Profile</a></li>
                     <li><a href="employee-landing.php">Home</a></li>
                 </ul>

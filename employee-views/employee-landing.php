@@ -45,7 +45,7 @@
                             </label>
                         </form>
                     </li>
-                    <li><a href="employee-all-employees.php">See All Employees</a></li>
+                    <li><a href="employee-all-employees.php">Search Employees</a></li>
                     <li><a href="employee-edit-profile.php">Edit Profile</a></li>
                     <li><a href="employee-landing.php">Home</a></li>
                 </ul>
