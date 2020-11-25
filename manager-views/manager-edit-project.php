@@ -489,9 +489,20 @@
                                 <tbody>
                                     <tr>
                                         <td>Project Title: </td><td> <input type="text" name="projectTitle" class="text-input" value="<?php echo $title;?>" /></td>
-                                        <td>Description: </td><td> <textarea name="projectDescription" id="projectDescription" cols="30" rows="10"><?php echo $description;?></textarea></td>
                                     </tr>
                                 </tbody>
+                            </table>
+                        </div>
+
+                        <div>
+                            <table>
+                                <tr>
+                                    <td>Description: </td><td> <textarea name="projectDescription" id="projectDescription" cols="30" rows="10"><?php echo $description;?></textarea></td>
+                                </tr>
+
+                                <tr>
+                                    <td></td><td id="projectDescriptionError" class="generic-php-error"></td>
+                                </tr>
                             </table>
                         </div>
 

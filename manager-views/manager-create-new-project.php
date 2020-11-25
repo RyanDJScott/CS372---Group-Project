@@ -335,12 +335,10 @@
                                 <tbody>
                                     <tr>
                                         <td>Project Title: </td><td> <input type="text" name="projectTitle" class="text-input" value="<?=$projectTitle?>" /></td>
-                                        <td>Description: </td><td> <textarea name="projectDescription" id="projectDescription" cols="30" rows="10"><?=$projectDescription?></textarea></td>
                                     </tr>
                                   
                                     <tr>
                                         <td></td><td id="projectTitleError" class="generic-php-error"></td>
-                                        <td></td><td id="projectDescriptionError" class="generic-php-error"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -349,16 +347,28 @@
                         <div>
                             <table>
                                 <tr>
+                                    <td>Description: </td><td> <textarea name="projectDescription" id="projectDescription" cols="30" rows="10"><?=$projectDescription?></textarea></td>
+                                </tr>
+
+                                <tr>
+                                    <td></td><td id="projectDescriptionError" class="generic-php-error"></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div>
+                            <table>
+                                <tr>
                                     <td>Start Date: </td><td> <input type="date" name="startDate" value="<?=$startDate?>" /></td>
                                     <td>End Date: </td><td> <input type="date" name="endDate" value="<?=$endDate?>" disabled="disabled" /></td>
                                 </tr>
 
                                 <tr>
-                                <td></td><td id="startDateError" class="generic-php-error"></td>
-                                <td></td><td id="endDateError" class="generic-php-error"></td>
+                                    <td></td><td id="startDateError" class="generic-php-error"></td>
+                                    <td></td><td id="endDateError" class="generic-php-error"></td>
                                 </tr>
-                        </table>
-                    </div>
+                            </table>
+                        </div>
                       
                         <div class="skills-container" style="margin-top: 20px";>
                             <table id="members-landing-card">

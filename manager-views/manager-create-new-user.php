@@ -247,16 +247,21 @@
                 <article>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" enctype="multipart/form-data" id="submitForm">
                         <div>
-                            <table id="createUserTable">
+
+                            <table style="margin-bottom: -25px">
                                 <tbody>
                                     <tr>
                                         <td>Profile Picture: </td><td> <input type="file" name="profilePicture" class="custom-file-input" /></td>
-                                    </tr> 
+                                    </tr>
 
                                     <tr>
                                         <td></td><td id="profilePictureError" class="generic-php-error"></td>
                                     </tr>
-        
+                                </tbody>
+                            </table>
+
+                            <table id="createUserTable">
+                                <tbody>
                                     <tr>
                                         <td>
                                             <label id="userType">User Type:</label>

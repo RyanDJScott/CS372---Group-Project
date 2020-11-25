@@ -137,6 +137,25 @@
                             </tr>
                     </table>
 
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="project-manager-title">Project Manager :
+                                    <?php 
+                                    $findManager = "SELECT Users.FirstName, Users.LastName FROM ProjectTeams LEFT JOIN Users ON (ProjectTeams.UID = Users.UID) WHERE ProjectTeams.PID = '$currentPID' AND Users.managerID IS NOT NULL";
+
+                                    $managerQuery = $db->query($findManager);
+
+                                    if ($managerQuery->num_rows > 0)
+                                        $managerResult = $managerQuery->fetch_assoc();
+                                    ?>
+                                
+                                    <td><?=$managerResult["FirstName"]?> <?=$managerResult["LastName"]?></td>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
                     <table id="members-landing-card">
                         <thead>
                             <tr>

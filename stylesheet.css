@@ -84,8 +84,12 @@
       list-style-type: none;
   }
 
-  /* */
-  th, td {
+  /* trying this padding style for noew, hard to see without actual data in tables */
+  td {
+    padding: 10px;
+  }
+
+  th {
     padding: 15px;
   }
 
@@ -98,12 +102,19 @@
     text-align: center;
   }
 
+  td.input-spacing {
+    padding: 10px;
+  }
+
   th {
     text-align: left;
     white-space: nowrap;
     border-bottom: 2px solid #ddd;
   }
 
+  th.project-manager-title {
+    border-bottom: none;
+  }
 
   header {
     width: 100%;
@@ -169,7 +180,7 @@
   }
 
   .create-new-user-card-container {
-    width: 950px;
+    width: 880px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -188,10 +199,14 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 40px 45px  40px 45px;
+
+    /* pin search results to the top instead of auto center */
+    position: absolute; 
+    top: 80px;
   }
 
   .manager-create-new-project-card-container {
-    width: 1000px;
+    width: 800px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -344,9 +359,10 @@
 
   .generic-php-error {
     font-family: Poppins-Medium;
+    font-style: italic;
     font-size: 12px;
     line-height: 1.5;
-    color: #FF0000;
+    color: #ce0000;
     outline: none;
     border: none;
     padding: 0 0 0 10px;
