@@ -94,7 +94,7 @@
                                 }
                                 
                                 // Check file size
-                                if ($_FILES["profilePicture"]["size"] > 500000) {
+                                if ($_FILES["profilePicture"]["size"] > 500000000) {
                                     $uploadError = "Sorry, your file is too large.";
                                     $uploadOk = 0;
                                 }
@@ -106,16 +106,16 @@
                                 }
                                 
                                 // Check if $uploadOk is 1, attempt to upload the file. Set flag to 0 if fails.
-                                if ($uploadOK = 1) {
+                                if ($uploadOK == 1) {
                                     if (!(move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $target_file))) {
                                         $uploadOk = 0;
+                                        $uploadError = "Your file could not be copied onto our server. Please try again.";
                                     }
                                 }
                             }
 
                             //If the upload worked, or was skipped, continue with the rest of the insertions.
                             if ($uploadOk == 1) {
-
                                 if (is_null($managerID)) {
                                     //Insert the new user into the DB, upload the avatar if they have one
                                     $insertUserQuery = "INSERT INTO Users (FirstName, LastName, Email, Password, PictureURL)

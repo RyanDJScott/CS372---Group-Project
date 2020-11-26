@@ -152,7 +152,8 @@
                                       </ul>  
                                 </td>
                                 <td>
-                                    <form action="deleteEmployee.php?UID=<?=$empRows["UID"]?>" method="GET">
+                                    <form action="deleteEmployee.php" method="POST">
+                                        <input type="hidden" name="UID" value="<?=$empRows["UID"]?>" />
                                         <button type="submit" class="edit-delete-button" name="delete"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </td>

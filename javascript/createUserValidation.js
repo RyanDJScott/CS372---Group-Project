@@ -17,14 +17,14 @@ function fileChecker2(filePathInput)
 
     if(filePathInput != "")
     {
-    var allowedExtensions = filePathInput.search(/((.jpg)|(.jpeg)|(.gif)|(.png))$/);
+    var allowedExtensions = (filePathInput.toLowerCase()).search(/((.jpg)|(.jpeg)|(.gif)|(.png))$/);
         if(allowedExtensions == -1)
         {
             validInput = false;
             filePathMsg.innerHTML = "This is not a valid file type";
         }
     }
-    if(filePathInput.length > 30)
+    if(filePathInput.length > 80)
     {
         filePathMsg.innerHTML = "This file path is too long";
     }

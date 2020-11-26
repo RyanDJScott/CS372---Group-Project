@@ -254,7 +254,7 @@
                             $endDateUpdate = date("Y-m-d", strtotime($endDate));
                             
                             //Build update query for projects
-                            $projectUpdate = "UPDATE Projects SET Title = '$projectTitle', Description = '$projectDescription', StartDate = '$startDateUpdate', EndDate = '$endDateUpdate' WHERE PID = '$PID'";
+                            $projectUpdate = "UPDATE Projects SET Title = \"".$db->real_escape_string($projectTitle)."\", Description = \"".$db->real_escape_string($projectDescription)."\", StartDate = '".$db->real_escape_string($startDateUpdate)."', EndDate = '".$db->real_escape_string($endDateUpdate)."' WHERE PID = '$PID'";
                 
                             //Execute query
                             $projectUpdateResults = $db->query($projectUpdate);
@@ -412,7 +412,6 @@
                             } else {
                                 $errorMsg = "There was an error updating the project into the database. Please try again.";
                             }
-
                         } else {
                             $errorMsg = "Please ensure each task has a set deadline and a dedicated user.";
                         }
@@ -438,7 +437,7 @@
 <html lang="en">
 <head>
 	<title>Edit Project</title>
-    <script type="text/javascript" src="projectValidation.js"></script>
+    <script type="text/javascript" src="../javascript/projectValidation.js"></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -483,7 +482,7 @@
                 </header>
                 
                 <article>
-                    <form action="manager-edit-project.php?PID=<?=$PID?>" method="POST">
+                    <form action="manager-edit-project.php?PID=<?=$PID?>" method="POST" id="submitForm">
                         <div>
                             <table id="createUserTable">
                                 <tbody>
@@ -587,5 +586,5 @@
 	</div>
     <script type="text/javascript" src="newProject.js"></script>
 </body>
-<script type="text/javascript" src="projectValidationR.js"></script>
+<script type="text/javascript" src="../javascript/projectValidationR.js"></script>
 </html>
