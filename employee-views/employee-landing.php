@@ -57,7 +57,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="<?=$pictureURL?>"" alt="<?=$FirstName?> <?=$LastName?>" width="80px" height="80px"> 
+                                    <img src="<?=$pictureURL?>" alt="<?=$FirstName?> <?=$LastName?>" width="80px" height="80px"> 
                                 </td>
                                 <td>
                                     <h2><?=$FirstName?> <?=$LastName?></h2> 
@@ -92,7 +92,7 @@
                         $firstQuery = "SELECT Projects.PID, Title, Description, StartDate, EndDate, Users.UID, FirstName, LastName 
                                         FROM Projects LEFT JOIN ProjectTeams ON Projects.PID = ProjectTeams.PID 
                                         INNER JOIN Users ON ProjectTeams.UID = Users.UID 
-                                        WHERE Projects.PID = '".$pidRows["PID"]."'";
+                                        WHERE Projects.PID = '".$pidRows["PID"]."' AND Users.managerID IS NULL";
     
                         //Execute the query
                         $firstResults = $db->query($firstQuery);

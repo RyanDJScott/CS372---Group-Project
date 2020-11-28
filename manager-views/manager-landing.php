@@ -98,7 +98,7 @@
                 $firstQuery = "SELECT Projects.PID, Title, Description, StartDate, EndDate, Users.UID, FirstName, LastName 
                             FROM Projects LEFT JOIN ProjectTeams ON Projects.PID = ProjectTeams.PID 
                             INNER JOIN Users ON ProjectTeams.UID = Users.UID 
-                            WHERE managerID IS NULL
+                            WHERE Users.managerID IS NULL
                             ORDER BY Projects.PID";
                 
                 //Execute the query
