@@ -489,6 +489,7 @@
                                 <tbody>
                                     <tr>
                                         <td>Project Title: </td><td> <input type="text" name="projectTitle" class="text-input" value="<?php echo $title;?>" /></td>
+                                        <td>Project Manager: </td><td> <input type="text" name="projectManager" class="text-input" value="<?php echo $manager;?>" /></td>
                                     </tr>
                                 </tbody>
                             </table>

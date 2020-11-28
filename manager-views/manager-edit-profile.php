@@ -305,7 +305,12 @@
         
                                     <tr>
                                         <td>Email: </td><td> <input type="text" name="email" size="30" class="text-input" value="<?php echo $Email; ?>"/></td>
-                                        <td></td>
+                                        <td>Password: </td><td> <input type="text" name="password" size="30" class="text-input" value="<?php echo $Password; ?>"/></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td><td></td>
+                                        <td>Confirm Password: </td><td> <input type="text" name="confirmPassword" size="30" class="text-input" value="<?php echo $ConfirmPassword; ?>"/></td>
                                     </tr>
 
                                     <tr>
