@@ -5,65 +5,62 @@
 	//Start a session
 	session_start();
 
-    //Check if the user is logged in, if so send them to their landing page based on emp/manager
-    if (isset($_SESSION["UID"]) && $_SESSION["UID"] > 0) {
-        if ($_SESSION["MID"] != NULL)
-            header("Location: manager-views/manager-landing.php");
-        else 
-            header("Location: employee-views/employee-landing.php");
-    } else {
+    //Check if the user is logged in; redirect based on credentials
+	if (isset($_SESSION["MID"]) && $_SESSION["MID"] > 0) {
+		//Send to manager landing
+		header("Location: manager-views/manager-landing.php");
+	} else if (isset($_SESSION["UID"]) && $_SESSION["UID"] > 0) {
+		//Send to employee landing
+		header("Location: employee-views/employee-landing.php");
+	} else if ($_SERVER["REQUEST_METHOD"] === "POST") {
         //Grab the information from the fields, set error message variable
         $email = trim($_POST["email"]);
         $password = trim($_POST["pass"]);
         $errorMsg = $usrError = $pwdError = "";
-		
-		//If the form was submitted from the login page, do the following
-		if ($_SERVER["REQUEST_METHOD"] === 'POST') {
-			//Validate the information from the fields
-			if (!(filter_var($email, FILTER_VALIDATE_EMAIL))) {
-				$usrError = "Please provide a valid username";
-			} else if (strlen($password) < 8 || !preg_match("/[A-Z]+/", $password) || !preg_match("/\W+/", $password)) {
-				$pwdError = "Please provide a valid password";
+	
+		//Validate the information from the fields
+		if (!(filter_var($email, FILTER_VALIDATE_EMAIL))) {
+			//Provide an error to the user
+			$usrError = "Please provide a valid username";
+		} else if (strlen($password) < 8 || !preg_match("/[A-Z]+/", $password) || !preg_match("/\W+/", $password)) {
+			//Provide an error to the user
+			$pwdError = "Please provide a valid password";
+		} else {
+			//Connect to the DB
+			$db = new mysqli('localhost', $serverName, $serverPW, $serverName);
+
+			//Check if the connection failed
+			if ($db->connect_error) {
+				die ("Connection failed: ".$db->connect_error);
+			} 
+
+			//Query the db for the login credentials
+			$query = "SELECT UID, managerID FROM Users WHERE Email = '".$db->real_escape_string($email)."' AND Password = '".$db->real_escape_string($password)."'";
+
+			//Execute the query
+			$results = $db->query($query);
+
+			if ($results->num_rows > 0) {
+				//Get the results as an associative array
+				$row = $results->fetch_assoc();
+
+				//Fill session variables
+				$_SESSION["UID"] = $row["UID"];
+				$_SESSION["MID"] = $row["managerID"];
+
+				//Send the user to their landing page based on the obtained credentials
+				if ($_SESSION["MID"] != NULL && $_SESSION["MID"] > 0)
+					header("Location: manager-views/manager-landing.php");
+				else
+					header("Location: employee-views/employee-landing.php");
 			} else {
-				//Connect to the DB
-				$db = new mysqli('localhost', $serverName, $serverPW, $serverName);
-
-				//Check if the connection failed
-				if ($db->connect_error) {
-					die ("Connection failed: ".$db->connect_error);
-				} 
-
-				//Query the db for the login credentials
-				$query = "SELECT UID, managerID, FirstName, LastName, PictureURL FROM Users WHERE Email = '".$db->real_escape_string($email)."' AND Password = '".$db->real_escape_string($password)."'";
-
-				//Execute the query
-				$results = $db->query($query);
-
-				if ($results->num_rows > 0) {
-					//Get the results as an associative array
-					$row = $results->fetch_assoc();
-
-					//Fill session variables
-					$_SESSION["UID"] = $row["UID"];
-					$_SESSION["MID"] = $row["managerID"];
-					$_SESSION["FirstName"] = $row["FirstName"];
-					$_SESSION["LastName"] = $row["LastName"];
-					$_SESSION["PictureURL"] = $row["PictureURL"];
-
-					//Send the user to their landing page
-					if ($_SESSION["MID"] != NULL)
-						header("Location: manager-views/manager-landing.php");
-					else
-						header("Location: employee-views/employee-landing.php");
-				} else {
-					$errorMsg = "Invalid Login";
-				}
-				
-				//Close the connection
-				$db->close();
+				$errorMsg = "Invalid Login";
 			}
-		} 
-    }
+				
+			//Close the connection
+			$db->close();
+		}
+	} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
