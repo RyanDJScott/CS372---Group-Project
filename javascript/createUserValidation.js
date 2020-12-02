@@ -235,6 +235,18 @@ function passwordChecker2(passwordInput)
         passwordMsg.innerHTML = "Please enter a valid password";
         validInput = false; 
     }
+    //expression to make sure password has a special character
+    if((/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(passwordInput)) == false)
+    {
+        passwordMsg.innerHTML = "Please enter a valid password";
+        validInput = false;
+    }
+    //make sure password has an uppercase
+    if((/[A-Z]/.test(passwordInput)) == false)
+    {
+        passwordMsg.innerHTML = "Please enter a valid password";
+        validInput = false;
+    }
     if(validInput == true)
     {
         passwordMsg.innerHTML = "";

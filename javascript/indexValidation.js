@@ -28,7 +28,7 @@ function emailChecker2(emailInput)
         validInput = false;
     }
     //use an expression to validate the email
-    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(emailInput))
+    if ((/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(emailInput)) == false)
     {
         emailMsg.innerHTML = "This is not a valid email";
         validInput = false;
@@ -66,6 +66,18 @@ function passwordChecker2(passwordInput)
     {
         passwordMsg.innerHTML = "Please enter a valid password";
         validInput = false; 
+    }
+    //expression to make sure password has a special character
+    if((/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(passwordInput)) == false)
+    {
+        passwordMsg.innerHTML = "Please enter a valid password";
+        validInput = false;
+    }
+    //make sure password has an uppercase
+    if((/[A-Z]/.test(passwordInput)) == false)
+    {
+        passwordMsg.innerHTML = "Please enter a valid password";
+        validInput = false;
     }
     if(validInput == true)//if the input is valid then reset the error message
     {

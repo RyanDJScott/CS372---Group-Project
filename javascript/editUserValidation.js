@@ -137,6 +137,90 @@ function emailChecker2(emailInput)
     return validInput;
 }
 
+//wrapper function to send password to password validation
+function password1Checker(event)
+{
+    var passwordInput = event.currentTarget.value;
+
+    password1Checker2(passwordInput);
+}
+
+//password validation for first password, test length and chars, but not matching
+function password1Checker2(passwordInput)
+{
+     //get the location of the password error message
+    var passwordMsg = document.getElementById("password1Error");
+    //variable validinput is the return value, determines if the input is valid
+    var validInput = true;
+
+    if(passwordInput == "")//determines if the password is empty
+    {
+        passwordMsg.innerHTML += "You have not entered a password \n";
+        validInput = false;
+    }
+    if((passwordInput.length < 8) && (passwordInput.length > 0))//makes sure password is at least 8 characters
+    {
+        passwordMsg.innerHTML += "Password needs to be at least 8 characters \n";
+        validInput = false;
+    }
+    if(passwordInput.length > 20)//password maximum length is 20 characters
+    {
+        passwordMsg.innerHTML += "Password needs to be fewer than 20 characters \n";
+        validInput = false; 
+    }
+    //expression to make sure password has a special character
+    if((/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(passwordInput)) == false)
+    {
+        passwordMsg.innerHTML = "Password needs a special character \n";
+        validInput = false;
+    }
+    //make sure password has an uppercase
+    if((/[A-Z]/.test(passwordInput)) == false)
+    {
+        passwordMsg.innerHTML = "Password needs an upper case letter \n";
+        validInput = false;
+    }
+    if(validInput == true)//if the input is valid then reset the error message
+    {
+        passwordMsg.innerHTML = "";
+    }
+    return validInput;//return the value of the function   
+}
+
+//wrapper function to send password2 to validation
+function password2Checker(event)
+{
+    var passwordInput = event.currentTarget.value;
+
+    password2Checker2(passwordInput);
+}
+
+//password 2 validation for confirmation, checks password1 and if matches
+function password2Checker2(passwordInput)
+{
+     //get the location of the password error message
+     var passwordMsg = document.getElementById("password2Error");
+     //variable validinput is the return value, determines if the input is valid
+     var validInput = true;
+
+     var password1 = document.getElementsByName("password"); //get the first password
+     if(password1Checker2(password1[0].value) == false)//check the first passwrod
+     {
+        passwordMsg.innerHTML += "Please make sure that both passwords are valid \n";
+        validInput = false;
+     }
+     if(password1 != passwordInput)//check if they match 
+     {
+        passwordMsg.innerHTML += "Please make sure that both passwords match \n";
+        validInput = false;
+     }
+     if(validInput == true)
+     {//resest message
+         passwordMsg.innerHTML = "";
+     }
+     return validInput;//return function value
+}
+
 function skill1Checker(event)
 {
     var skillInput = event.currentTarget.value;
@@ -336,6 +420,18 @@ function submitChecker(event)
     if((skill5Checker2(skill5[0].value)) == false)
     {
         console.log("skill5 invalid onsubmit");
+        event.preventDefault();
+    }
+
+    //password checking
+    var password1 = document.getElementsByName("password"); //get the first password
+    if((password1Checker2(password1[0].value)) == false)
+    {
+        event.preventDefault();
+    }
+    var password2 = document.getElementsByName("confirmPassword");
+    if((password2Checker2(password2[0].value)) == false)
+    {
         event.preventDefault();
     }
 }
