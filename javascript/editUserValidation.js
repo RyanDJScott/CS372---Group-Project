@@ -36,7 +36,6 @@ function fileChecker2(filePathInput)
 
 function firstNameChecker(event)
 {
-    console.log("entered the function");
     //get first name from the document
     var firstNameInput = event.currentTarget.value;
     firstNameChecker2(firstNameInput);
@@ -44,7 +43,6 @@ function firstNameChecker(event)
 
 function firstNameChecker2(firstNameInput)
 {
-    console.log(firstNameInput);
 
     var firstNameMsg = document.getElementById("firstNameError"); 
 
@@ -52,19 +50,16 @@ function firstNameChecker2(firstNameInput)
 
     if(firstNameInput == "")
     {
-        console.log("triggered empty")
         firstNameMsg.innerHTML = "You have not entered a first name";
         validInput = false;
     }
     if(firstNameInput.length > 20)
     {
-        console.log("Triggered too many chars");
         firstNameMsg.innerHTML = "This name is too long";
         validInput = false;
     }
     if(validInput == true)
     {
-        console.log("valid input")
         firstNameMsg.innerHTML = "";
     }
     return validInput;
@@ -349,7 +344,6 @@ function skill5Checker2(skill5Input)
 //prevent default here
 function submitChecker(event)
 {
-    console.log("Submit recieved")
     /*
     Checks:
         - picture
@@ -363,63 +357,54 @@ function submitChecker(event)
     var profilePicture = document.getElementsByName("profilePicture");
     if ((fileChecker2(profilePicture[0].value)) == false)
     {
-        console.log("profile picture recieved on submit");
         event.preventDefault();
     }
 
     var firstName = document.getElementsByName("firstName");
     if((firstNameChecker2(firstName[0].value)) == false)
     {
-        console.log("FirstName invalid onsubmit");
         event.preventDefault();
     }
 
     var lastName = document.getElementsByName("lastName");
     if((lastNameChecker2(lastName[0].value)) == false)
     {
-        console.log("Lastname invalid onsubmit");
         event.preventDefault();
     }
 
     var email = document.getElementsByName("email");
     if((emailChecker2(email[0].value)) == false)
     {
-        console.log("email invalid onsubmit");
         event.preventDefault();
     }
 
     var skill1 = document.getElementsByName("skill1");
     if((skill1Checker2(skill1[0].value)) == false)
     {
-        console.log("skill1 invalid onsubmit");
         event.preventDefault();
     }
 
     var skill2 = document.getElementsByName("skill2");
     if((skill2Checker2(skill2[0].value)) == false)
     {
-        console.log("skill2 invalid onsubmit");
         event.preventDefault();
     }
     
     var skill3 = document.getElementsByName("skill3");
     if((skill3Checker2(skill3[0].value)) == false)
     {
-        console.log("skill3 invalid onsubmit");
         event.preventDefault();
     }
 
     var skill4 = document.getElementsByName("skill4");
     if((skill4Checker2(skill4[0].value)) == false)
     {
-        console.log("skill4 invalid onsubmit");
         event.preventDefault();
     }
 
     var skill5 = document.getElementsByName("skill5");
     if((skill5Checker2(skill5[0].value)) == false)
     {
-        console.log("skill5 invalid onsubmit");
         event.preventDefault();
     }
 

@@ -1,5 +1,45 @@
 //validation functions for new project page
 
+function disableInputs(event)
+{
+    var task1 = document.getElementsByName("projectMember1Task1");
+    var task2 = document.getElementsByName("projectMember1Task2");
+    var task3 = document.getElementsByName("projectMember2Task1");
+    var task4 = document.getElementsByName("projectMember2Task2");
+    var task5 = document.getElementsByName("projectMember3Task1");
+    var task6 = document.getElementsByName("projectMember3Task2");
+    var task7 = document.getElementsByName("projectMember4Task1");
+    var task8 = document.getElementsByName("projectMember4Task2");
+    
+    var dead1 = document.getElementsByName("projectMember1DeadlineTask1");
+    var dead2 = document.getElementsByName("projectMember1DeadlineTask2");
+    var dead3 = document.getElementsByName("projectMember2DeadlineTask1");
+    var dead4 = document.getElementsByName("projectMember2DeadlineTask2");
+    var dead5 = document.getElementsByName("projectMember3DeadlineTask1");
+    var dead6 = document.getElementsByName("projectMember3DeadlineTask2");
+    var dead7 = document.getElementsByName("projectMember4DeadlineTask1");
+    var dead8 = document.getElementsByName("projectMember4DeadlineTask2");
+
+    task1[0].disabled = true;
+    task2[0].disabled = true;
+    task3[0].disabled = true;
+    task4[0].disabled = true;
+    task5[0].disabled = true;
+    task6[0].disabled = true;
+    task7[0].disabled = true;
+    task8[0].disabled = true;
+
+
+    dead1[0].disabled = true;
+    dead2[0].disabled = true;
+    dead3[0].disabled = true;
+    dead4[0].disabled = true;
+    dead5[0].disabled = true;
+    dead6[0].disabled = true;
+    dead7[0].disabled = true;
+    dead8[0].disabled = true;
+}
+
 function titleChecker(event)
 {
     console.log("titleChecker entered")
@@ -88,15 +128,15 @@ function startDateChecker2(startDate)
         startDateMsg.innerHTML = "";
     }
 
-    var endDate = document.getElementsByName("endDate");
-    if(validInput == true)
-    {
-        endDate[0].disabled = false;
-    }
-    if(validInput == false)
-    {
-        endDate[0].disabled = true;
-    }
+    // var endDate = document.getElementsByName("endDate");
+    // if(validInput == true)
+    // {
+    //     endDate[0].disabled = false;
+    // }
+    // if(validInput == false)
+    // {
+    //     endDate[0].disabled = true;
+    // }
 
     return validInput;
 }
@@ -127,7 +167,6 @@ function endDateChecker2(endDate)
     //get startDate
     var startDate = document.getElementsByName("startDate");
     var startDateInput = startDate[0].value;
-    console.log("startDate input:" + startDate[0]);
 
     if(startDateInput > endDate)
     {
@@ -188,7 +227,7 @@ function member1Checker2(member)
     //get tasks
     var task1 = document.getElementsByName("projectMember1Task1");
     var task2 = document.getElementsByName("projectMember1Task2");
-    var dead1 = document.getElementsByName("projectMember1DeadlineTask1")
+    var dead1 = document.getElementsByName("projectMember1DeadlineTask1");
     var dead2 = document.getElementsByName("projectMember1DeadlineTask2");
     if(member != "" && member.length < 50)
     {
@@ -228,7 +267,7 @@ function member2Checker2(member)
     //get tasks
     var task1 = document.getElementsByName("projectMember2Task1");
     var task2 = document.getElementsByName("projectMember2Task2");
-    var dead1 = document.getElementsByName("projectMember2DeadlineTask1")
+    var dead1 = document.getElementsByName("projectMember2DeadlineTask1");
     var dead2 = document.getElementsByName("projectMember2DeadlineTask2");
     if(member != "" && member.length < 50)
     {
@@ -268,7 +307,7 @@ function member3Checker2(member)
     //get tasks
     var task1 = document.getElementsByName("projectMember3Task1");
     var task2 = document.getElementsByName("projectMember3Task2");
-    var dead1 = document.getElementsByName("projectMember3DeadlineTask1")
+    var dead1 = document.getElementsByName("projectMember3DeadlineTask1");
     var dead2 = document.getElementsByName("projectMember3DeadlineTask2");
     if(member != "" && member.length < 50)
     {
@@ -308,7 +347,7 @@ function member4Checker2(member)
     //get tasks
     var task1 = document.getElementsByName("projectMember4Task1");
     var task2 = document.getElementsByName("projectMember4Task2");
-    var dead1 = document.getElementsByName("projectMember4DeadlineTask1")
+    var dead1 = document.getElementsByName("projectMember4DeadlineTask1");
     var dead2 = document.getElementsByName("projectMember4DeadlineTask2");
     if(member != "" && member.length < 50)
     {

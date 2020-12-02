@@ -362,7 +362,7 @@
                             <table>
                                 <tr>
                                     <td>Start Date: </td><td> <input type="date" name="startDate" value="<?php echo htmlspecialchars($startDate); ?>" /></td>
-                                    <td>End Date: </td><td> <input type="date" name="endDate" value="<?php echo htmlspecialchars($endDate); ?>" disabled="disabled" /></td>
+                                    <td>End Date: </td><td> <input type="date" name="endDate" value="<?php echo htmlspecialchars($endDate); ?>" /></td>
                                 </tr>
 
                                 <tr>

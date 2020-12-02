@@ -1,6 +1,7 @@
 //event listeners for creating a new project
 
-console.log("JavaScript Event Listeners Active")
+//listener for page load to trigger the disabled inputs
+window.addEventListener("load", diableInputs, false);
 
 var titleListener = document.getElementsByName("projectTitle");
 titleListener[0].addEventListener("blur", titleChecker, false);
