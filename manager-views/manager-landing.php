@@ -9,10 +9,29 @@
     if (isset($_SESSION["UID"]) && $_SESSION["UID"] > 0) {
         if (isset($_SESSION["MID"]) && $_SESSION["MID"] != NULL)
         {
+            //Connect the db, and test the connection
+            $db = new mysqli('localhost', $serverName, $serverPW, $serverName);
+
+            //Check if the connection failed
+            if ($db->connect_error) {
+                die ("Connection failed: ".$db->connect_error);
+            }
+
+            //Grab the session variables for use
+            $UID = $_SESSION["UID"];
+            $MID = $_SESSION["MID"];
+
             //Grab user picture from session variables
-            $pictureURL = $_SESSION["PictureURL"];
-            $FirstName = $_SESSION["FirstName"];
-            $LastName = $_SESSION["LastName"];
+            $userInfo = "SELECT FirstName, LastName, PictureURL FROM Users WHERE UID = '$UID' AND managerID = '$MID'";
+
+            $infoResult = $db->query($userInfo);
+
+            while ($rows = $infoResult->fetch_assoc())
+            {
+                $pictureURL = $rows["PictureURL"];
+                $FirstName = $rows["FirstName"];
+                $LastName = $rows["LastName"];
+            }
 
             //If you were redirected to this page, check the success variable for message
             if ($_SERVER["REQUEST_METHOD"] == "GET")
@@ -86,20 +105,10 @@
             
             <!-- card to display per project on landing page, replicate for projects needed -->
             <?php 
-                //Connect the db, and test the connection
-                $db = new mysqli('localhost', $serverName, $serverPW, $serverName);
-
-                //Check if the connection failed
-                if ($db->connect_error) {
-                    die ("Connection failed: ".$db->connect_error);
-                } 
-
                 //Execute the query to find all projects and their team members
-                $firstQuery = "SELECT Projects.PID, Title, Description, StartDate, EndDate, Users.UID, FirstName, LastName 
-                            FROM Projects LEFT JOIN ProjectTeams ON Projects.PID = ProjectTeams.PID 
-                            INNER JOIN Users ON ProjectTeams.UID = Users.UID 
-                            WHERE Users.managerID IS NULL
-                            ORDER BY Projects.PID";
+                $firstQuery = "SELECT Projects.PID, Title, Description, StartDate, EndDate 
+                                FROM Projects   
+                                ORDER BY EndDate ASC";
                 
                 //Execute the query
                 $firstResults = $db->query($firstQuery);
@@ -173,43 +182,61 @@
                             </tr>
                         </thead>
                     </table>
-                    
-                    <table id="members-landing-card">
-                            <tr>
-                                <th>Project Members</th>
-                                <th>Task 1</th>
-                                <th>Deadline</th> 
-                                <th>Task 2</th>
-                                <th>Deadline</th>
-                            </tr>
-                        </thead>
-                            <tr>
                             <?php
                                 }
+                                //Get all of the non-manager members for this project
+                                $projectMembers = "SELECT Users.UID, Users.managerID, Users.FirstName, Users.LastName 
+                                                    FROM Users INNER JOIN ProjectTeams ON (Users.UID = ProjectTeams.UID)
+                                                    WHERE ProjectTeams.PID = '$currentPID' AND managerID IS NULL
+                                                    ORDER BY FirstName ASC";
 
-                                //For each user in the project, if they have tasks, print them ordered by deadline
-                                $tasksQuery = "SELECT TDescription, Deadline 
-                                                FROM Tasks 
-                                                WHERE UID = '".$projectRows["UID"]."' AND PID = '$currentPID'
-                                                ORDER BY Deadline ASC";
+                                $memberResults = $db->query($projectMembers);
 
-                                //Execute query
-                                $taskResults = $db->query($tasksQuery);
+                                if ($memberResults->num_rows > 0)
+                                {
                             ?>
-                            <td><?=$projectRows["FirstName"]?> <?=$projectRows["LastName"]?></td>
-                            <?php 
-                                    while ($taskRows = $taskResults->fetch_assoc())
+                            <table id="members-landing-card">
+                                <tr>
+                                    <th>Project Members</th>
+                                    <th>Task 1</th>
+                                    <th>Deadline</th> 
+                                    <th>Task 2</th>
+                                    <th>Deadline</th>
+                                </tr>
+                            </thead>
+                                <tr>
+                            <?php
+                                    while ($memberRows = $memberResults->fetch_assoc())
                                     {
+
+                            ?>
+                                <td><?=$memberRows["FirstName"]?> <?=$memberRows["LastName"]?></td>
+                            <?php
+                                        //For each user in the project, if they have tasks, print them ordered by deadline
+                                        $tasksQuery = "SELECT TDescription, Deadline 
+                                        FROM Tasks 
+                                        WHERE UID = '".$memberRows["UID"]."' AND PID = '$currentPID'
+                                        ORDER BY Deadline ASC";
+
+                                        //Execute query
+                                        $taskResults = $db->query($tasksQuery);
+
+                                        if ($taskResults->num_rows > 0)
+                                        {
+                                            while ($taskRows = $taskResults->fetch_assoc())
+                                            {
                             ?>
                                 <td><?=$taskRows["TDescription"]?></td>
                                 <td><?=$taskRows["Deadline"]?></td>
                             <?php 
-                                    }
+                                            }
+                                        }
                             ?>
-                            </tr>
+                            </tr>                            
                             <?php
-                                //Loop back to the next result
+                                    }       
                                 }
+                            }
                             ?>      
                     </table>
                 </article>
@@ -217,8 +244,8 @@
             <!-- end of landing card -->
             <?php 
                     } else {
-                        //Error in retrieving project details
-                        echo("<p class=\"generic-php-error\">There was an error retrieving projects from the database.</p>");
+                        //No projects were found, print message!
+                        echo("<p class=\"generic-php-error\">There are no projects currently being undertaken by the company!</p>");
                     }
 
                 //If loop has ran to completion with no errors, close the Db
@@ -226,7 +253,6 @@
             ?>
         </div>
     </div>
-
 </body>
 <script type="text/javascript" src="../javascript/deleteButtonCertainR.js"></script>
 </html>
