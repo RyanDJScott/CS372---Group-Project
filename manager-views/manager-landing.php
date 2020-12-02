@@ -91,10 +91,10 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="<?=$pictureURL?>" alt="<?=$FirstName?> <?=$LastName?>" width="80px" height="80px"> 
+                                    <img src="<?=$pictureURL?>" alt="<?php echo htmlspecialchars($FirstName);?> <?php htmlspecialchars($LastName);?>" width="80px" height="80px"> 
                                 </td>
                                 <td>
-                                    <h2>Manager - <?=$FirstName?> <?=$LastName?></h2> 
+                                    <h2>Manager - <?php echo htmlspecialchars($FirstName);?> <?php htmlspecialchars($LastName);?></h2> 
                                 </td>
                             </tr>
                         </tbody>
@@ -146,10 +146,10 @@
                         </thead>
 
                             <tr>
-                                <td class="project-title"><?=$projectRows["Title"]?></td>
-                                <td><?=$projectRows["Description"]?></td>
-                                <td><?=$projectRows["StartDate"]?></td>
-                                <td><?=$projectRows["EndDate"]?></td>
+                                <td class="project-title"><?php echo htmlspecialchars($projectRows["Title"]);?></td>
+                                <td><?php echo htmlspecialchars($projectRows["Description"]);?></td>
+                                <td><?php echo htmlspecialchars($projectRows["StartDate"]);?></td>
+                                <td><?php echo htmlspecialchars($projectRows["EndDate"]);?></td>
                                 <td>
                                     <form action="editProject.php" method="POST">
                                         <input type="hidden" name="PID" value="<?=$currentPID?>" />
@@ -177,7 +177,7 @@
                                         $managerResult = $managerQuery->fetch_assoc();
                                     ?>
                                 
-                                    <td><?=$managerResult["FirstName"]?> <?=$managerResult["LastName"]?></td>
+                                    <td><?php echo htmlspecialchars($managerResult["FirstName"]);?> <?php echo htmlspecialchars($managerResult["LastName"]);?></td>
                                 </th>
                             </tr>
                         </thead>
@@ -210,7 +210,7 @@
                                     {
 
                             ?>
-                                <td><?=$memberRows["FirstName"]?> <?=$memberRows["LastName"]?></td>
+                                <td><?php echo htmlspecialchars($memberRows["FirstName"]);?> <?php echo htmlspecialchars($memberRows["LastName"]);?></td>
                             <?php
                                         //For each user in the project, if they have tasks, print them ordered by deadline
                                         $tasksQuery = "SELECT TDescription, Deadline 
@@ -226,8 +226,8 @@
                                             while ($taskRows = $taskResults->fetch_assoc())
                                             {
                             ?>
-                                <td><?=$taskRows["TDescription"]?></td>
-                                <td><?=$taskRows["Deadline"]?></td>
+                                <td><?php echo htmlspecialchars($taskRows["TDescription"]);?></td>
+                                <td><?php echo htmlspecialchars($taskRows["Deadline"]);?></td>
                             <?php 
                                             }
                                         }

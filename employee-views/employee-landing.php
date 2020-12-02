@@ -75,10 +75,10 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="<?=$pictureURL?>" alt="<?=$FirstName?> <?=$LastName?>" width="80px" height="80px"> 
+                                    <img src="<?=$pictureURL?>" alt="<?php htmlspecialchars($FirstName);?> <?php echo htmlspecialchars($LastName);?>" width="80px" height="80px"> 
                                 </td>
                                 <td>
-                                    <h2><?=$FirstName?> <?=$LastName?></h2> 
+                                    <h2><?php echo htmlspecialchars($FirstName);?> <?php echo htmlspecialchars($LastName);?></h2> 
                                 </td>
                             </tr>
                         </tbody>
@@ -122,10 +122,9 @@
                         </article>
                         </div>
                         <?php
-                                        }
-                                        //Set the current PID to this project
-                                        $currentPID = $projectRows["PID"];
-                                    
+                                    }
+                                    //Set the current PID to this project
+                                    $currentPID = $projectRows["PID"];  
                         ?>
             <div class="card-container">
                 <article>
@@ -140,10 +139,10 @@
                         </thead>
 
                             <tr>
-                                <td class="project-title"><?=$projectRows["Title"]?></td>
-                                <td><?=$projectRows["Description"]?></td>
-                                <td><?=$projectRows["StartDate"]?></td>
-                                <td><?=$projectRows["EndDate"]?></td>
+                                <td class="project-title"><?php echo htmlspecialchars($projectRows["Title"]);?></td>
+                                <td><?php echo htmlspecialchars($projectRows["Description"]);?></td>
+                                <td><?php echo htmlspecialchars($projectRows["StartDate"]);?></td>
+                                <td><?php echo htmlspecialchars($projectRows["EndDate"]);?></td>
                             </tr>
                     </table>
 
@@ -162,12 +161,12 @@
                                         $managerResult = $managerQuery->fetch_assoc();
                                     ?>
                                 
-                                    <td><?=$managerResult["FirstName"]?> <?=$managerResult["LastName"]?></td>
+                                    <td><?php echo htmlspecialchars($managerResult["FirstName"]);?> <?php echo htmlspecialchars($managerResult["LastName"]);?></td>
                                 </th>
                             </tr>
                         </thead>
                     </table>
-                        <?php
+                                <?php
                                 }
                                 //Get all of the non-manager members for this project
                                 $projectMembers = "SELECT Users.UID, Users.managerID, Users.FirstName, Users.LastName 
@@ -181,13 +180,13 @@
                                 {
                                 ?>
                                 <table id="members-landing-card">
-                                <tr>
-                                    <th>Project Members</th>
-                                    <th>Task 1</th>
-                                    <th>Deadline</th> 
-                                    <th>Task 2</th>
-                                    <th>Deadline</th>
-                                </tr>
+                                    <tr>
+                                        <th>Project Members</th>
+                                        <th>Task 1</th>
+                                        <th>Deadline</th> 
+                                        <th>Task 2</th>
+                                        <th>Deadline</th>
+                                    </tr>
                                 </thead>
                                 <tr>
                                 <?php
@@ -195,7 +194,7 @@
                                     {
 
                                 ?>
-                                <td><?=$memberRows["FirstName"]?> <?=$memberRows["LastName"]?></td>
+                                <td><?php echo htmlspecialchars($memberRows["FirstName"]);?> <?php echo htmlspecialchars($memberRows["LastName"]);?></td>
                                 <?php
                                         //For each user in the project, if they have tasks, print them ordered by deadline
                                         $tasksQuery = "SELECT TDescription, Deadline 
@@ -211,8 +210,8 @@
                                             while ($taskRows = $taskResults->fetch_assoc())
                                             {
                                 ?>
-                                <td><?=$taskRows["TDescription"]?></td>
-                                <td><?=$taskRows["Deadline"]?></td>
+                                <td><?php echo htmlspecialchars($taskRows["TDescription"]);?></td>
+                                <td><?php echo htmlspecialchars($taskRows["Deadline"]);?></td>
                                 <?php 
                                             }
                                         }
@@ -224,22 +223,21 @@
                                 }
                                 ?>      
                                 </table>
-                                </article>
-                                </div>
-                                <!-- end of landing card -->
-            <?php 
-                        } else {
-                            //Error in retrieving project details
-                            echo("<p class=\"generic-php-error\">There was an error retrieving projects from the database.</p>");
-                        }
-                    }
-                } else {
-                    echo("<p class=\"generic-php-error\">You are not currently involved in any projects!</p>");
-                }
-            //If loop has ran to completion with no errors, close the Db
-            $db->close();
-            ?>
-			
+                            </article>
+                        </div>
+                        <!-- end of landing card -->
+                        <?php 
+                                    } else {
+                                        //Error in retrieving project details
+                                        echo("<p class=\"generic-php-error\">There was an error retrieving projects from the database.</p>");
+                                    }
+                                }
+                            } else {
+                                echo("<p class=\"generic-php-error\">You are not currently involved in any projects!</p>");
+                            }
+                        //If loop has ran to completion with no errors, close the Db
+                        $db->close();
+                        ?>
         </div>
 	</div>
 </body>
