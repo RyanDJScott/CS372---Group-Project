@@ -199,6 +199,12 @@ function emailChecker2(emailInput)
         emailMsg.innerHTML = "This email is too long";
         validInput = false;
     }
+    //use an expression to validate the email
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(emailInput))
+    {
+        emailMsg.innerHTML = "This is not a valid email";
+        validInput = false;
+    }
     if(validInput == true)
     {
         emailMsg.innerHTML = "";
