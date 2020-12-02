@@ -17,7 +17,7 @@
     if ($memberName != "")
     {   
         //Build query based on their first name
-        $findUser = "SELECT FirstName, LastName FROM Users WHERE FirstName LIKE '".$db->real_escape_string($memberName)."%'";
+        $findUser = "SELECT FirstName, LastName FROM Users WHERE FirstName LIKE '".$db->real_escape_string($memberName)."%' AND managerID IS NULL";
 
         //Execute query,
         $results = $db->query($findUser);

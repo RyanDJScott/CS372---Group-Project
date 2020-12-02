@@ -95,11 +95,12 @@
                                     $uploadOk = 0;
                                 }
                                 
-                                // Check if $uploadOk is 1, attempt to upload the file. Set flag to 0 if fails.
-                                if ($uploadOK == 1) {
-                                    if (!(move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $target_file))) {
+                                if ($uploadOk == 1)
+                                { 
+                                    if(!(move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $target_file)))
+                                    {
                                         $uploadOk = 0;
-                                        $uploadError = "Your file could not be copied onto our server. Please try again.";
+                                        $imageError = "Your picture could not be copied to our server. Please try again!";
                                     }
                                 }
                             }
