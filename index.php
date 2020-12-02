@@ -82,7 +82,7 @@
 					<img src="assets/images/Logo.png" alt="Company Logo">
 				</div>
 
-				<form class="login-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+				<form id="indexSubmitForm" class="login-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
 					<span class="login-form-title">
 						Member Login
 					</span>
