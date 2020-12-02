@@ -141,7 +141,7 @@
                 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" )
                 {
                     $uploadOk = 0;
-                    $imageError = "That file type is not allowed! jpg, png, jpeg, and gif only!";
+                    $imageError = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                 }
 
                 // Check if $uploadOk is set to 0 by an error
@@ -150,7 +150,7 @@
                     if(!(move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $target_file)))
                     {
                         $uploadOk = 0;
-                        $imageError = "Your picture could not be copied to our server. Please try again!";
+                        $imageError = "Your file could not be copied onto our server. Please try again.";
                     }
                 }
                             
@@ -392,7 +392,7 @@ $db->close();
                         
                         <div class="submit-button-container">
                             <p>
-                                <button type="submit" name="submit" id="submit" class="submit-button" style="float: right;">Submit</button> 
+                                <button type="submit" name="submit" id="submit" class="submit-button" style="float: right;">Update Profile</button> 
                             </p>
                         </div>
                     </form>

@@ -379,7 +379,7 @@
                         
                         <div class="submit-button-container">
                             <p>
-                                <button type="submit" name="submit" id="submit" class="submit-button" style="float: right;">Submit</button> 
+                                <button type="submit" name="submit" id="submit" class="submit-button" style="float: right;">Update Profile</button> 
                             </p>
                         </div>
                     </form>

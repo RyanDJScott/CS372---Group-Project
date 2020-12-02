@@ -52,7 +52,8 @@
                     ($firstName != NULL && strlen($firstName) <= 20) && 
                     ($lastName != NULL && strlen($lastName) <= 20) &&
                     ((filter_var($email, FILTER_VALIDATE_EMAIL))) && 
-                    ($password != NULL && (strlen($password) > 8 && preg_match("/[A-Z]+/", $password) && preg_match("/\W+/", $password))))
+                    ($password != NULL && (strlen($password) > 8 && preg_match("/[A-Z]+/", $password) && preg_match("/\W+/", $password))) &&
+                    strlen($pictureURL) <= 80)
                     {
                         //Set boolean flag for checking skills
                         $skillsValid = true;
@@ -76,26 +77,15 @@
                              
                             //Upload the image if there is an actual image to upload
                             if ($pictureURL != "../assets/images/emptypic.png") {
-                                // Check if image file is a actual image or fake image
-                                if(isset($_POST["submit"])) {
-                                    $check = getimagesize($_FILES["profilePicture"]["tmp_name"]);
-                                        if($check !== false) {
-                                            $uploadOk = 1;
-                                        } else {
-                                            $uploadError = "File is not an image.";
-                                            $uploadOk = 0;
-                                        }
-                                    }
-                                
                                 // Check if file already exists
                                 if (file_exists($target_file)) {
-                                    $uploadError = "Sorry, file already exists.";
+                                    $uploadError = "The file already exists in our system! Please rename your picture file.";
                                     $uploadOk = 0;
                                 }
                                 
                                 // Check file size
-                                if ($_FILES["profilePicture"]["size"] > 500000000) {
-                                    $uploadError = "Sorry, your file is too large.";
+                                if ($_FILES["profilePicture"]["size"] > 2000000) {
+                                    $uploadError = "The picture file size cannot exceed 2 MB!";
                                     $uploadOk = 0;
                                 }
                                 
@@ -268,9 +258,9 @@
                                         </td>
                                         
                                         <td>
-                                            <input type="radio" id="userTypeManager" name="userType" value="userTypeManager">
+                                            <input type="radio" id="userTypeManager" name="userType" value="userTypeManager" <?php if($employeeType == "userTypeManager") {?>checked<?php }?>>
                                             <label for="userTypeManager">&nbsp;Manager</label>&nbsp;&nbsp;
-                                            <input type="radio" id="userTypeEmployee" name="userType" value="userTypeEmployee">
+                                            <input type="radio" id="userTypeEmployee" name="userType" value="userTypeEmployee" <?php if($employeeType == "userTypeEmployee") {?>checked<?php }?>>
                                             <label for="userTypeEmployee">&nbsp;Employee</label>
                                         </td>
                                         
@@ -283,8 +273,8 @@
                                     </tr>
         
                                     <tr>
-                                        <td>First Name: </td><td> <input type="text" name="firstName" size="30" class="text-input" /></td>
-                                        <td>Last Name: </td><td> <input type="text" name="lastName" size="30" class="text-input"/></td>
+                                        <td>First Name: </td><td> <input type="text" name="firstName" size="30" class="text-input" value="<?php echo htmlspecialchars($firstName); ?>" /></td>
+                                        <td>Last Name: </td><td> <input type="text" name="lastName" size="30" class="text-input" value="<?php echo htmlspecialchars($lastName); ?>" /></td>
                                     </tr>
 
                                     <tr>
@@ -293,8 +283,8 @@
                                     </tr>
         
                                     <tr>
-                                        <td>Email: </td><td> <input type="text" name="email" size="30" class="text-input"/></td>
-                                        <td>Password: </td><td> <input type="password" name="password" size="30" class="text-input"/></td>
+                                        <td>Email: </td><td> <input type="text" name="email" size="30" class="text-input" value="<?php echo htmlspecialchars($email); ?>" /></td>
+                                        <td>Password: </td><td> <input type="text" name="password" size="30" class="text-input" value="<?php echo htmlspecialchars($password); ?>" /></td>
                                     </tr>
 
                                     <tr>
@@ -308,8 +298,8 @@
                         <div class="skills-container" style="margin-top: -22px";>
                             <table>
                                 <tr>
-                                    <td>Skills: </td><td> <input type="text" name="skill1" size="30" class="text-input"/></td>
-                                    <td></td><td> <input type="text" name="skill2" size="30" class="text-input"/></td><br>
+                                    <td>Skills: </td><td> <input type="text" name="skill1" size="30" class="text-input" value="<?php echo htmlspecialchars($skills[0]); ?>" /></td>
+                                    <td></td><td> <input type="text" name="skill2" size="30" class="text-input" value="<?php echo htmlspecialchars($skills[1]); ?>" /></td><br>
                                 </tr>
 
                                 <tr>
@@ -318,8 +308,8 @@
                                 </tr>
                         
                                 <tr>
-                                    <td></td><td> <input type="text" name="skill3" size="30" class="text-input"/></td>
-                                    <td></td><td> <input type="text" name="skill4" size="30" class="text-input"/></td>
+                                    <td></td><td> <input type="text" name="skill3" size="30" class="text-input" value="<?php echo htmlspecialchars($skills[2]); ?>" /></td>
+                                    <td></td><td> <input type="text" name="skill4" size="30" class="text-input" value="<?php echo htmlspecialchars($skills[3]); ?>" /></td>
                                 </tr>
 
                                 <tr>
@@ -328,7 +318,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td></td><td> <input type="text" name="skill5" size="30" class="text-input"/></td>
+                                    <td></td><td> <input type="text" name="skill5" size="30" class="text-input" value="<?php echo htmlspecialchars($skills[4]); ?>" /></td>
                                 </tr>
 
                                 <tr>
@@ -340,7 +330,7 @@
                         
                         <div class="submit-button-container">
                             <p>
-                                <button type="submit" name="submit" id="submit" class="submit-button" style="float: right;">Submit</button> 
+                                <button type="submit" name="submit" id="submit" class="submit-button" style="float: right;">Create New Employee</button> 
                             </p>
                         </div>
 
