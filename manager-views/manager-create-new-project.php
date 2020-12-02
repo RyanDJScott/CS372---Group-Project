@@ -61,7 +61,7 @@
                 } 
                 
                 //Validate the Projects information
-                if (($projectTitle != "" && strlen($projectTitle) <= 50) && $projectDescription != "" && $startDate != "" && $endDate != "" && ($startDate < $endDate))
+                if (($projectTitle != "" && strlen($projectTitle) <= 50) && ($projectDescription != "" &&  strlen($projectDescription) <= 250) && $startDate != "" && $endDate != "" && ($startDate < $endDate))
                 {
                     //Set error flag to false
                     $errorFlag = false;
