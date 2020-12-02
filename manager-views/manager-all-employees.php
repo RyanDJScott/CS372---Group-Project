@@ -17,7 +17,13 @@
                 if ($success == 1)
                     $deleteMessage = "The employee was successfully deleted from the database.";
                 else if ($success == 2)
-                    $deleteMessage = "A database error has occured. Please try again.";
+                    $deleteMessage = "The user could not be deleted from the database, please try again.";
+                else if ($success == 3)
+                    $deleteMessage = "The user's skills could not be deleted from the database. Please contact the DB administrator.";
+                else if ($success == 4)
+                    $deleteMessage = "The user's project tasks could not be deleted from the database. Please contact the DB administrator.";
+                else if ($success == 5)
+                    $deleteMessage = "The user could not be removed from their projects. Please contact the DB administrator.";
             }
 
             //Connect to the database
