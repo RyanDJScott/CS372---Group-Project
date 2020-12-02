@@ -125,11 +125,13 @@
                         for ($j = 0; $j < sizeof($tasks); $j++)
                         {
                             //If you find a task/deadline combo that is empty/full, throw an error
-                            if (($tasks[$j] != "" && $deadlines[$j] == "") || ($tasks[$j] == "" && $deadlines[$j] != "") || ($deadlines[$j] < $startDate) || ($deadlines[$j] > $endDate))
+                            //If you find a task/deadline combo that are filled out but have a deadline outside the time frame, throw an error
+                            if ((($tasks[$j] != "" && $deadlines[$j] == "") || ($tasks[$j] == "" && $deadlines[$j] != "")) 
+                                || (($tasks[$j] != "" && $deadlines[$j] != "") && ($deadlines[$j] < $startDate || $deadlines[$j] > $endDate)))
                             {
                                 $tdError = true;
                                 break;
-                            }
+                            } 
                         }
 
                         //Validation complete; insert this data into the database
