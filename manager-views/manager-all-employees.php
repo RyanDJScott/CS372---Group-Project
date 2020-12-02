@@ -59,7 +59,6 @@
 
 	<div class="limiter">
 		<div class="domain-container">
-
             <nav>
                 <ul>
                     <li>
@@ -79,7 +78,7 @@
                 <header>
                     <div class="search-bar-container">
                         <form class="search-bar">
-                            <input type="text" placeholder="Search.." name="search" id="employeeSearch">
+                            <input type="text" placeholder="Search by skill..." name="search" id="employeeSearch">
                             <button><i class="fa fa-search"></i></button>
                         </form>
                     </div>
@@ -130,10 +129,10 @@
                             ?>          
                             <tr name="employeeCard">
                                 <td><?=$empType?></td>
-                                <td><?=$empRows["FirstName"]?></td>
-                                <td><?=$empRows["LastName"]?></td>
-                                <td><?=$empRows["ProfileBio"]?></td>
-                                <td><?=$empRows["Email"]?></td>
+                                <td><?php echo htmlspecialchars($empRows["FirstName"]); ?></td>
+                                <td><?php echo htmlspecialchars($empRows["LastName"]); ?></td>
+                                <td><?php echo htmlspecialchars($empRows["ProfileBio"]); ?></td>
+                                <td><?php echo htmlspecialchars($empRows["Email"]); ?></td>
                                 <td>
                                     <ul>
                                     <?php
@@ -150,7 +149,7 @@
                                             while ($cpRows = $cpResults->fetch_assoc())
                                             {
                                     ?>
-                                        <li><?=$cpRows["CodingLang"]?></li>
+                                        <li><?php echo htmlspecialchars($cpRows["CodingLang"]); ?></li>
                                     <?php
                                             }
                                         }
@@ -175,13 +174,10 @@
                                 $db->close();
                             ?>
                     </table>
-            
             </article>
-				
 			</div>
 		</div>
 	</div>
-
 <script type="text/javascript" src="searchEmployee.js"></script>
 <script type="text/javascript" src="../javascript/deleteButtonCertainR.js"></script>
 </body>

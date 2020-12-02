@@ -89,7 +89,10 @@
             <!-- card to display per project on landing page, replicate for projects needed -->
             <?php
                 //Build the query to find all the PID's this employee is involved in.
-                $findPID = "SELECT PID FROM ProjectTeams WHERE UID = '$UID'";
+                $findPID = "SELECT ProjectTeams.PID 
+                            FROM ProjectTeams INNER JOIN Projects ON (ProjectTeams.PID = Projects.PID) 
+                            WHERE ProjectTeams.UID = '$UID'
+                            ORDER BY Projects.EndDate ASC";
 
                 //Execute the query
                 $pidResults = $db->query($findPID);
@@ -101,8 +104,7 @@
                         //Execute the query to find all projects and their team members by PID
                         $firstQuery = "SELECT Projects.PID, Title, Description, StartDate, EndDate
                                         FROM Projects 
-                                        WHERE Projects.PID = '".$pidRows["PID"]."'
-                                        ORDER BY EndDate ASC";
+                                        WHERE Projects.PID = '".$pidRows["PID"]."'";
     
                         //Execute the query
                         $firstResults = $db->query($firstQuery);
