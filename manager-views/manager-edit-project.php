@@ -340,7 +340,7 @@
 
                                 //If the query failed, set an error flag
                                 if ($managerUpdateResults == false)
-                                    $memberUpdateError == true;
+                                    $memberUpdateError = true;
                      
                                 //If the team members are all updated, update the tasks in the db
                                 if ($memberUpdateError == false)
