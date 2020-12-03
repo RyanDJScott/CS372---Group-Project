@@ -23,12 +23,12 @@ When a manager is editing a project, any field that has invalid data will be fla
 
 ![edit-project-manager-landing](https://user-images.githubusercontent.com/53383372/100956551-492cf800-34de-11eb-8b1a-4f1e2f9702b8.png)
 
-Project Title, Project Description, Start Date, and End Date must not be left blank. 
-The start date must be before the end date.
-The project manager field must not be blank. An AJAX implementation of fetching manager names has been added to this field; simply start typing the name of a manager and a text bubble will appear with all viable candidates matching that name. Click the name you wish to enter, and it will be inserted into the text field. This search will never contain employee names.
-A project may contain no members, which can be added at a later date.
-A project may contain members with no tasks/deadlines. They may be added at a later date. An AJAX implementation of fetching employee names has been added to each project member field; simply start typing the name of an employee and a text bubble will appear with all viable candidates matching that name. Click the name you wish to enter, and it will be inserted into the text field. This search will never contain manager names.
-A project that contains members and tasks must also be accompanied with a deadline, and vice-versa. Each deadline must be within the given project time frame.
+1. Project Title, Project Description, Start Date, and End Date must not be left blank. 
+2. The start date must be before the end date.
+3. The project manager field must not be blank. An AJAX implementation of fetching manager names has been added to this field; simply start typing the name of a manager and a text bubble will appear with all viable candidates matching that name. Click the name you wish to enter, and it will be inserted into the text field. This search will never contain employee names.
+4. A project may contain no members, which can be added at a later date.
+5. A project may contain members with no tasks/deadlines. They may be added at a later date. An AJAX implementation of fetching employee names has been added to each project member field; simply start typing the name of an employee and a text bubble will appear with all viable candidates matching that name. Click the name you wish to enter, and it will be inserted into the text field. This search will never contain manager names.
+6. A project that contains members and tasks must also be accompanied with a deadline, and vice-versa. Each deadline must be within the given project time frame.
 
 
 ## Employee Landing Page
@@ -42,12 +42,12 @@ Managers have the ability to create new users. A manager need only supply the us
 
 ![create-new-user](https://user-images.githubusercontent.com/53383372/100956521-39adaf00-34de-11eb-8208-a8f207146400.png)
 
-The profile picture may be left blank. If not, it must be a .jpg, .jpeg, .gif, or .png file and less than 2 MB in size. If the file exists in the DB, the file upload will be blocked.
-If a manager is being created, it must be accompanied by a manager ID. If an employee is being created, this field will be blanked out and disabled from user input.
-The first name and last name must not be blank or exceed 20 characters.
-The email must be a valid email address.
-The password must be between 8 - 20 characters long, contain one capital letter, and 1 non-word character.
-Skills must be between 0 and 10 characters long.
+1. The profile picture may be left blank. If not, it must be a .jpg, .jpeg, .gif, or .png file and less than 2 MB in size. If the file exists in the DB, the file  upload will be blocked.
+2. If a manager is being created, it must be accompanied by a manager ID. If an employee is being created, this field will be blanked out and disabled from user input.
+3. The first name and last name must not be blank or exceed 20 characters.
+4. The email must be a valid email address.
+5. The password must be between 8 - 20 characters long, contain one capital letter, and 1 non-word character.
+6. Skills must be between 0 and 10 characters long.
 
 
 ## Create New Project
@@ -56,18 +56,18 @@ Managers can also create new projects as needed. Any field that has invalid data
 ![create-new-project](https://user-images.githubusercontent.com/53383372/100956526-3ca89f80-34de-11eb-9095-0a98758b5f30.png)
 
 The rules for successfully submitting a new project to the database are as follows:
-Project Title, Project Description, Start Date, and End Date may not be left blank. 
+1. Project Title, Project Description, Start Date, and End Date may not be left blank. 
 The start date must be before the end date.
-A project may contain no members, which can be added at a later date.
-A project may contain members with no tasks/deadlines. They may be added at a later date.They may be added at a later date. An AJAX implementation of fetching employee names has been added to each project member field; simply start typing the name of an employee and a text bubble will appear with all viable candidates matching that name. Click the name you wish to enter, and it will be inserted into the text field. This search will never contain manager names.
-A project that contains members and tasks must also be accompanied with a deadline, and vice-versa. Each deadline must be within the given project time frame.
+2. A project may contain no members, which can be added at a later date.
+3. A project may contain members with no tasks/deadlines. They may be added at a later date.They may be added at a later date. An AJAX implementation of fetching employee names has been added to each project member field; simply start typing the name of an employee and a text bubble will appear with all viable candidates matching that name. Click the name you wish to enter, and it will be inserted into the text field. This search will never contain manager names.
+5. A project that contains members and tasks must also be accompanied with a deadline, and vice-versa. Each deadline must be within the given project time frame.
 
 
 ## Edit Profile
 All users have the option to edit their profile such that their information is up-to-date. In addition to the validation rules listed for creating a new user, the following validation rules also apply:
 
-The bio field must not be longer than 200 characters. A character counter has been implemented to help you stay within the limits.
-The new password and confirm password fields (if you are changing your password) must conform to a proper password. In addition, both fields must contain identical passwords.
+1. The bio field must not be longer than 200 characters. A character counter has been implemented to help you stay within the limits.
+2. The new password and confirm password fields (if you are changing your password) must conform to a proper password. In addition, both fields must contain identical passwords.
 
 ![edit-profile](https://user-images.githubusercontent.com/53383372/100956541-45997100-34de-11eb-85ca-ae6a3fff4cf7.png)
 
@@ -80,11 +80,11 @@ The Search employees page allows users to search the company database based on s
 # Tech Stack/Framework
 This web application was created using the following coding languages and frameworks:
 
-HTML/CSS - User Interface 
-JavaScript - Form validation
-PHP - Backend security, data manipulation, and database communication.
-mySQL - Database creation
-AJAX - Dynamic search page and dynamic field input for create/edit project.
+* HTML/CSS - User Interface 
+* JavaScript - Form validation
+* PHP - Backend security, data manipulation, and database communication.
+* mySQL - Database creation
+* AJAX - Dynamic search page and dynamic field input for create/edit project.
 
 Note: We advise that javaScript be enabled while using this web application. The application has been coded such that all validation will be performed in PHP; however helpful dynamic features will be lost when javaScript is disabled.
 
