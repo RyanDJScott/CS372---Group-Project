@@ -471,7 +471,7 @@ function submitChecker(event)
     }
 
     //check the bio
-    var bio = document.getElementsByName("bio");\
+    var bio = document.getElementsByName("bio");
     if(bioChecker2(bio[0].value) == false)
     {
         preventDefault();
