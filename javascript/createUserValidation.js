@@ -200,7 +200,7 @@ function emailChecker2(emailInput)
         validInput = false;
     }
     //use an expression to validate the email
-    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(emailInput))
+    if (/^\w+[\w.]*@\w+.[a-z]{2,3}$/.test(emailInput))
     {
         emailMsg.innerHTML = "This is not a valid email";
         validInput = false;
@@ -225,33 +225,38 @@ function passwordChecker2(passwordInput)
 
     var validInput = true;
 
-    if(passwordInput == "")
+    if(passwordInput == "")//determines if the password is empty
     {
-        passwordMsg.innerHTML = "You have not entered a password";
+        passwordMsg.innerHTML = "You have not entered a password \n";
         validInput = false;
     }
-    if(passwordInput.length > 20)
+    if((passwordInput.length <= 8) && (passwordInput.length > 0))//makes sure password is at least 8 characters
     {
-        passwordMsg.innerHTML = "Please enter a valid password";
+        passwordMsg.innerHTML = "Password needs to be at least 8 characters \n";
+        validInput = false;
+    }
+    if(passwordInput.length >= 20)//password maximum length is 20 characters
+    {
+        passwordMsg.innerHTML = "Password needs to be fewer than 20 characters \n";
         validInput = false; 
     }
     //expression to make sure password has a special character
-    if((/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(passwordInput)) == false)
+    if((/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(passwordInput)) == false && (passwordInput.length >= 8) && (passwordInput.length <= 20))
     {
-        passwordMsg.innerHTML = "Please enter a valid password";
+        passwordMsg.innerHTML = "Password needs a special character \n";
         validInput = false;
     }
     //make sure password has an uppercase
-    if((/[A-Z]/.test(passwordInput)) == false)
+    if((/[A-Z]/.test(passwordInput)) == false && (passwordInput.length >= 8) && (passwordInput.length <= 20))
     {
-        passwordMsg.innerHTML = "Please enter a valid password";
+        passwordMsg.innerHTML = "Password needs an upper case letter \n";
         validInput = false;
     }
-    if(validInput == true)
+    if(validInput == true)//if the input is valid then reset the error message
     {
         passwordMsg.innerHTML = "";
     }
-    return validInput;
+    return validInput;//return the value of the function   
 }
 
 function skill1Checker(event)

@@ -6,7 +6,7 @@ fileListener[0].addEventListener("change", fileChecker, false);
 
 //listener for bio
 var bioListener = document.getElementsByName("bio");
-bioListener[0].addEventListener("change", bioChecker, false);
+bioListener[0].addEventListener("input", bioChecker, false);
 
 //listener for first name
 var toListen = document.getElementsByName("firstName");
