@@ -4,6 +4,10 @@
 var fileListener = document.getElementsByName("profilePicture"); 
 fileListener[0].addEventListener("change", fileChecker, false); 
 
+//listener for bio
+var bioListener = document.getElementsById("employeeBio");
+bioListener.addEventListener("blur", bioChecker, false);
+
 //listener for first name
 var toListen = document.getElementsByName("firstName");
 toListen[0].addEventListener("blur", firstNameChecker, false);

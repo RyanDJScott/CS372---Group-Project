@@ -34,6 +34,32 @@ function fileChecker2(filePathInput)
     return validInput;
 }
 
+//wrapper function for the description
+function bioChecker(event)
+{
+    var bio = event.currentTarget.value;
+
+    bioChecker2(bio);
+}
+
+//validation function
+function bioChecker2(bio)
+{
+    //valid input
+    var validInput = true;
+
+    //get message 
+    var bioMsg = document.getElementById("bioError");
+
+    //only check if more than 200 chars
+    if(bio.length > 200)
+    {
+        bioMsg.innerHTML = "Bio is too long, must be less than 200 characters";
+        validInput = false;
+    }
+    return validInput;
+}
+
 function firstNameChecker(event)
 {
     //get first name from the document
@@ -418,5 +444,12 @@ function submitChecker(event)
     if((password2Checker2(password2[0].value)) == false)
     {
         event.preventDefault();
+    }
+
+    //check the bio
+    var bio = document.getElementsByName("bio");\
+    if(bioChecker2(bio[0].value) == false)
+    {
+        preventDefault();
     }
 }

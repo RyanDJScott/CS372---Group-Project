@@ -318,11 +318,11 @@ $db->close();
                         <div>
                             <table>
                                 <tr>
-                                    <td>Profile Picture: </td><td> <input type="file" name="profilePicture" id="profilePicture" class="custom-file-input" /></td><td>Bio: </td><td> <textarea name="managerBio" id="managerBio" cols="30" rows="10"><?php echo htmlspecialchars($ProfileBio); ?></textarea></td>
+                                    <td>Profile Picture: </td><td> <input type="file" name="profilePicture" id="profilePicture" class="custom-file-input" /></td><td>Bio: </td><td> <textarea name="bio" id="managerBio" cols="30" rows="10"><?php echo htmlspecialchars($ProfileBio); ?></textarea></td>
                                 </tr> 
 
                                 <tr>
-                                    <td></td><td id="profilePictureError" class="generic-php-error"></td>
+                                    <td></td><td id="profilePictureError" class="generic-php-error"></td><td></td><td id="bioError" class="generic-php-error"></td>
                                 </tr>
                             </table>
                         </div>
