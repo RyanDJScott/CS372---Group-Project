@@ -1,7 +1,9 @@
 //validation functions for new project page
 
+//on load get the inputs that are to be disabled and disable them
 function disableInputs(event)
 {
+    //these are gathered from the document
     var task1 = document.getElementsByName("projectMember1Task1");
     var task2 = document.getElementsByName("projectMember1Task2");
     var task3 = document.getElementsByName("projectMember2Task1");
@@ -20,6 +22,7 @@ function disableInputs(event)
     var dead7 = document.getElementsByName("projectMember4DeadlineTask1");
     var dead8 = document.getElementsByName("projectMember4DeadlineTask2");
 
+    //and then disabled
     task1[0].disabled = true;
     task2[0].disabled = true;
     task3[0].disabled = true;
@@ -42,7 +45,6 @@ function disableInputs(event)
 
 function titleChecker(event)
 {
-    console.log("titleChecker entered")
     //not empty, not too big
     
     //get input
@@ -75,75 +77,80 @@ function titleChecker2(title)
     return validInput;
 }
 
+//wrapper function for the description
 function descriptionChecker(event)
 {
-    console.log("descriptionChecker entered")
     //not empty, not too big
     var descriptionInput = event.currentTarget.value;
 
+    //call the inner function
     descriptionChecker2(descriptionInput);
 
 }
 
+//validation function for description
 function descriptionChecker2(desc)
 {
+    //area to add an error for the description
     var descMsg = document.getElementById("projectDescriptionError");
 
+    //variable to validate input
     var validInput = true;
     
-    if(desc.length == "")
+    if(desc.length == "")//checks if empty or null
     {
-        descMsg.innerHTML = "Enter a description";
+        descMsg.innerHTML = "Enter a description";//triggers that error
         validInput= false;
     }
-    if(validInput == true)
+    if(validInput == true)//resets if fine
     {
         descMsg.innerHTML = "";
     }
-    return validInput;
+    return validInput;//exit function
 }
 
+//wrapper function for start date
 function startDateChecker(event)
 {
-    console.log("startDateChecker entered")
     //validate that not empty
     var startDate = event.currentTarget.value;
 
+    //call validation function
     startDateChecker2(startDate);
 }
 
+//validation function for startDate
 function startDateChecker2(startDate)
 {
+    //error message location
     var startDateMsg = document.getElementById("startDateError");
 
+    //valid input
     var validInput = true;
 
-    if(startDate.length == "")
+    if(startDate.length == "")//checks if empty
     {
         startDateMsg.innerHTML = "Please enter a start date";
         validInput = false;
     }
-    if(validInput == true)
+    if(validInput == true)//if valid then result
     {
         startDateMsg.innerHTML = "";
     }
 
-    // var endDate = document.getElementsByName("endDate");
-    // if(validInput == true)
-    // {
-    //     endDate[0].disabled = false;
-    // }
-    // if(validInput == false)
-    // {
-    //     endDate[0].disabled = true;
-    // }
+    var endDate = document.getElementsByName("endDate");
+    if((startDateInput > endDate) && (endDate != ""))//checks to see if the start date is before
+    {
+        endDateMsg.innerHTML = "Start date has to be before the end date";
+        validInput = false;
+    }
 
-    return validInput;
+    return validInput;//exit the funtion
 }
 
+//end date wrapper function
 function endDateChecker(event)
 {
-    console.log("endDateChecker entered")
     //not empty
     //not too big
     var endDate = event.currentTarget.value;
@@ -152,13 +159,15 @@ function endDateChecker(event)
     
 }
 
+//end date validation
 function endDateChecker2(endDate)
 {
     var validInput = true;
     
+    //get message
     var endDateMsg = document.getElementById("endDateError");
 
-    if(endDate.length == "")
+    if(endDate.length == "")// check if empty
     {
         endDateMsg.innerHTML = "Please enter an end date";
         validInput = false;
@@ -168,12 +177,16 @@ function endDateChecker2(endDate)
     var startDate = document.getElementsByName("startDate");
     var startDateInput = startDate[0].value;
 
-    if(startDateInput > endDate)
+    if(startDateInput > endDate)//check that the dates are in the right when
     {
         endDateMsg.innerHTML = "End date has to be after the start date";
         validInput = false;
     }
-
+    if((startDateInput > endDate) && (endDate != ""))
+    {
+        endDateMsg.innerHTML = "Start date has to be before the end date";
+        validInput = false;
+    }
     if(validInput == true)
     {
         endDateMsg.innerHTML = "";
@@ -186,6 +199,8 @@ function endDateChecker2(endDate)
 **********************************************
     Member Checkers 
 **********************************************
+use the wrapper functions to get the value from the events
+send these values to the validation functions
 */
 
 function member1Checker(event)
@@ -376,76 +391,62 @@ function member4Checker2(member)
 **********************************************
     Task Checkers 
 **********************************************
+get the task or date from the event
+send them from their wrapper functions to check the validity
 */
 function task1Checker(event)
 {
     var task = event.currentTarget.value;
-    console.log("Task recieved:" + task);
     var date = document.getElementsByName("projectMember1DeadlineTask1");
-    console.log("Deadline recieved:" + date[0].value);
     task1Checker2(task, date[0].value);   
 }
 
 function task2Checker(event)
 {
     var task = event.currentTarget.value;
-    console.log("Task recieved:" + task);
     var date = document.getElementsByName("projectMember1DeadlineTask2");
-    console.log("Deadline recieved:" + date[0].value);
     task2Checker2(task, date[0].value);   
 }
 
 function task3Checker(event)
 {
     var task = event.currentTarget.value;
-    console.log("Task recieved:" + task);
     var date = document.getElementsByName("projectMember2DeadlineTask1");
-    console.log("Deadline recieved:" + date[0].value);
     task3Checker2(task, date[0].value);   
 }
 
 function task4Checker(event)
 {
     var task = event.currentTarget.value;
-    console.log("Task recieved:" + task);
     var date = document.getElementsByName("projectMember2DeadlineTask2");
-    console.log("Deadline recieved:" + date[0].value);
     task4Checker2(task, date[0].value);   
 }
 
 function task5Checker(event)
 {
     var task = event.currentTarget.value;
-    console.log("Task recieved:" + task);
     var date = document.getElementsByName("projectMember3DeadlineTask1");
-    console.log("Deadline recieved:" + date[0].value);
     task5Checker2(task, date[0].value);   
 }
 
 function task6Checker(event)
 {
     var task = event.currentTarget.value;
-    console.log("Task recieved:" + task);
     var date = document.getElementsByName("projectMember3DeadlineTask2");
-    console.log("Deadline recieved:" + date[0].value);
     task6Checker2(task, date[0].value);   
 }
 
 function task7Checker(event)
 {
     var task = event.currentTarget.value;
-    console.log("Task recieved:" + task);
     var date = document.getElementsByName("projectMember4DeadlineTask1");
-    console.log("Deadline recieved:" + date[0].value);
     task7Checker2(task, date[0].value);   
 }
 
 function task8Checker(event)
 {
     var task = event.currentTarget.value;
-    console.log("Task recieved:" + task);
     var date = document.getElementsByName("projectMember4DeadlineTask2");
-    console.log("Deadline recieved:" + date[0].value);
     task8Checker2(task, date[0].value);   
 }
 
@@ -457,31 +458,26 @@ function task1Checker2(task, deadline)
 
     var validInput = true;
 
-    if (task == "" && deadline != "")
+    if (task == "" && deadline != "")//make sure that task is not empty if deadline is there
     {
-        console.log("deadline")
         taskMsg.innerHTML = "Please give a task";
         validInput = false;
     }
-    if(task != "" && !deadline)
+    if(task != "" && !deadline)//make sure there is a deadline if the task is available
     {
-        console.log("deadline not received")
         deadMsg.innerHTML = "Please give a deadline";
         validInput = false;
     }
-    if(task == "" && !deadline)
+    if(task == "" && !deadline)//both are empty is fine
     {
-        console.log("both empty")
         validInput = true;
     }
-    if(task != "" && deadline != "")
+    if(task != "" && deadline != "")//both not empty is fine
     {
-        console.log("both not empty")
         validInput = true;
     }
-    if(validInput == true)
+    if(validInput == true)//reset messages
     {
-        console.log("deadline and task okay")
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
@@ -797,7 +793,6 @@ check all before submit
 
 function submitChecker(event)
 {
-    console.log("found submit");
     //call every function if needed
     //if anything fails, cancel
     /*
@@ -813,28 +808,24 @@ function submitChecker(event)
     var title = document.getElementsByName("projectTitle");
     if((titleChecker2(title[0].value)) == false)
     {
-        console.log("onSubmit title error");
         event.preventDefault();
     }
 
     var desc = document.getElementsByName("projectDescription");
     if((descriptionChecker2(desc[0].value)) == false)
     {
-        console.log("onSubmit Description error");
         event.preventDefault();
     }
 
     var start = document.getElementsByName("startDate");
     if((startDateChecker2(start[0].value)) == false)
     {
-        console.log("onSubmit startDate error");
         event.preventDefault();
     }
 
     var end = document.getElementsByName("endDate");
     if((endDateChecker2(end[0].value)) == false)
     {
-        console.log("onSubmit endDate error")
         event.preventDefault();
     }
 
@@ -845,10 +836,8 @@ function submitChecker(event)
     var member1 = document.getElementsByName("projectMember1");
     if(member1[0].value != "")
     {
-        console.log("onSubmit member found: " + member1[0].value);
         if(member1Checker2(member1[0].value) == false)
         {
-            console.log("onSubmit member error");
             event.preventDefault();
         }
     }
@@ -856,10 +845,8 @@ function submitChecker(event)
     var member2 = document.getElementsByName("projectMember2");
     if(member2[0].value != "")
     {
-        console.log("onSubmit member found: " + member2[0].value);
         if(member2Checker2(member2[0].value) == false)
         {
-            console.log("onSubmit member error, member:" + member2[0].value);
             event.preventDefault();
         }
     }
@@ -867,10 +854,8 @@ function submitChecker(event)
     var member3 = document.getElementsByName("projectMember3");
     if(member3[0].value != "")
     {
-        console.log("onSubmit member found: " + member3[0].value);
         if(member3Checker2(member3[0].value) == false)
         {
-            console.log("onSubmit member error");
             event.preventDefault();
         }
     }
@@ -878,10 +863,8 @@ function submitChecker(event)
     var member4 = document.getElementsByName("projectMember4");
     if(member4[0].value != "")
     {
-        console.log("onSubmit member found: " + member4[0].value);
         if(member4Checker2(member4[0].value) == false)
         {
-            console.log("onSubmit member error");
             event.preventDefault();
         }
     }
@@ -894,7 +877,6 @@ function submitChecker(event)
         //if they are valid, then check to see if the corresponding member is there
         if((task1Checker2(task1[0].value, deadline1[0].value) == false) || (member1[0].value == ""))
         {
-            console.log("There is an error with field one set 1");
             event.preventDefault();
         }
     }
@@ -905,7 +887,6 @@ function submitChecker(event)
     {
         if((task2Checker2(task2[0].value, deadline2[0].value) == false) || (member1[0].value == ""))
         {
-            console.log("There is an error with field one set 2");
             event.preventDefault();
         }
     }
@@ -916,7 +897,6 @@ function submitChecker(event)
     {
         if((task3Checker2(task3[0].value, deadline3[0].value) == false) || (member2[0].value == ""))
         {
-            console.log("There is an error with field two set 1");
             event.preventDefault();
         }
     }
@@ -927,7 +907,6 @@ function submitChecker(event)
     {
         if((task4Checker2(task4[0].value, deadline4[0].value) == false) || (member2[0].value == ""))
         {
-            console.log("There is an error with field two set 2");
             event.preventDefault();
         }
     }
@@ -938,7 +917,6 @@ function submitChecker(event)
     {
         if((task5Checker2(task5[0].value, deadline5[0].value) == false) || (member3[0].value == ""))
         {
-            console.log("There is an error with field three set 1");
             event.preventDefault();
         }
     }
@@ -949,7 +927,6 @@ function submitChecker(event)
     {
         if((task6Checker2(task6[0].value, deadline6[0].value) == false) || (member3[0].value == ""))
         {
-            console.log("There is an error with field three set 2");
             event.preventDefault();
         }
     }
@@ -960,7 +937,6 @@ function submitChecker(event)
     {
         if((task7Checker2(task7[0].value, deadline7[0].value) == false) || (member4[0].value == ""))
         {
-            console.log("There is an error with field four set 1");
             event.preventDefault();
         }
     }
@@ -971,7 +947,6 @@ function submitChecker(event)
     {
         if((task8Checker2(task8[0].value, deadline8[0].value) == false) || (member4[0].value == ""))
         {
-            console.log("There is an error with field four set 2");
             event.preventDefault();
         }
     }
