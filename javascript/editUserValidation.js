@@ -63,10 +63,11 @@ function bioChecker2(bio)
 //onKeyUp event only
 function bioCounter(event)
 {
-//increment the counter 
+    //increment the counter 
     //get the counter field
     var counterMsg = document.getElementById("characterCounter");
     var bio = event.currentTarget.value;
+
     if(bio == "")
     {
         //delete message if empty
