@@ -34,6 +34,7 @@
       height: 100%;
       font-family: Poppins-Regular, sans-serif;
       color: #333333;
+      background-color: #addbc6;
   }
   
   /*---------------------------------------------*/
@@ -153,7 +154,6 @@
     justify-content: center;
     align-items: center;
     padding: 30px;
-    background: linear-gradient(-135deg, #addbc6, #a4d5dd);
   }
 
   .card-container {

@@ -84,7 +84,7 @@
                                 }
                                 
                                 // Check file size
-                                if ($_FILES["profilePicture"]["size"] > 2000000) {
+                                if ($_FILES["profilePicture"]["size"] > 2097152) {
                                     $uploadError = "The picture file size cannot exceed 2 MB!";
                                     $uploadOk = 0;
                                 }
