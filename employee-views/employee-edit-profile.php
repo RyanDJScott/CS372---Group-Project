@@ -99,7 +99,7 @@
         $fnField = trim($_POST["firstName"]);
         $lnField = trim($_POST["lastName"]);
         $emailField = trim($_POST["email"]);
-        $profileField = trim($_POST["employeeBio"]);
+        $profileField = trim($_POST["bio"]);
         $passwordField = trim($_POST["password"]);
         $confirmPasswordField = trim($_POST["confirmPassword"]);
         $inputError = $imageError = "";
