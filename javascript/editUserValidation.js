@@ -56,6 +56,9 @@ function bioChecker2(bio)
     {
         bioMsg.innerHTML = "Bio is too long, must be less than 200 characters";
         validInput = false;
+    } else if (bio.length <= 200) {
+        bioMsg.innerHTML = "";
+        validInput = true;
     }
     return validInput;
 }
@@ -146,7 +149,7 @@ function emailChecker2(emailInput)
         validInput = false;
     }
     //use an expression to validate the email
-    if (/^\w+[\w.]*@\w+.[a-z]{2,3}$/.test(emailInput))
+    if (!(/^\w+[\w.]*@\w+.[a-z]{2,3}$/.test(emailInput)))
     {
         emailMsg.innerHTML = "This is not a valid email";
         validInput = false;
