@@ -19,10 +19,11 @@ Upon logging in, the landing page will show a list of projects. For managers, it
 
 
 ## Edit Project
-When a manager is editing a project, any field that has invalid data will be flagged with a JavaScript error message. Submission of the data will be blocked until the manager enters a valid set of data within the appropriate data fields. The rules for submission are as follows:
+When a manager is editing a project, any field that has invalid data will be flagged with a JavaScript error message. Submission of the data will be blocked until the manager enters a valid set of data within the appropriate data fields.
 
 ![edit-project-manager-landing](https://user-images.githubusercontent.com/53383372/100956551-492cf800-34de-11eb-8b1a-4f1e2f9702b8.png)
 
+**The rules for submission are as follows:**
 1. Project Title, Project Description, Start Date, and End Date must not be left blank. 
 2. The start date must be before the end date.
 3. The project manager field must not be blank. An AJAX implementation of fetching manager names has been added to this field; simply start typing the name of a manager and a text bubble will appear with all viable candidates matching that name. Click the name you wish to enter, and it will be inserted into the text field. This search will never contain employee names.
@@ -38,10 +39,11 @@ For employees, only the projects the employee is directly involved in (as a team
 
 
 ## Create New User
-Managers have the ability to create new users. A manager need only supply the user's first name, last name, email, and password (and manager ID if they are adding a manager) to successfully add a user to the system. All other fields may be left blank, as the user can edit those fields at a later date with up-to-date information. JavaScript validation has been added to ensure all input fields contain valid data:
+Managers have the ability to create new users. A manager need only supply the user's first name, last name, email, and password (and manager ID if they are adding a manager) to successfully add a user to the system. All other fields may be left blank, as the user can edit those fields at a later date with up-to-date information. 
 
 ![create-new-user](https://user-images.githubusercontent.com/53383372/100956521-39adaf00-34de-11eb-8208-a8f207146400.png)
 
+**JavaScript validation has been added to ensure all input fields contain valid data:**
 1. The profile picture may be left blank. If not, it must be a .jpg, .jpeg, .gif, or .png file and less than 2 MB in size. If the file exists in the DB, the file  upload will be blocked.
 2. If a manager is being created, it must be accompanied by a manager ID. If an employee is being created, this field will be blanked out and disabled from user input.
 3. The first name and last name must not be blank or exceed 20 characters.
@@ -55,7 +57,7 @@ Managers can also create new projects as needed. Any field that has invalid data
 
 ![create-new-project](https://user-images.githubusercontent.com/53383372/100956526-3ca89f80-34de-11eb-9095-0a98758b5f30.png)
 
-The rules for successfully submitting a new project to the database are as follows:
+**The rules for successfully submitting a new project to the database are as follows:**
 1. Project Title, Project Description, Start Date, and End Date may not be left blank. 
 The start date must be before the end date.
 2. A project may contain no members, which can be added at a later date.
@@ -64,12 +66,13 @@ The start date must be before the end date.
 
 
 ## Edit Profile
-All users have the option to edit their profile such that their information is up-to-date. In addition to the validation rules listed for creating a new user, the following validation rules also apply:
-
-1. The bio field must not be longer than 200 characters. A character counter has been implemented to help you stay within the limits.
-2. The new password and confirm password fields (if you are changing your password) must conform to a proper password. In addition, both fields must contain identical passwords.
+All users have the option to edit their profile such that their information is up-to-date. 
 
 ![edit-profile](https://user-images.githubusercontent.com/53383372/100956541-45997100-34de-11eb-85ca-ae6a3fff4cf7.png)
+
+**In addition to the validation rules listed for creating a new user, the following validation rules also apply:**
+1. The bio field must not be longer than 200 characters. A character counter has been implemented to help you stay within the limits.
+2. The new password and confirm password fields (if you are changing your password) must conform to a proper password. In addition, both fields must contain identical passwords.
 
 
 ## Search Employee
@@ -78,7 +81,7 @@ The Search employees page allows users to search the company database based on s
 ![search-employee](https://user-images.githubusercontent.com/53383372/100956534-403c2680-34de-11eb-815b-9158a6be7eba.png)
 
 # Tech Stack/Framework
-This web application was created using the following coding languages and frameworks:
+**This web application was created using the following coding languages and frameworks:**
 
 * HTML/CSS - User Interface 
 * JavaScript - Form validation
