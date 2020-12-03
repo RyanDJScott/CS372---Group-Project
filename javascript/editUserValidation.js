@@ -146,7 +146,7 @@ function emailChecker2(emailInput)
         validInput = false;
     }
     //use an expression to validate the email
-    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(emailInput))
+    if (/^\w+[\w.]*@\w+.[a-z]{2,3}$/.test(emailInput))
     {
         emailMsg.innerHTML = "This is not a valid email";
         validInput = false;
@@ -176,27 +176,27 @@ function password1Checker2(passwordInput)
 
     if(passwordInput == "")//determines if the password is empty
     {
-        passwordMsg.innerHTML += "You have not entered a password \n";
+        passwordMsg.innerHTML = "You have not entered a password \n";
         validInput = false;
     }
-    if((passwordInput.length < 8) && (passwordInput.length > 0))//makes sure password is at least 8 characters
+    if((passwordInput.length <= 8) && (passwordInput.length > 0))//makes sure password is at least 8 characters
     {
-        passwordMsg.innerHTML += "Password needs to be at least 8 characters \n";
+        passwordMsg.innerHTML = "Password needs to be at least 8 characters \n";
         validInput = false;
     }
-    if(passwordInput.length > 20)//password maximum length is 20 characters
+    if(passwordInput.length >= 20)//password maximum length is 20 characters
     {
-        passwordMsg.innerHTML += "Password needs to be fewer than 20 characters \n";
+        passwordMsg.innerHTML = "Password needs to be fewer than 20 characters \n";
         validInput = false; 
     }
     //expression to make sure password has a special character
-    if((/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(passwordInput)) == false)
+    if((/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(passwordInput)) == false && (passwordInput.length >= 8) && (passwordInput.length <= 20))
     {
         passwordMsg.innerHTML = "Password needs a special character \n";
         validInput = false;
     }
     //make sure password has an uppercase
-    if((/[A-Z]/.test(passwordInput)) == false)
+    if((/[A-Z]/.test(passwordInput)) == false && (passwordInput.length >= 8) && (passwordInput.length <= 20))
     {
         passwordMsg.innerHTML = "Password needs an upper case letter \n";
         validInput = false;
@@ -227,12 +227,12 @@ function password2Checker2(passwordInput)
      var password1 = document.getElementsByName("password"); //get the first password
      if(password1Checker2(password1[0].value) == false)//check the first passwrod
      {
-        passwordMsg.innerHTML += "Please make sure that both passwords are valid \n";
+        passwordMsg.innerHTML = "Please make sure that both passwords are valid \n";
         validInput = false;
      }
      if(password1 != passwordInput)//check if they match 
      {
-        passwordMsg.innerHTML += "Please make sure that both passwords match \n";
+        passwordMsg.innerHTML = "Please make sure that both passwords match \n";
         validInput = false;
      }
      if(validInput == true)
