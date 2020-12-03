@@ -345,7 +345,7 @@ $db->close();
                                     </tr>
 
                                     <tr>
-                                        <td></td><td></td><td></td><td id="password1Error"></td>
+                                        <td></td><td></td><td></td><td id="password1Error" class="generic-php-error"></td>
                                     </tr>
 
                                     <tr>
@@ -354,7 +354,7 @@ $db->close();
                                     </tr>
 
                                     <tr>
-                                        <td></td><td></td><td></td><td id="password2Error"></td>
+                                        <td></td><td></td><td></td><td id="password2Error" class="generic-php-error"></td>
                                     </tr>
 
                                     <tr>
