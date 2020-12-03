@@ -114,6 +114,6 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="../javascript/indexValidation.js"></script>
+	<script type="text/javascript" src="../javascript/indexValidationR.js"></script>
 </body>
 </html>
