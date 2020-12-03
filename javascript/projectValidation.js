@@ -287,6 +287,7 @@ function task1Checker(event)
 {
     var task = event.currentTarget.value;
     var date = document.getElementsByName("projectMember1DeadlineTask1");
+    var member = document.getElementsByName("projectMember1");
     task1Checker2(task, date[0].value);   
 }
 
@@ -347,6 +348,12 @@ function task1Checker2(task, deadline)
 
     var validInput = true;
 
+    var member = document.getElementsByName("projectMember1");
+    if(member1Checker2(member[0].value) == false)
+    {
+        taskMsg.innerHTML = "Please provide a valid member for this task";
+        validInput = false;
+    }
     if (task == "" && deadline != "")//make sure that task is not empty if deadline is there
     {
         taskMsg.innerHTML = "Please give a task";
@@ -381,6 +388,12 @@ function task2Checker2(task, deadline)
 
     var validInput = true;
 
+    var member = document.getElementsByName("projectMember1");
+    if(member1Checker2(member[0].value) == false)
+    {
+        taskMsg.innerHTML = "Please provide a valid member for this task";
+        validInput = false;
+    }
     if (task == "" && deadline != "")
     {
         taskMsg.innerHTML = "Please give a task";
@@ -415,6 +428,12 @@ function task3Checker2(task, deadline)
 
     var validInput = true;
 
+    var member = document.getElementsByName("projectMember2");
+    if(member2Checker2(member[0].value) == false)
+    {
+        taskMsg.innerHTML = "Please provide a valid member for this task";
+        validInput = false;
+    }
     if (task == "" && deadline != "")
     {
         taskMsg.innerHTML = "Please give a task";
@@ -449,6 +468,12 @@ function task4Checker2(task, deadline)
 
     var validInput = true;
 
+    var member = document.getElementsByName("projectMember2");
+    if(member2Checker2(member[0].value) == false)
+    {
+        taskMsg.innerHTML = "Please provide a valid member for this task";
+        validInput = false;
+    }
     if (task == "" && deadline != "")
     {
         taskMsg.innerHTML = "Please give a task";
@@ -483,6 +508,12 @@ function task5Checker2(task, deadline)
 
     var validInput = true;
 
+    var member = document.getElementsByName("projectMember3");
+    if(member3Checker2(member[0].value) == false)
+    {
+        taskMsg.innerHTML = "Please provide a valid member for this task";
+        validInput = false;
+    }
     if (task == "" && deadline != "")
     {
         taskMsg.innerHTML = "Please give a task";
@@ -517,6 +548,12 @@ function task6Checker2(task, deadline)
 
     var validInput = true;
 
+    var member = document.getElementsByName("projectMember3");
+    if(member3Checker2(member[0].value) == false)
+    {
+        taskMsg.innerHTML = "Please provide a valid member for this task";
+        validInput = false;
+    }
     if (task == "" && deadline != "")
     {
         taskMsg.innerHTML = "Please give a task";
@@ -551,6 +588,12 @@ function task7Checker2(task, deadline)
 
     var validInput = true;
 
+    var member = document.getElementsByName("projectMember4");
+    if(member4Checker2(member[0].value) == false)
+    {
+        taskMsg.innerHTML = "Please provide a valid member for this task";
+        validInput = false;
+    }
     if (task == "" && deadline != "")
     {
         taskMsg.innerHTML = "Please give a task";
@@ -585,6 +628,12 @@ function task8Checker2(task, deadline)
 
     var validInput = true;
 
+    var member = document.getElementsByName("projectMember4");
+    if(member4Checker2(member[0].value) == false)
+    {
+        taskMsg.innerHTML = "Please provide a valid member for this task";
+        validInput = false;
+    }
     if (task == "" && deadline != "")
     {
         taskMsg.innerHTML = "Please give a task";
