@@ -67,6 +67,7 @@
 <head>
 	<title>Login</title>
 	<meta charset="UTF-8">
+	<script type="text/javascript" src="../javascript/indexValidation.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="assets/helper.css">
@@ -113,6 +114,6 @@
 			</div>
 		</div>
 	</div>
-
+	<script type="text/javascript" src="../javascript/indexValidation.js"></script>
 </body>
 </html>

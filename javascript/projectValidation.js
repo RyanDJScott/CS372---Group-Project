@@ -1,7 +1,9 @@
 //validation functions for new project page
 
+//on load get the inputs that are to be disabled and disable them
 function disableInputs(event)
 {
+    //these are gathered from the document
     var task1 = document.getElementsByName("projectMember1Task1");
     var task2 = document.getElementsByName("projectMember1Task2");
     var task3 = document.getElementsByName("projectMember2Task1");
@@ -20,6 +22,7 @@ function disableInputs(event)
     var dead7 = document.getElementsByName("projectMember4DeadlineTask1");
     var dead8 = document.getElementsByName("projectMember4DeadlineTask2");
 
+    //and then disabled
     task1[0].disabled = true;
     task2[0].disabled = true;
     task3[0].disabled = true;
@@ -74,67 +77,78 @@ function titleChecker2(title)
     return validInput;
 }
 
+//wrapper function for the description
 function descriptionChecker(event)
 {
     //not empty, not too big
     var descriptionInput = event.currentTarget.value;
 
+    //call the inner function
     descriptionChecker2(descriptionInput);
 
 }
 
+//validation function for description
 function descriptionChecker2(desc)
 {
+    //area to add an error for the description
     var descMsg = document.getElementById("projectDescriptionError");
 
+    //variable to validate input
     var validInput = true;
     
-    if(desc.length == "")
+    if(desc.length == "")//checks if empty or null
     {
-        descMsg.innerHTML = "Enter a description";
+        descMsg.innerHTML = "Enter a description";//triggers that error
         validInput= false;
     }
-    if(validInput == true)
+    if(validInput == true)//resets if fine
     {
         descMsg.innerHTML = "";
     }
-    return validInput;
+    return validInput;//exit function
 }
 
+//wrapper function for start date
 function startDateChecker(event)
 {
     //validate that not empty
     var startDate = event.currentTarget.value;
 
+    //call validation function
     startDateChecker2(startDate);
 }
 
+//validation function for startDate
 function startDateChecker2(startDate)
 {
+    //error message location
     var startDateMsg = document.getElementById("startDateError");
 
+    //valid input
     var validInput = true;
 
-    if(startDate.length == "")
+    if(startDate.length == "")//checks if empty
     {
         startDateMsg.innerHTML = "Please enter a start date";
         validInput = false;
     }
-    if(validInput == true)
+    if(validInput == true)//if valid then result
     {
         startDateMsg.innerHTML = "";
     }
 
     var endDate = document.getElementsByName("endDate");
-    if((startDateInput > endDate) && (endDate != ""))
+    if((startDateInput > endDate) && (endDate != ""))//checks to see if the start date is before
     {
         endDateMsg.innerHTML = "Start date has to be before the end date";
         validInput = false;
     }
 
-    return validInput;
+    return validInput;//exit the funtion
 }
 
+//end date wrapper function
 function endDateChecker(event)
 {
     //not empty
@@ -145,13 +159,15 @@ function endDateChecker(event)
     
 }
 
+//end date validation
 function endDateChecker2(endDate)
 {
     var validInput = true;
     
+    //get message
     var endDateMsg = document.getElementById("endDateError");
 
-    if(endDate.length == "")
+    if(endDate.length == "")// check if empty
     {
         endDateMsg.innerHTML = "Please enter an end date";
         validInput = false;
@@ -161,7 +177,7 @@ function endDateChecker2(endDate)
     var startDate = document.getElementsByName("startDate");
     var startDateInput = startDate[0].value;
 
-    if(startDateInput > endDate)
+    if(startDateInput > endDate)//check that the dates are in the right when
     {
         endDateMsg.innerHTML = "End date has to be after the start date";
         validInput = false;
@@ -183,6 +199,8 @@ function endDateChecker2(endDate)
 **********************************************
     Member Checkers 
 **********************************************
+use the wrapper functions to get the value from the events
+send these values to the validation functions
 */
 
 function member1Checker(event)
@@ -373,6 +391,8 @@ function member4Checker2(member)
 **********************************************
     Task Checkers 
 **********************************************
+get the task or date from the event
+send them from their wrapper functions to check the validity
 */
 function task1Checker(event)
 {
@@ -438,25 +458,25 @@ function task1Checker2(task, deadline)
 
     var validInput = true;
 
-    if (task == "" && deadline != "")
+    if (task == "" && deadline != "")//make sure that task is not empty if deadline is there
     {
         taskMsg.innerHTML = "Please give a task";
         validInput = false;
     }
-    if(task != "" && !deadline)
+    if(task != "" && !deadline)//make sure there is a deadline if the task is available
     {
         deadMsg.innerHTML = "Please give a deadline";
         validInput = false;
     }
-    if(task == "" && !deadline)
+    if(task == "" && !deadline)//both are empty is fine
     {
         validInput = true;
     }
-    if(task != "" && deadline != "")
+    if(task != "" && deadline != "")//both not empty is fine
     {
         validInput = true;
     }
-    if(validInput == true)
+    if(validInput == true)//reset messages
     {
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
