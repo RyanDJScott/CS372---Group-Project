@@ -1,5 +1,28 @@
 //validation functions for new project page
 
+//char counter for description
+function descCounter(event)
+{
+    //increment the counter 
+    //get the counter field
+    var counterMsg = document.getElementById("characterCounter");
+    var desc = event.currentTarget.value;
+    if(desc == "")
+    {
+        //delete message if empty
+        counterMsg.innerHTML = "";
+    }
+    if(desc.length >= 250)
+    {
+        //if the desc length reaches 250, trigger the error by validating the bio
+        descriptionChecker2(desc);
+    }
+    if(desc != "" && desc.length < 250)
+    {
+        //then increment the counter based on length
+        counterMsg.innerHTML = desc.length + "/250";
+}
+
 //on load get the inputs that are to be disabled and disable them
 function disableInputs(event)
 {
@@ -100,7 +123,12 @@ function descriptionChecker2(desc)
     if(desc.length == "")//checks if empty or null
     {
         descMsg.innerHTML = "Enter a description";//triggers that error
-        validInput= false;
+        validInput = false;
+    }
+    if(desc.length >= 250)//if too big
+    {
+        descMsg.innerHTML = "Description must be less than 250 characters";
+        validInput = false;
     }
     if(validInput == true)//resets if fine
     {
@@ -139,9 +167,9 @@ function startDateChecker2(startDate)
     }
 
     var endDate = document.getElementsByName("endDate");
-    if((startDateInput > endDate) && (endDate != ""))//checks to see if the start date is before
+    if((startDate > endDate[0].value) && (endDate[0].value != ""))//checks to see if the start date is before
     {
-        endDateMsg.innerHTML = "Start date has to be before the end date";
+        startDateMsg.innerHTML = "Start date has to be before the end date";
         validInput = false;
     }
 

@@ -77,3 +77,7 @@ deadline8Listener[0].addEventListener("change", deadline8Checker, false);
 
 var submitListener = document.getElementById("submitForm");
 submitListener.addEventListener("submit",submitChecker, false);
+
+//character counter listener
+var descCounterListener = document.getElementById("projectDescription");
+bioCounterListener.addEventListener("keypress", descCounter, false);

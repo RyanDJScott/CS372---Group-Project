@@ -265,7 +265,7 @@
                                             <label for="userTypeEmployee">&nbsp;Employee</label>
                                         </td>
                                         
-                                        <td>Manager ID: </td><td> <input type="text" name="managerId" size="20" class="text-input" id="managerId" disabled="disabled" /></td>
+                                        <td>Manager ID: </td><td> <input type="text" name="managerId" size="20" class="text-input" id="managerId" /></td>
                                     </tr>
 
                                     <tr>
