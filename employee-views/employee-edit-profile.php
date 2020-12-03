@@ -333,8 +333,15 @@
                                     </tr>
 
                                     <tr>
+                                        <td></td><td></td><td></td><td id="password1Error"></td>
+                                    </tr>
+                                    <tr>
                                         <td></td><td></td>
                                         <td>Confirm Password: </td><td> <input type="text" name="confirmPassword" size="30" class="text-input"/></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td><td></td><td></td><td id="password2Error"></td>
                                     </tr>
 
                                     <tr>
