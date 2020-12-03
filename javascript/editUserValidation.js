@@ -60,30 +60,6 @@ function bioChecker2(bio)
     return validInput;
 }
 
-//onKeyUp event only
-function bioCounter(event)
-{
-//increment the counter 
-    //get the counter field
-    var counterMsg = document.getElementById("characterCounter");
-    var bio = event.currentTarget.value;
-    if(bio == "")
-    {
-        //delete message if empty
-        counterMsg.innerHTML = "";
-    }
-    if(bio.length >= 200)
-    {
-        //if the bio length reaches 200, trigger the error by validating the bio
-        bioChecker2(bio);
-    }
-    if(bio != "" && bio.length < 200)
-    {
-        //then increment the counter based on length
-        counterMsg.innerHTML = bio.length + "/200";
-    }
-}
-
 function firstNameChecker(event)
 {
     //get first name from the document

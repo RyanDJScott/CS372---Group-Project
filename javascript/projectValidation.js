@@ -1,28 +1,5 @@
 //validation functions for new project page
 
-//char counter for description
-function descCounter(event)
-{
-    //increment the counter 
-    //get the counter field
-    var counterMsg = document.getElementById("characterCounter");
-    var desc = event.currentTarget.value;
-    if(desc == "")
-    {
-        //delete message if empty
-        counterMsg.innerHTML = "";
-    }
-    if(desc.length >= 250)
-    {
-        //if the desc length reaches 250, trigger the error by validating the bio
-        descriptionChecker2(desc);
-    }
-    if(desc != "" && desc.length < 250)
-    {
-        //then increment the counter based on length
-        counterMsg.innerHTML = desc.length + "/250";
-}
-
 //on load get the inputs that are to be disabled and disable them
 function disableInputs(event)
 {
@@ -977,6 +954,5 @@ function submitChecker(event)
         {
             event.preventDefault();
         }
-    }
     }
 }
