@@ -174,11 +174,6 @@ function password1Checker2(passwordInput)
     //variable validinput is the return value, determines if the input is valid
     var validInput = true;
 
-    if(passwordInput == "")//determines if the password is empty
-    {
-        passwordMsg.innerHTML = "You have not entered a password \n";
-        validInput = false;
-    }
     if((passwordInput.length <= 8) && (passwordInput.length > 0))//makes sure password is at least 8 characters
     {
         passwordMsg.innerHTML = "Password needs to be at least 8 characters \n";
@@ -230,7 +225,7 @@ function password2Checker2(passwordInput)
         passwordMsg.innerHTML = "Please make sure that both passwords are valid \n";
         validInput = false;
      }
-     if(password1 != passwordInput)//check if they match 
+     if(password1[0].value != passwordInput)//check if they match 
      {
         passwordMsg.innerHTML = "Please make sure that both passwords match \n";
         validInput = false;
