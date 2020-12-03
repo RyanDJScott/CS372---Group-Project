@@ -207,10 +207,16 @@ function member1Checker2(member)
         memberMsg.innerHTML = "This name is too long";
         validInput = false;
     }
-
+    //get the error messages and values for tasks associated with this and then validate messages
+    var date1 = document.getElementsByName("projectMember1DeadlineTask1");
+    var date2 = document.getElementsByName("projectMember1DeadlineTask2");
+    var task1 = document.getElementsByName("projectMember1Task1");
+    var task2 = document.getElementsByName("projectMember1Task2");
     if(validInput == true)
     {
         memberMsg.innerHTML = "";
+        task1Checker2(task1[0].value, date1[0].value);
+        task2Checker2(task2[0].value, date2[0].value);
     }
     return validInput
 }
@@ -228,9 +234,16 @@ function member2Checker2(member)
         validInput = false;
     }
 
+    //get the error messages and values for tasks associated with this and then validate messages
+    var date1 = document.getElementsByName("projectMember2DeadlineTask1");
+    var date2 = document.getElementsByName("projectMember2DeadlineTask2");
+    var task1 = document.getElementsByName("projectMember2Task1");
+    var task2 = document.getElementsByName("projectMember2Task2");
     if(validInput == true)
     {
         memberMsg.innerHTML = "";
+        task3Checker2(task1[0].value, date1[0].value);
+        task4Checker2(task2[0].value, date2[0].value);
     }
     return validInput
 }
@@ -248,9 +261,15 @@ function member3Checker2(member)
         validInput = false;
     }
 
+    var date1 = document.getElementsByName("projectMember3DeadlineTask1");
+    var date2 = document.getElementsByName("projectMember3DeadlineTask2");
+    var task1 = document.getElementsByName("projectMember3Task1");
+    var task2 = document.getElementsByName("projectMember3Task2");
     if(validInput == true)
     {
         memberMsg.innerHTML = "";
+        task5Checker2(task1[0].value, date1[0].value);
+        task6Checker2(task2[0].value, date2[0].value);
     }
     return validInput
 }
@@ -268,9 +287,15 @@ function member4Checker2(member)
         validInput = false;
     }
 
+    var date1 = document.getElementsByName("projectMember4DeadlineTask1");
+    var date2 = document.getElementsByName("projectMember4DeadlineTask2");
+    var task1 = document.getElementsByName("projectMember4Task1");
+    var task2 = document.getElementsByName("projectMember4Task2");
     if(validInput == true)
     {
         memberMsg.innerHTML = "";
+        task7Checker2(task1[0].value, date1[0].value);
+        task8Checker2(task2[0].value, date2[0].value);
     }
     return validInput
 }
