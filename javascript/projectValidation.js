@@ -121,7 +121,6 @@ function endDateChecker(event)
     var endDate = event.currentTarget.value;
 
     endDateChecker2(endDate);
-    
 }
 
 //end date validation
