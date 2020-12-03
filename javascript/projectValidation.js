@@ -978,4 +978,5 @@ function submitChecker(event)
             event.preventDefault();
         }
     }
+    }
 }
