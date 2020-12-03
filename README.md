@@ -1,13 +1,9 @@
 # CS372---Group-Project - Devonian Software Development Project Manager
-Development of a web application for a hypothetical small software development company
+This software serves as an organizational tool for the managers and employees at Devonian Software Development to help manage their tasks within the projects the company has undertaken. In order to better facilitate cooperative work over large distances (due to the current COVID-19 pandemic), this software allows managers to include employees in projects, set them tasks (with deadlines for each task), and describe the overall project details to the team members. Managers are also able to create new employees and managers in the software (as they are hired by the company), edit/update project information, and delete projects or employees from the site.  Employees are able to use this software to see which projects they are currently working on and the details of that project (including tasks, deadlines, and other project members), search for the other employees are at Devonian Software Development, and post information about themselves in their profile so that other employees can get to know them better and see what coding skills they possess.
+Software Usage Guide
 
 # Live Website URL
 http://www2.cs.uregina.ca/~scott23r
-
-
-## Description
-This software serves as an organizational tool for the managers and employees at Devonian Software Development to help manage their tasks within the projects the company has undertaken. In order to better facilitate cooperative work over large distances (due to the current COVID-19 pandemic), this software allows managers to include employees in projects, set them tasks (with deadlines for each task), and describe the overall project details to the team members. Managers are also able to create new employees and managers in the software (as they are hired by the company), edit/update project information, and delete projects or employees from the site.  Employees are able to use this software to see which projects they are currently working on and the details of that project (including tasks, deadlines, and other project members), search for the other employees are at Devonian Software Development, and post information about themselves in their profile so that other employees can get to know them better and see what coding skills they possess.
-Software Usage Guide
 
 
 ## Login
