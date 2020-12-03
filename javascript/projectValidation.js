@@ -129,6 +129,7 @@ function startDateChecker2(startDate)
 {
     //error message location
     var startDateMsg = document.getElementById("startDateError");
+    var endDateMsg = document.getElementById("endDateError");
 
     //valid input
     var validInput = true;
@@ -138,18 +139,20 @@ function startDateChecker2(startDate)
         startDateMsg.innerHTML = "Please enter a start date";
         validInput = false;
     }
-    if(validInput == true)//if valid then result
-    {
-        startDateMsg.innerHTML = "";
-    }
-
     var endDate = document.getElementsByName("endDate");
     if((startDate > endDate[0].value) && (endDate[0].value != ""))//checks to see if the start date is before
     {
         startDateMsg.innerHTML = "Start date has to be before the end date";
         validInput = false;
     }
-
+    if(validInput == true)//if valid then result
+    {
+        startDateMsg.innerHTML = "";
+    }
+    if(validInput == true && startDate < endDate[0].value && endDate.values != "")
+    {
+        endDateMsg.innerHTML = ""; //if valid clear the error for endDate as well
+    }
     return validInput;//exit the funtion
 }
 
@@ -171,6 +174,7 @@ function endDateChecker2(endDate)
     
     //get message
     var endDateMsg = document.getElementById("endDateError");
+    var startDateMsg = document.getElementById("startDateError");
 
     if(endDate.length == "")// check if empty
     {
@@ -189,12 +193,16 @@ function endDateChecker2(endDate)
     }
     if((startDateInput > endDate) && (endDate != ""))
     {
-        endDateMsg.innerHTML = "Start date has to be before the end date";
+        startDateMsg.innerHTML = "Start date has to be before the end date";
         validInput = false;
     }
     if(validInput == true)
     {
         endDateMsg.innerHTML = "";
+    }
+    if(validInput == true && startDateInput < endDate && startDateInput != "")
+    {
+        startDateMsg.innerHTML = "";
     }
     
     return validInput;
