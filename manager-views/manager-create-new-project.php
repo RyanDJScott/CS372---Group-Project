@@ -384,8 +384,8 @@
         
                                     <tr>
                                         <td><input type="text" name="projectMember1" class="text-input" value="<?php echo htmlspecialchars($projectMembers[0]); ?>"/></td>
-                                        <td><input type="text" name="projectMember1Task1" class="text-input" value="<?php echo htmlspecialchars($tasks[0]); ?>" disabled="disabled"/></td>
-                                        <td><input type="date" name="projectMember1DeadlineTask1" value="<?php echo htmlspecialchars($deadlines[0]); ?>" disabled="disabled"/></td>
+                                        <td><input type="text" name="projectMember1Task1" class="text-input" value="<?php echo htmlspecialchars($tasks[0]); ?>"/></td>
+                                        <td><input type="date" name="projectMember1DeadlineTask1" value="<?php echo htmlspecialchars($deadlines[0]); ?>"/></td>
                                     </tr>
                               
                                     <tr>
@@ -396,8 +396,8 @@
 
                                     <tr>
                                         <td id="suggestMember1"></td>
-                                        <td><input type="text" name="projectMember1Task2" class="text-input" value="<?php echo htmlspecialchars($tasks[1]); ?>" disabled="disabled" /></td>
-                                        <td><input type="date" name="projectMember1DeadlineTask2" value="<?php echo htmlspecialchars($deadlines[1]); ?>" disabled="disabled" /></td>
+                                        <td><input type="text" name="projectMember1Task2" class="text-input" value="<?php echo htmlspecialchars($tasks[1]); ?>" /></td>
+                                        <td><input type="date" name="projectMember1DeadlineTask2" value="<?php echo htmlspecialchars($deadlines[1]); ?>" /></td>
                                     </tr>
                   
                                     <tr>
@@ -408,8 +408,8 @@
 
                                     <tr>
                                         <td><input type="text" name="projectMember2" class="text-input" value="<?php echo htmlspecialchars($projectMembers[1]); ?>" /></td>
-                                        <td><input type="text" name="projectMember2Task1" class="text-input" value="<?php echo htmlspecialchars($tasks[2]); ?>" disabled="disabled"/></td>
-                                        <td><input type="date" name="projectMember2DeadlineTask1" value="<?php echo htmlspecialchars($deadlines[2]); ?>" disabled="disabled"/></td>
+                                        <td><input type="text" name="projectMember2Task1" class="text-input" value="<?php echo htmlspecialchars($tasks[2]); ?>" /></td>
+                                        <td><input type="date" name="projectMember2DeadlineTask1" value="<?php echo htmlspecialchars($deadlines[2]); ?>" /></td>
                                     </tr>
                   
                                     <tr>
@@ -420,8 +420,8 @@
 
                                     <tr>
                                         <td id="suggestMember2"></td>
-                                        <td><input type="text" name="projectMember2Task2" class="text-input" value="<?php echo htmlspecialchars($tasks[3]); ?>" disabled="disabled"/></td>
-                                        <td><input type="date" name="projectMember2DeadlineTask2" value="<?php echo htmlspecialchars($deadlines[3]); ?>" disabled="disabled"/></td>
+                                        <td><input type="text" name="projectMember2Task2" class="text-input" value="<?php echo htmlspecialchars($tasks[3]); ?>" /></td>
+                                        <td><input type="date" name="projectMember2DeadlineTask2" value="<?php echo htmlspecialchars($deadlines[3]); ?>" /></td>
                                     </tr>
                   
                                     <tr>
