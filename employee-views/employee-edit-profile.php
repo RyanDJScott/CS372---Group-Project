@@ -309,7 +309,7 @@
                                 </tr> 
 
                                 <tr>
-                                    <td></td><td id="profilePictureError" class="generic-php-error"></td><td></td><td id="bioError" class="generic-php-error"></td>
+                                    <td></td><td id="profilePictureError" class="generic-php-error"></td><td id="characterCounter"></td><td id="bioError" class="generic-php-error"></td>
                                 </tr>
                             </table>
                         </div>
