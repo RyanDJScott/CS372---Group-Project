@@ -139,7 +139,7 @@ function endDateChecker2(endDate)
     }
 
     //get startDate
-    var s = document.getElementsByName("startDate");
+    var startDate = document.getElementsByName("startDate");
     var startDateInput = startDate[0].value;
 
     if(startDateInput > endDate)//check that the dates are in the right when
