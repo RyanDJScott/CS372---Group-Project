@@ -177,7 +177,7 @@ function password1Checker2(passwordInput)
     //variable validinput is the return value, determines if the input is valid
     var validInput = true;
 
-    if((passwordInput.length <= 8) && (passwordInput.length > 0))//makes sure password is at least 8 characters
+    if((passwordInput.length < 8) && (passwordInput.length > 0))//makes sure password is at least 8 characters
     {
         passwordMsg.innerHTML = "Password needs to be at least 8 characters \n";
         validInput = false;
