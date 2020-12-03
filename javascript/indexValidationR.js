@@ -5,7 +5,7 @@ var emailListener = document.getElementsByName("email");
 emailListener[0].addEventListener("blur", emailChecker, false);
 
 //listen for a blur on password
-var passwordListener = document.getElementsByName("password");
+var passwordListener = document.getElementsByName("pass");
 passwordListener[0].addEventListener("blur", passwordChecker, false);
 
 //make sure that others are valid when the form is submitted

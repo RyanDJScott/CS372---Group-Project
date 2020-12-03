@@ -28,7 +28,7 @@ function emailChecker2(emailInput)
         validInput = false;
     }
     //use an expression to validate the email
-    if ((/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(emailInput)) == false)
+    if ((/^\w+[\w\.]*@\w+\.[a-z]{2,3}$/.test(emailInput)) == false)
     {
         emailMsg.innerHTML = "This is not a valid email";
         validInput = false;
