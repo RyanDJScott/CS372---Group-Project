@@ -349,11 +349,6 @@ function task1Checker2(task, deadline)
     var validInput = true;
 
     var member = document.getElementsByName("projectMember1");
-    if(member1Checker2(member[0].value) == false)
-    {
-        taskMsg.innerHTML = "Please provide a valid member for this task";
-        validInput = false;
-    }
     if (task == "" && deadline != "")//make sure that task is not empty if deadline is there
     {
         taskMsg.innerHTML = "Please give a task";
@@ -376,6 +371,11 @@ function task1Checker2(task, deadline)
     {
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
+    }
+    if(validInput == true && (member[0].value == ""))
+    {
+        taskMsg.innerHTML = "Please provide a valid member for this task";
+        validInput = false;
     }
     return validInput;
 }
@@ -412,7 +412,7 @@ function task2Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value != ""))
+    if(validInput == true && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;
@@ -452,7 +452,7 @@ function task3Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value != ""))
+    if(validInput == true && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;
@@ -492,7 +492,7 @@ function task4Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value != ""))
+    if(validInput == true && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;
@@ -532,7 +532,7 @@ function task5Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value != ""))
+    if(validInput == true && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;
@@ -572,7 +572,7 @@ function task6Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value != ""))
+    if(validInput == true && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;
@@ -612,7 +612,7 @@ function task7Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value != ""))
+    if(validInput == true && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;
@@ -652,7 +652,7 @@ function task8Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value != ""))
+    if(validInput == true && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;
