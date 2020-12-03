@@ -140,7 +140,7 @@ function startDateChecker2(startDate)
         validInput = false;
     }
     var endDate = document.getElementsByName("endDate");
-    if((startDate > endDate[0].value) && (endDate[0].value != ""))//checks to see if the start date is before
+    if((startDate > endDate[0].value) && (endDate.value != ""))//checks to see if the start date is before
     {
         startDateMsg.innerHTML = "Start date has to be before the end date";
         validInput = false;
@@ -149,7 +149,7 @@ function startDateChecker2(startDate)
     {
         startDateMsg.innerHTML = "";
     }
-    if(validInput == true && startDate < endDate[0].value && endDate.values != "")
+    if(validInput == true && startDate < endDate.value && endDate.values != "")
     {
         endDateMsg.innerHTML = ""; //if valid clear the error for endDate as well
     }
