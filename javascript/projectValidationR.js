@@ -80,4 +80,4 @@ submitListener.addEventListener("submit",submitChecker, false);
 
 //character counter listener
 var descCounterListener = document.getElementById("projectDescription");
-bioCounterListener.addEventListener("keypress", descCounter, false);
+descCounterListener.addEventListener("keypress", descCounter, false);
