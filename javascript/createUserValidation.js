@@ -51,6 +51,9 @@ function radioChecker2()
         managerID.readOnly = true;
         managerID.value = "";
         validInput = true;
+        //get managerID message and remove errors from there
+        var managerIdMsg = document.getElementById("managerIdError");
+        managerIdMsg.innerHTML = "";
     }
     if((document.getElementById("userTypeEmployee").checked == false) && (document.getElementById("userTypeManager").checked == true))
     {
