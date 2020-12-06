@@ -142,19 +142,9 @@ function endDateChecker2(endDate)
     var startDate = document.getElementsByName("startDate");
     var startDateInput = startDate[0].value;
 
-    if((startDateInput < endDate) && (endDate != ""))//check that the dates are in the right when
-    {
-        endDateMsg.innerHTML = "End date has to be after the start date";
-        validInput = false;
-    }
     if((startDateInput > endDate) && (endDate != ""))
     {
-        startDateMsg.innerHTML = "Start date has to be before the end date";
-        validInput = false;
-    }
-    if(endDate == "")//make sure that end date is
-    {
-        endDateMsg.innerHTML = "Please enter a end date";
+        startDateMsg.innerHTML = "End date has to be after the start date";
         validInput = false;
     }
     if(validInput == true)
