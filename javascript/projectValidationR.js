@@ -4,7 +4,7 @@ var titleListener = document.getElementsByName("projectTitle");
 titleListener[0].addEventListener("blur", titleChecker, false);
 
 var descriptionListener = document.getElementsByName("projectDescription");
-descriptionListener[0].addEventListener("change", descriptionChecker, false);
+descriptionListener[0].addEventListener("blur", descriptionChecker, false);
 
 var startDateListener = document.getElementsByName("startDate");
 startDateListener[0].addEventListener("change", startDateChecker, false);
