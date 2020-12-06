@@ -395,7 +395,7 @@ function task1Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value == ""))
+    if((task != "") && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;
