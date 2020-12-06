@@ -91,7 +91,7 @@ function startDateChecker2(startDate)
     //valid input
     var validInput = true;
 
-    if(startDate.length == "")//checks if empty
+    if(startDate == "")//checks if empty
     {
         startDateMsg.innerHTML = "Please enter a start date";
         validInput = false;
@@ -132,7 +132,7 @@ function endDateChecker2(endDate)
     var endDateMsg = document.getElementById("endDateError");
     var startDateMsg = document.getElementById("startDateError");
 
-    if(endDate.length == "")// check if empty
+    if(endDate == "")// check if empty
     {
         endDateMsg.innerHTML = "Please enter an end date";
         validInput = false;
