@@ -333,8 +333,9 @@
                                     </tr>
 
                                     <tr>
-                                        <td></td><td></td><td></td><td id="password1Error"></td>
+                                        <td></td><td id="emailError" class="generic-php-error"></td><td></td><td id="password1Error" class="generic-php-error"></td>
                                     </tr>
+
                                     <tr>
                                         <td></td><td></td>
                                         <td>Confirm Password: </td><td> <input type="text" name="confirmPassword" size="30" class="text-input"/></td>
@@ -344,9 +345,6 @@
                                         <td></td><td></td><td></td><td id="password2Error"></td>
                                     </tr>
 
-                                    <tr>
-                                        <td></td><td id="emailError" class="generic-php-error"></td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
