@@ -210,8 +210,11 @@ function member1Checker2(member)
     if(validInput == true)
     {
         memberMsg.innerHTML = "";
-        task1Checker2(task1[0].value, date1[0].value);
-        task2Checker2(task2[0].value, date2[0].value);
+        if(member =! "")
+        {
+            task1Checker2(task1[0].value, date1[0].value);
+            task2Checker2(task2[0].value, date2[0].value);
+        }
     }
     return validInput
 }
