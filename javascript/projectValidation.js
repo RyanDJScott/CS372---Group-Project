@@ -240,8 +240,11 @@ function member2Checker2(member)
     if(validInput == true)
     {
         memberMsg.innerHTML = "";
-        task3Checker2(task1[0].value, date1[0].value);
-        task4Checker2(task2[0].value, date2[0].value);
+        if(member != "")
+        {
+            task3Checker2(task1[0].value, date1[0].value);
+            task4Checker2(task2[0].value, date2[0].value);
+        }
     }
     return validInput
 }
@@ -266,8 +269,11 @@ function member3Checker2(member)
     if(validInput == true)
     {
         memberMsg.innerHTML = "";
-        task5Checker2(task1[0].value, date1[0].value);
-        task6Checker2(task2[0].value, date2[0].value);
+        if(member != "")
+        {
+            task5Checker2(task1[0].value, date1[0].value);
+            task6Checker2(task2[0].value, date2[0].value);
+        }
     }
     return validInput
 }
@@ -292,8 +298,11 @@ function member4Checker2(member)
     if(validInput == true)
     {
         memberMsg.innerHTML = "";
-        task7Checker2(task1[0].value, date1[0].value);
-        task8Checker2(task2[0].value, date2[0].value);
+        if(member != "")
+        {
+            task7Checker2(task1[0].value, date1[0].value);
+            task8Checker2(task2[0].value, date2[0].value);
+        }
     }
     return validInput
 }
@@ -435,7 +444,7 @@ function task2Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value == ""))
+    if((task != "") && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;
@@ -475,7 +484,7 @@ function task3Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value == ""))
+    if((task != "") && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;
@@ -515,7 +524,7 @@ function task4Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value == ""))
+    if((task != "") && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;
@@ -555,7 +564,7 @@ function task5Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value == ""))
+    if((task != "") && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;
@@ -595,7 +604,7 @@ function task6Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value == ""))
+    if((task != "") && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;
@@ -635,7 +644,7 @@ function task7Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value == ""))
+    if((task != "") && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;
@@ -675,7 +684,7 @@ function task8Checker2(task, deadline)
         deadMsg.innerHTML = "";
         taskMsg.innerHTML = "";
     }
-    if(validInput == true && (member[0].value == ""))
+    if((task != "") && (member[0].value == ""))
     {
         taskMsg.innerHTML = "Please provide a valid member for this task";
         validInput = false;

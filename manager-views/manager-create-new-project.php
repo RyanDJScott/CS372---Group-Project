@@ -389,7 +389,7 @@
                                     </tr>
                               
                                     <tr>
-                                        <td></td>
+                                        <td id="projectMember1Error" class="generic-php-error"></td>
                                         <td id="projectMember1Task1Error" class="generic-php-error"></td>
                                         <td id="projectMember1DeadlineTask1Error" class="generic-php-error"></td>
                                     </tr>
@@ -401,7 +401,7 @@
                                     </tr>
                   
                                     <tr>
-                                        <td id="projectMember1Error" class="generic-php-error"></td>
+                                        <td></td>
                                         <td id="projectMember1Task2Error" class="generic-php-error"></td>
                                         <td id="projectMember1DeadlineTask2Error" class="generic-php-error"></td>
                                     </tr>
@@ -413,7 +413,7 @@
                                     </tr>
                   
                                     <tr>
-                                        <td></td>
+                                        <td  id="projectMember2Error" class="generic-php-error"></td>
                                         <td id="projectMember2Task1Error" class="generic-php-error"></td>
                                         <td id="projectMember2DeadlineTask1Error" class="generic-php-error"></td>
                                     </tr>
@@ -425,7 +425,7 @@
                                     </tr>
                   
                                     <tr>
-                                        <td id="projectMember2Error" class="generic-php-error"></td>
+                                        <td></td>
                                         <td id="projectMember2Task2Error" class="generic-php-error"></td>
                                         <td id="projectMember2DeadlineTask2Error" class="generic-php-error"></td>
                                     </tr>
@@ -437,7 +437,7 @@
                                     </tr>
                   
                                     <tr>
-                                        <td></td>
+                                        <td id="projectMember3Error" class="generic-php-error"></td>
                                         <td id="projectMember3Task1Error" class="generic-php-error"></td>
                                         <td id="projectMember3DeadlineTask1Error" class="generic-php-error"></td>
                                     </tr>
@@ -449,7 +449,7 @@
                                     </tr>
                   
                                     <tr>
-                                        <td id="projectMember3Error" class="generic-php-error"></td>
+                                        <td></td>
                                         <td id="projectMember3Task2Error" class="generic-php-error"></td>
                                         <td id="projectMember3DeadlineTask2Error" class="generic-php-error"></td>
                                     </tr>
@@ -461,7 +461,7 @@
                                     </tr>
                   
                                     <tr>
-                                        <td></td>
+                                        <td id="projectMember4Error" class="php-generic-error"></td>
                                         <td id="projectMember4Task1Error" class="generic-php-error"></td>
                                         <td id="projectMember4DeadlineTask1Error" class="generic-php-error"></td>
                                     </tr>
@@ -473,7 +473,7 @@
                                     </tr>
                   
                                     <tr>
-                                        <td id="projectMember4Error" class="php-generic-error"></td>
+                                        <td></td>
                                         <td id="projectMember4Task2Error" class="generic-php-error"></td>
                                         <td id="projectMember4DeadlineTask2Error" class="generic-php-error"></td>
                                     </tr>
