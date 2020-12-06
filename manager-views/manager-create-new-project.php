@@ -413,7 +413,7 @@
                                     </tr>
                   
                                     <tr>
-                                        <td  id="projectMember2Error" class="generic-php-error"></td>
+                                        <td id="projectMember2Error" class="generic-php-error"></td>
                                         <td id="projectMember2Task1Error" class="generic-php-error"></td>
                                         <td id="projectMember2DeadlineTask1Error" class="generic-php-error"></td>
                                     </tr>

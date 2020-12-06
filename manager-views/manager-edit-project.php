@@ -533,7 +533,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td></td><td></td>
+                                        <td></td><td id="projectTitleError" class="generic-php-error"></td>
                                         <td></td><td id="suggestManager"></td>
                                     </tr>
                                 </tbody>
@@ -558,6 +558,11 @@
                                     <td>Start Date: </td><td> <input type="date" name="startDate" value="<?php echo htmlspecialchars($startdate);?>" /></td>
                                     <td>End Date: </td><td> <input type="date" name="endDate" value="<?php echo htmlspecialchars($enddate);?>" /></td>
                                 </tr>
+
+                                <tr>
+                                    <td></td><td id="startDateError" class="generic-php-error"></td>
+                                    <td></td><td id="endDateError" class="generic-php-error"></td>
+                                </tr>
                             </table>
                         </div>
                         
@@ -578,15 +583,33 @@
                                     </tr>
 
                                     <tr>
+                                        <td id="projectMember1Error" class="generic-php-error"></td>
+                                        <td id="projectMember1Task1Error" class="generic-php-error"></td>
+                                        <td id="projectMember1DeadlineTask1Error" class="generic-php-error"></td>
+                                    </tr>
+
+                                    <tr>
                                         <td id="suggestMember1"></td>
                                         <td><input type="text" name="projectMember1Task2" class="text-input" value="<?php echo htmlspecialchars($userTasks[1]);?>" /></td>
                                         <td><input type="date" name="projectMember1DeadlineTask2" value="<?php echo htmlspecialchars($userDeadlines[1]);?>" /></td>
                                     </tr>       
 
                                     <tr>
+                                        <td></td>
+                                        <td id="projectMember1Task2Error" class="generic-php-error"></td>
+                                        <td id="projectMember1DeadlineTask2Error" class="generic-php-error"></td>
+                                    </tr>
+
+                                    <tr>
                                         <td><input type="text" name="projectMember2" class="text-input" value="<?php echo htmlspecialchars($teamFN[1]);?> <?php echo htmlspecialchars($teamLN[1]);?>" /></td>
                                         <td><input type="text" name="projectMember2Task1" class="text-input" value="<?php echo htmlspecialchars($userTasks[2]);?>" /></td>
                                         <td><input type="date" name="projectMember2DeadlineTask1" value="<?php echo htmlspecialchars($userDeadlines[2]);?>" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td id="projectMember2Error" class="generic-php-error"></td>
+                                        <td id="projectMember2Task1Error" class="generic-php-error"></td>
+                                        <td id="projectMember2DeadlineTask1Error" class="generic-php-error"></td>
                                     </tr>
 
                                     <tr>
@@ -596,9 +619,21 @@
                                     </tr>
 
                                     <tr>
+                                        <td></td>
+                                        <td id="projectMember2Task2Error" class="generic-php-error"></td>
+                                        <td id="projectMember2DeadlineTask2Error" class="generic-php-error"></td>
+                                    </tr>
+
+                                    <tr>
                                         <td><input type="text" name="projectMember3" class="text-input" value="<?php echo htmlspecialchars($teamFN[2]);?> <?php echo htmlspecialchars($teamLN[2]);?>" /></td>
                                         <td><input type="text" name="projectMember3Task1" class="text-input" value="<?php echo htmlspecialchars($userTasks[4]);?>" /></td>
                                         <td><input type="date" name="projectMember3DeadlineTask1" value="<?php echo htmlspecialchars($userDeadlines[4]);?>" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td id="projectMember3Error" class="generic-php-error"></td>
+                                        <td id="projectMember3Task1Error" class="generic-php-error"></td>
+                                        <td id="projectMember3DeadlineTask1Error" class="generic-php-error"></td>
                                     </tr>
 
                                     <tr>
@@ -608,15 +643,33 @@
                                     </tr>
 
                                     <tr>
+                                        <td></td>
+                                        <td id="projectMember3Task2Error" class="generic-php-error"></td>
+                                        <td id="projectMember3DeadlineTask2Error" class="generic-php-error"></td>
+                                    </tr>
+
+                                    <tr>
                                         <td><input type="text" name="projectMember4" class="text-input" value="<?php echo htmlspecialchars($teamFN[3]);?> <?php echo htmlspecialchars($teamLN[3]);?>" /></td>
                                         <td><input type="text" name="projectMember4Task1" class="text-input" value="<?php echo htmlspecialchars($userTasks[6]);?>" /></td>
                                         <td><input type="date" name="projectMember4DeadlineTask1" value="<?php echo htmlspecialchars($userDeadlines[6]);?>" /></td>
                                     </tr>
 
                                     <tr>
+                                        <td id="projectMember4Error" class="php-generic-error"></td>
+                                        <td id="projectMember4Task1Error" class="generic-php-error"></td>
+                                        <td id="projectMember4DeadlineTask1Error" class="generic-php-error"></td>
+                                    </tr>
+
+                                    <tr>
                                         <td id="suggestMember4"></td>
                                         <td><input type="text" name="projectMember4Task2" class="text-input" value="<?php echo htmlspecialchars($userTasks[7]);?>" /></td>
                                         <td><input type="date" name="projectMember4DeadlineTask2" value="<?php echo htmlspecialchars($userDeadlines[7]);?>" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td id="projectMember4Task2Error" class="generic-php-error"></td>
+                                        <td id="projectMember4DeadlineTask2Error" class="generic-php-error"></td>
                                     </tr>
                             </table>
                         </div>
