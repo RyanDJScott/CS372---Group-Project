@@ -54,7 +54,7 @@ function descriptionChecker2(desc)
     //variable to validate input
     var validInput = true;
     
-    if(desc.length == "")//checks if empty or null
+    if(desc == "")//checks if empty or null
     {
         descMsg.innerHTML = "Enter a description";//triggers that error
         validInput = false;
